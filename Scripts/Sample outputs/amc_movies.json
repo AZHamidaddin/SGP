@@ -1,0 +1,4696 @@
+[
+    {
+        "Title": "Captain America: Brave New World",
+        "Slug": "captain-america-brave-new-world",
+        "Identifier": "captain-america-brave-new-world",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1739447572457.jpeg",
+        "Rating": "PG15",
+        "Language": "ENGLISH",
+        "Description": "Sam Wilson, the new Captain America, finds himself in the middle of an international incident and must discover the motive behind a nefarious global plan.",
+        "Genre": [
+            "Action"
+        ],
+        "Showtimes URL": "/movies/captain-america-brave-new-world#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:55 PM",
+                                    "12:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:00 PM",
+                                    "10:35 PM",
+                                    "12:30 AM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "10:20 PM",
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "11:45 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:50 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "IMAX",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "07:45 PM",
+                                    "10:20 PM",
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:15 PM",
+                                    "11:45 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "10:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "IMAX",
+                                "Times": [
+                                    "08:40 PM",
+                                    "11:10 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:50 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:35 PM",
+                                    "08:00 PM",
+                                    "10:00 PM",
+                                    "10:35 PM",
+                                    "12:30 AM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "08:05 PM",
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:55 PM",
+                                    "12:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "07:45 PM",
+                                    "10:20 PM",
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:15 PM",
+                                    "11:45 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "IMAX",
+                                "Times": [
+                                    "08:30 PM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:50 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "12:50 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:35 PM",
+                                    "08:00 PM",
+                                    "10:00 PM",
+                                    "10:35 PM",
+                                    "12:30 AM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "08:05 PM",
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:55 PM",
+                                    "12:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Dolby",
+                                "Times": [
+                                    "08:25 PM",
+                                    "10:55 PM",
+                                    "01:25 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "07:40 PM",
+                                    "12:45 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:15 PM",
+                                    "07:55 PM",
+                                    "09:40 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "12:55 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:25 PM",
+                                    "08:05 PM",
+                                    "09:50 PM",
+                                    "10:35 PM",
+                                    "12:20 AM",
+                                    "01:05 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Cleaner",
+        "Slug": "cleaner",
+        "Identifier": "cleaner",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1738831530673.jpeg",
+        "Rating": "R18",
+        "Language": "ENGLISH",
+        "Description": "In this latest action of Casino Royale director Martin Campbell, Daisy Ridley (Star Wars) , stars as an ex-soldier turned window cleaner, who must step in to save a group of hostages when radical activists seize an energy company’s gala. Suspended 50 storeys up on the side of a skyscraper, Ridley must fight to rescue those trapped inside, including her younger brother.",
+        "Genre": [
+            "Action",
+            "Thriller"
+        ],
+        "Showtimes URL": "/movies/cleaner#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "10:55 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:35 PM",
+                                    "11:35 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:20 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "02:10 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:35 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:20 PM",
+                                    "12:25 AM",
+                                    "02:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "07:15 PM",
+                                    "02:10 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:30 PM",
+                                    "11:35 PM",
+                                    "12:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:15 PM",
+                                    "10:20 PM",
+                                    "12:25 AM",
+                                    "02:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:00 PM",
+                                    "10:55 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "03:45 PM",
+                                    "09:15 PM",
+                                    "11:20 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:35 PM",
+                                    "11:35 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "07:15 PM",
+                                    "02:10 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:30 PM",
+                                    "11:35 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:15 PM",
+                                    "10:20 PM",
+                                    "12:25 AM",
+                                    "02:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "09:00 PM",
+                                    "10:55 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "03:45 PM",
+                                    "09:15 PM",
+                                    "11:20 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:35 PM",
+                                    "11:35 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:40 PM",
+                                    "09:45 PM",
+                                    "11:45 PM",
+                                    "01:45 AM",
+                                    "02:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "09:10 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Ladies Night",
+                                "Times": [
+                                    "09:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "11:15 PM",
+                                    "01:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "SE7EN (Re-releasing)",
+        "Slug": "se7en-(re-releasing)",
+        "Identifier": "se7en-(re-releasing)",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1737635521142.jpeg",
+        "Rating": "R18",
+        "Language": "ENGLISH",
+        "Description": "Two cops (Brad Pitt and Morgan Freeman) track a brilliant and elusive killer who orchestrates a string of horrific murders, each kill targeting a practitioner of one of the Seven Deadly Sins. Gwyneth Paltrow also stars in this acclaimed thriller set in a dour, drizzly city sick with pain and blight. David Fincher (Fight Club, Zodiac, The Curious Case of Benjamin Button) guides the action – physical, mental and spiritual – with a sure understanding of what terrifies us, right up to a stunning denouement that will rip the scar tissue off the most hardened soul.",
+        "Genre": [
+            "Drama"
+        ],
+        "Showtimes URL": "/movies/se7en-(re-releasing)#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:00 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:20 PM",
+                                    "12:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:15 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:35 PM",
+                                    "01:10 AM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "12:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "10:35 PM",
+                                    "01:10 AM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "11:15 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:50 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "10:00 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "10:35 PM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "10:35 PM",
+                                    "12:15 AM",
+                                    "01:10 AM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "11:15 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:50 PM",
+                                    "10:25 PM",
+                                    "12:10 AM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "10:00 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Prime",
+                                "Times": [
+                                    "10:10 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "11:50 PM",
+                                    "12:05 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:40 PM",
+                                    "10:15 PM",
+                                    "10:45 PM",
+                                    "12:45 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:45 PM",
+                                    "10:20 PM",
+                                    "10:45 PM",
+                                    "12:50 AM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Hobal",
+        "Slug": "hobal",
+        "Identifier": "hobal",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1734617739610.jpeg",
+        "Rating": "PG15",
+        "Language": "ARABIC",
+        "Description": "In the aftermath of the Second Gulf War, Hobal tells the story of a Bedouin family led by the grandfather, Liam, who believes that recent signs mark the end of days. Taking his family, he retreats into the desert to live in total isolation. But when Refa, his granddaughter, contracts a contagious illness, her mother Sarra is forced to challenge Liam’s rules to save her daughter’s life. With the help of Assaf, a boy who fears losing Refa, Sarra’s decision tests the family’s beliefs and the limits of their survival. Hobal is the third collaboration between director Abdulaziz Alshlahei and writer Mufarrij Almajfel.",
+        "Genre": [
+            "Drama"
+        ],
+        "Showtimes URL": "/movies/hobal#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:30 PM",
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:20 PM",
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:20 PM",
+                                    "12:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:45 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "11:10 PM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:30 PM",
+                                    "10:20 PM",
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:30 PM",
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:10 PM",
+                                    "11:25 PM",
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "11:10 PM",
+                                    "01:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:30 PM",
+                                    "10:20 PM",
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Ladies Night",
+                                "Times": [
+                                    "10:30 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "12:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "07:10 PM",
+                                    "11:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "El Hana El Ana Feeh",
+        "Slug": "el-hana-el-ana-feeh",
+        "Identifier": "el-hana-el-ana-feeh",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1734508871341.jpeg",
+        "Rating": "R18",
+        "Language": "ARABIC",
+        "Description": "Ahmed, a quirky marriage counselor, is heartbroken when his wife, Eman, receives bad news from her doctor. To make sure their daughter has a loving mother figure after she’s gone, Eman forces Ahmed to marry her attractive best friend Fawzeya, despite knowing he’s always had a crush on her! As Ahmed and Fawzeya start to warm up to each other after their marriage, hilarious events unfold when they discover a mistake in Eman’s diagnosis.",
+        "Genre": [
+            "Comedy"
+        ],
+        "Showtimes URL": "/movies/el-hana-el-ana-feeh#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:20 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:45 PM",
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:30 PM",
+                                    "11:55 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "11:55 PM",
+                                    "02:00 AM",
+                                    "02:35 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:15 PM",
+                                    "11:40 PM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:50 PM",
+                                    "11:55 PM",
+                                    "02:00 AM",
+                                    "02:35 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:30 PM",
+                                    "09:45 PM",
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:20 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:20 PM",
+                                    "11:40 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:50 PM",
+                                    "11:55 PM",
+                                    "02:00 AM",
+                                    "02:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:10 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Ladies Night",
+                                "Times": [
+                                    "09:45 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:30 PM",
+                                    "11:10 PM",
+                                    "01:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:20 PM",
+                                    "01:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:45 PM",
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:15 PM",
+                                    "11:15 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Mufasa: The Lion King",
+        "Slug": "mufasa-the-lion-king",
+        "Identifier": "mufasa-the-lion-king",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1734619423257.jpeg",
+        "Rating": "PG",
+        "Language": "ENGLISH",
+        "Description": "Simba, having become king of the Pride Lands, is determined for his cub to follow in his paw prints while the origins of his late father Mufasa are explored.",
+        "Genre": [
+            "Animation",
+            "Adventure"
+        ],
+        "Showtimes URL": "/movies/mufasa-the-lion-king#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:05 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "12:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:00 PM",
+                                    "12:35 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM",
+                                    "09:45 PM",
+                                    "12:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:50 PM",
+                                    "12:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "10:05 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "10:15 PM",
+                                    "12:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "10:30 PM",
+                                    "01:00 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Garden 5",
+                        "City": "Hail",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:50 PM",
+                                    "12:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "10:05 PM",
+                                    "12:30 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:50 PM",
+                                    "01:40 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:05 PM",
+                                    "11:25 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:05 PM",
+                                    "09:00 PM",
+                                    "11:20 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Sonic the Hedgehog 3",
+        "Slug": "sonic-the-hedgehog-3",
+        "Identifier": "sonic-the-hedgehog-3",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1735204625990.jpeg",
+        "Rating": "PG",
+        "Language": "ENGLISH",
+        "Description": "Sonic the Hedgehog returns to the big screen this holiday season in his most thrilling adventure yet. Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.",
+        "Genre": [
+            "Animation",
+            "Adventure",
+            "Family"
+        ],
+        "Showtimes URL": "/movies/sonic-the-hedgehog-3#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:20 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM",
+                                    "09:20 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:50 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:40 PM",
+                                    "11:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM",
+                                    "09:05 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:40 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Tabuk Boulevard 7",
+                        "City": "Tabuk",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:40 PM",
+                                    "11:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:45 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:05 PM",
+                                    "09:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Moana 2",
+        "Slug": "moana-2",
+        "Identifier": "moana-2",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1729083107632.jpeg",
+        "Rating": "PG",
+        "Language": "ENGLISH",
+        "Description": "After receiving an unexpected call from her wayfinding ancestors, Moana journeys to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she has ever faced.",
+        "Genre": [
+            "Animation"
+        ],
+        "Showtimes URL": "/movies/moana-2#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:05 PM",
+                                    "11:55 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:55 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:05 PM",
+                                    "11:55 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "10:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:05 PM",
+                                    "11:55 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "10:00 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM",
+                                    "09:35 PM",
+                                    "11:35 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:20 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:00 PM",
+                                    "09:30 PM",
+                                    "11:25 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Dog Man",
+        "Slug": "dog-man",
+        "Identifier": "dog-man",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1737961718968.jpeg",
+        "Rating": "PG",
+        "Language": "ENGLISH",
+        "Description": "Part dog, part man, all hero.\n\nFrom DreamWorks Animation—creators of the beloved blockbuster franchises Kung Fu Panda, How to Train Your Dragon and The Boss Baby—comes the canine-crime-fighting film adaptation of Dav Pilkey’s New York Times bestselling literary phenomenon: Dog Man.\n\nWhen a faithful police dog and his human police officer owner are injured together on the job, a harebrained but life-saving surgery fuses the two of them together and Dog Man is born. Dog Man is sworn to protect and serve—and fetch, sit and roll over. \n\nAs Dog Man embraces his new identity and strives to impress his Chief, he must stop the pretty evil plots of feline supervillain Petey the Cat. Petey’s latest plan is to clone himself, creating the kitten Lil Petey, to double his ability to do crime stuff. Things get complicated, though, when Lil Petey forges an unexpected bond with Dog Man.\n\nWhen Lil Petey falls into the clutches of a common enemy, Dog Man and Petey reluctantly join forces in an action-packed race against time to rescue the young kitten. In the process, they discover the power of family (and kittens!) to bring even the most hostile foes together.",
+        "Genre": [
+            "Animation",
+            "Comedy",
+            "Action"
+        ],
+        "Showtimes URL": "/movies/dog-man#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:55 PM",
+                                    "12:10 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:55 PM",
+                                    "09:55 PM",
+                                    "12:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "03:50 PM",
+                                    "07:25 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:55 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "03:50 PM",
+                                    "07:25 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:35 PM",
+                                    "09:30 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "09:45 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:10 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:35 PM",
+                                    "07:10 PM",
+                                    "09:15 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Al Dashash",
+        "Slug": "al-dashash",
+        "Identifier": "al-dashash",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1735823047703.png",
+        "Rating": "R18",
+        "Language": "ARABIC",
+        "Description": "A powerful , influential man in the world of crime is exposed to a health crisis that changes all his life so he decides to return to God. Can he overcome his demon?",
+        "Genre": [
+            "Drama"
+        ],
+        "Showtimes URL": "/movies/al-dashash#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:35 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:35 PM",
+                                    "02:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "12:15 AM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "12:15 AM",
+                                    "02:10 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:35 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Ladies Night",
+                                "Times": [
+                                    "11:20 PM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Ladies Night",
+                                "Times": [
+                                    "12:00 AM"
+                                ]
+                            },
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:45 PM",
+                                    "02:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:35 PM",
+                                    "01:20 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "10:40 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:30 PM",
+                                    "01:15 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Flight Risk",
+        "Slug": "flight-risk",
+        "Identifier": "flight-risk",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1728821674983.jpeg",
+        "Rating": "R18",
+        "Language": "ENGLISH",
+        "Description": "A pilot transports an Air Marshal accompanying a fugitive to trail. As they cross the Alaskan wilderness, tensions soar and trust is tested, as not everyone on board is who they seem.",
+        "Genre": [
+            "Action"
+        ],
+        "Showtimes URL": "/movies/flight-risk#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-03",
+                "day_of_week": "Today",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "11:40 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "11:55 PM",
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "11:55 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "12:35 AM",
+                                    "02:25 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:40 PM",
+                                    "10:05 PM",
+                                    "12:15 AM",
+                                    "02:15 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "12:35 AM",
+                                    "02:25 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:30 PM",
+                                    "09:15 PM",
+                                    "11:55 PM",
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "11:40 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Ajdan Walk 9",
+                        "City": "Al Khobar",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:15 PM",
+                                    "10:00 PM",
+                                    "12:05 AM",
+                                    "02:05 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "08:00 PM",
+                                    "12:35 AM",
+                                    "02:45 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:30 PM",
+                                    "09:15 PM",
+                                    "11:55 PM",
+                                    "01:50 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "09:50 PM",
+                                    "11:40 PM",
+                                    "01:45 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-06",
+                "day_of_week": "Thursday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-07",
+                "day_of_week": "Friday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-08",
+                "day_of_week": "Saturday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-09",
+                "day_of_week": "Sunday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "12:10 AM",
+                                    "02:25 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-10",
+                "day_of_week": "Monday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-11",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "09:00 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-12",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "03:45 PM",
+                                    "07:10 PM",
+                                    "08:55 PM",
+                                    "11:35 PM",
+                                    "01:55 AM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Bridget Jones: Mad about the Boy",
+        "Slug": "bridget-jones-mad-about-the-boy",
+        "Identifier": "bridget-jones-mad-about-the-boy",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1739350816002.jpeg",
+        "Rating": "R18",
+        "Language": "ENGLISH",
+        "Description": "Two-time Academy Award® winner Renée Zellweger returns to the role that established a romantic-comedy heroine for the ages, a woman whose inimitable approach to life and love redefined an entire film genre. \n\nBridget Jones: Mad About the Boy, Bridget is alone once again, widowed four years ago, when Mark (Oscar® winner Colin Firth) was killed on a humanitarian mission. She’s now a single mother to 9-year-old Billy and 4-year-old Mabel, and is stuck in a state of emotional limbo, raising her children with help from her loyal friends and even her former lover, Daniel Cleaver (Hugh Grant).\n\nPressured by her Urban Family —Shazzer, Jude and Tom, her work colleague Miranda, her mother, and her gynecologist Dr. Rawlings (Oscar® winner Emma Thompson) — to forge a new path toward life and love, Bridget goes back to work and even tries out the dating apps, where she’s soon pursued by a dreamy and enthusiastic younger man (White Lotus’s Leo Woodall). Now juggling work, home and romance, Bridget grapples with the judgment of the perfect mums at school, worries about Billy as he struggles with the absence of his father, and engages in a series of awkward interactions with her son’s rational-to-a-fault science teacher (Oscar® nominee Chiwetel Ejiofor).",
+        "Genre": [
+            "Romance",
+            "Comedy"
+        ],
+        "Showtimes URL": "/movies/bridget-jones-mad-about-the-boy#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:50 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Panorama Mall 10",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:55 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "A Complete Unknown",
+        "Slug": "a-complete-unknown",
+        "Identifier": "a-complete-unknown",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1737288050726.jpeg",
+        "Rating": "R15",
+        "Language": "ENGLISH",
+        "Description": "In 1961, an unknown 19-year-old Bob Dylan arrives in New York City with his guitar and forges relationships with music icons on his meteoric rise, culminating in a groundbreaking performance that reverberates worldwide.",
+        "Genre": [
+            "Drama",
+            "Music"
+        ],
+        "Showtimes URL": "/movies/a-complete-unknown#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-04",
+                "day_of_week": "Tuesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Riyadh Gallery 9",
+                        "City": "Riyadh",
+                        "Experiences": [
+                            {
+                                "Experience": "Standard",
+                                "Times": [
+                                    "07:40 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Title": "Interstellar (IMAX Re-release)",
+        "Slug": "interstellar-(imax-re-release)",
+        "Identifier": "interstellar-(imax-re-release)",
+        "Parent": "AMC",
+        "Image URL": "https://prodamcscclimages.blob.core.windows.net/prod-amcsccl-images/uploads/croppedImage1740906562463.jpeg",
+        "Rating": "PG15",
+        "Language": "ENGLISH",
+        "Description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+        "Genre": [
+            "Adventure"
+        ],
+        "Showtimes URL": "/movies/interstellar-(imax-re-release)#showtimes",
+        "Timings": [
+            {
+                "Date": "2025-03-05",
+                "day_of_week": "Wednesday",
+                "Showtimes": [
+                    {
+                        "Place": "AMC Stars Avenue 9",
+                        "City": "Jeddah",
+                        "Experiences": [
+                            {
+                                "Experience": "IMAX",
+                                "Times": [
+                                    "11:00 PM"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
