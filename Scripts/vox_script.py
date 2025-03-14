@@ -211,7 +211,7 @@ def enrich_movie_with_timings_for_dates(
                 "Showtimes": []
             })
 
-def save_movies_to_json_file(movies: List[Movie], filename: str = "movies.json") -> None:
+def save_movies_to_json_file(movies: List[Movie], filename: str = "vox_movies.json") -> None:
     """Saves the movie data to a JSON file with the expected keys and structure."""
     movies_list = []
     for movie in movies:
@@ -255,7 +255,7 @@ def main():
             enrich_movie_with_timings_for_dates(movie, days_to_check=7)
 
         # Save the movie data to a JSON file with keys matching the desired output.
-        save_movies_to_json_file(movies, filename="movies.json")
+        save_movies_to_json_file(movies, filename="vox_movies.json")
     except Exception as e:
         print(f"Error fetching movie data: {e}")
 
