@@ -14,7 +14,7 @@ class Movie:
     title: str
     slug: str
     identifier: str
-    parent: str = "AMC"            # Defaulted to AMC
+    parent: str = "Vox"            # Defaulted to Vox
     image_url: str = ""
     rating: str = ""               # Will be extracted from classification if available
     language: str = ""
@@ -119,7 +119,7 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
 
     timings_by_place = {}
 
-    # For each cinema name (inside an <h3 class="highlight"> tag)
+    # For each cinema name (inside an <h3 class_="highlight"> tag)
     for place_header in dates_div.find_all("h3", class_="highlight"):
         place = place_header.get_text(" ", strip=True)
         showtimes_ol = place_header.find_next_sibling("ol", class_="showtimes")
@@ -158,17 +158,17 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
 
 def enrich_movie_with_timings_for_dates(
     movie: Movie,
-    start_date_str: str = "20250212",
-    days_to_check: int = 10
+    days_to_check: int = 7
 ) -> None:
     """
-    For a single Movie object, loops over a date range, builds URLs such as:
+    For a single Movie object, loops over a date range (from today for days_to_check days),
+    builds URLs such as:
       https://ksa.voxcinemas.com/movies/{movie.slug}?d=YYYYMMDD#showtimes
     and stores daily timings (with day-of-week) as a list in movie.timings.
     """
     date_format = "%Y%m%d"         # format for URL construction
     output_date_format = "%Y-%m-%d"  # format for output date string
-    start_date = datetime.strptime(start_date_str, date_format)
+    start_date = datetime.now()
 
     # Clear any existing timings data
     movie.timings = []
@@ -200,18 +200,18 @@ def enrich_movie_with_timings_for_dates(
                 })
             movie.timings.append({
                 "Date": pretty_date,
-                "day_of_week": day_of_week if i == 0 else "",
+                "day_of_week": day_of_week,
                 "Showtimes": showtimes_list
             })
         except Exception as e:
             print(f"     [Error] {e}")
             movie.timings.append({
                 "Date": pretty_date,
-                "day_of_week": day_of_week if i == 0 else "",
+                "day_of_week": day_of_week,
                 "Showtimes": []
             })
 
-def save_movies_to_json_file(movies: List[Movie], filename: str = "vox_movies.json") -> None:
+def save_movies_to_json_file(movies: List[Movie], filename: str = "movies.json") -> None:
     """Saves the movie data to a JSON file with the expected keys and structure."""
     movies_list = []
     for movie in movies:
@@ -238,7 +238,7 @@ def main():
     Main function to:
       1. Fetch the "What’s On" page listing.
       2. Parse movie details.
-      3. For each movie, enrich it with daily showtimes (for a specified date range).
+      3. For each movie, enrich it with daily showtimes (for today until 7 days ahead).
       4. Save all the results to a JSON file.
     """
     whatson_url = BASE_URL + "/movies/whatson"
@@ -249,13 +249,13 @@ def main():
         movies = parse_movies(html)
         print(f"Found {len(movies)} movies.\n")
 
-        # Enrich each movie with daily showtimes (adjust start_date_str and days_to_check as needed)
+        # Enrich each movie with daily showtimes (for today until 7 days ahead)
         for movie in movies:
             print(f"Enriching '{movie.title}' with daily showtimes...")
-            enrich_movie_with_timings_for_dates(movie, start_date_str="20250212", days_to_check=10)
+            enrich_movie_with_timings_for_dates(movie, days_to_check=7)
 
         # Save the movie data to a JSON file with keys matching the desired output.
-        save_movies_to_json_file(movies, filename="vox_movies.json")
+        save_movies_to_json_file(movies, filename="movies.json")
     except Exception as e:
         print(f"Error fetching movie data: {e}")
 
