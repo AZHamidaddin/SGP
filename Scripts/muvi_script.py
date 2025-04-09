@@ -137,7 +137,13 @@ city_mapping = {
     3: "Dammam",
     4: "Jubail",
     6: "Jeddah",
-    7: "Dhahran"
+    7: "Dhahran",
+    19: "Al Hofuf",
+    20: "Buraydah",
+    21: "Unayzah",
+    23: "Taif",
+    24: "Khamis Mushait",
+
 }
 
 for movie in movies:
@@ -176,11 +182,11 @@ for movie in movies:
         time.sleep(5)
         page_source = driver.page_source
 
-        # Check for a 404-like error by examining the title and page content.
-        if (driver.title.strip() in ["404", "Not Found"] or
-                "page not found" in page_source.lower()):
-            print(f"CityId {city_id} appears to be a 404. Skipping...")
-            continue
+        # Check for a 404-like error by examining the title and page content. (WORK ON THIS)
+        # if (driver.title.strip() in ["404", "Not Found"] or
+        #         "page not found" in page_source.lower()):
+        #     print(f"CityId {city_id} appears to be a 404. Skipping...")
+        #     continue
 
         soup = BeautifulSoup(page_source, "html.parser")
         # Find all buttons representing date groups.
@@ -207,7 +213,7 @@ for movie in movies:
             page_source = driver.page_source
             soup = BeautifulSoup(page_source, "html.parser")
 
-            cinema_divs = soup.find_all('div', class_='MuiAccordion-root')
+            cinema_divs = soup.find_all('div', class_='css-1jdfe3m')
             cinemas_for_date = []
 
             for cinema in cinema_divs:
