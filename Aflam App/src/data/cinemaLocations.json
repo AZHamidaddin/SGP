@@ -1,0 +1,60 @@
+{
+  "cities": [
+    {
+      "name": "Riyadh",
+      "cinemas": [
+        {
+          "cinemaId": "cinema_1",
+          "name": "AMC Panorama Mall",
+          "location": "Panorama Mall, Takhassusi St, Riyadh 12332"
+        },
+        {
+          "cinemaId": "cinema_2",
+          "name": "muvi Cinemas - U Walk",
+          "location": "U Walk, Prince Turki Al Awwal Road, Riyadh"
+        },
+        {
+          "cinemaId": "cinema_3",
+          "name": "Reel Cinemas",
+          "location": "The Roof, Riyadh"
+        }
+      ]
+    },
+    {
+      "name": "Jeddah",
+      "cinemas": [
+        {
+          "cinemaId": "cinema_4",
+          "name": "AMC Stars Avenue",
+          "location": "Stars Avenue, King Abdulaziz Rd, Jeddah 23424"
+        },
+        {
+          "cinemaId": "cinema_5",
+          "name": "muvi Cinemas - Mall of Arabia",
+          "location": "Mall of Arabia, Al Nouzhah Branch Rd, Jeddah"
+        },
+        {
+          "cinemaId": "cinema_6",
+          "name": "Vox Cinemas - Red Sea Mall",
+          "location": "Red Sea Mall, King Abdulaziz Rd, Jeddah"
+        }
+      ]
+    },
+    
+    {
+      "name": "Dammam",
+      "cinemas": [
+        {
+          "cinemaId": "cinema_7",
+          "name": "Vox Cinemas - West Avenue Mall",
+          "location": "Omar bin al-Khattab Street, Al Faisaliah, Dammam"
+        },
+        {
+          "cinemaId": "cinema_8",
+          "name": "muvi Cinemas - Al Nakheel Mall",
+          "location": "Al Nakheel Mall, Dammam"
+        }
+      ]
+    }
+  ]
+}
