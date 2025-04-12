@@ -21,5 +21,8 @@
 7. Navigate to the **backend** directory:
    `cd ../backend/`
 
-8. Run the server.js:
+8. Install dotenv:
+   `npm install dotenv`
+
+9. Run the server.js:
    `node server.js`
