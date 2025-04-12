@@ -1,0 +1,537 @@
+[
+    {
+      "id": 1,
+      "name": "Inception",
+      "poster": "https://posterspy.com/wp-content/uploads/2020/09/inception-ricojr.png",
+      "youtube": "https://www.youtube.com/embed/8hP9D6kZseM",
+      "ageRating": "PG-13",
+      "summary": "A skilled thief leads a team into people's dreams to steal ideas, but a dangerous mission forces him to plant an idea instead.",
+      "releaseDate": "2010-07-16",
+      "runningTime": "148 minutes",
+      "language": "English",
+      "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
+      "showTimes": {
+        "cinemas": [
+          {
+            "cinemaId": "cinema_1",
+            "cinemaName": "AMC Panorama Mall, Riyadh",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["10:30 AM", "1:15 PM", "9:15 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["12:45 PM", "3:15 PM"]
+              }
+            ]
+          },
+          {
+            "cinemaId": "cinema_2",
+            "cinemaName": "muvi Cinemas - U Walk, Riyadh",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["11:30 AM", "2:00 PM", "9:30 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["1:00 PM", "3:45 PM"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "The Dark Knight",
+      "poster": "https://m.media-amazon.com/images/I/81IfoBox2TL.jpg",
+      "youtube": "https://www.youtube.com/embed/EXeTwQWrcwY",
+      "ageRating": "PG-13",
+      "summary": "Batman must stop the Joker's reign of terror on Gotham City, as chaos and moral dilemmas test his limits.",
+      "releaseDate": "2008-07-18",
+      "runningTime": "152 minutes",
+      "language": "English",
+      "cast": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+      "showTimes": {
+        "cinemas": [
+          {
+            "cinemaId": "cinema_3",
+            "cinemaName": "AMC Stars Avenue, Jeddah",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["12:30 PM", "2:45 PM", "8:30 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["2:00 PM", "9:15 PM"]
+              }
+            ]
+          },
+          {
+            "cinemaId": "cinema_4",
+            "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["2:00 PM", "4:00 PM", "6:30 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["1:00 PM", "10:00 PM"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Avengers: Endgame",
+      "poster": "https://m.media-amazon.com/images/I/91-UCbbhoiL.jpg",
+      "youtube": "https://www.youtube.com/embed/TcMBFSGVi1c",
+      "ageRating": "PG-13",
+      "summary": "After the devastating events of Infinity War, the Avengers assemble one last time to undo Thanos' actions.",
+      "releaseDate": "2019-04-26",
+      "runningTime": "181 minutes",
+      "language": "English",
+      "cast": ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"],
+      "showTimes": {
+        "cinemas": [
+          {
+            "cinemaId": "cinema_1",
+            "cinemaName": "AMC Panorama Mall, Riyadh",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["12:00 PM", "3:30 PM", "7:00 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["11:00 AM", "4:15 PM"]
+              }
+            ]
+          },
+          {
+            "cinemaId": "cinema_4",
+            "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+            "dates": [
+              {
+                "date": "2024-11-22",
+                "times": ["10:30 AM", "3:15 PM", "6:45 PM"]
+              },
+              {
+                "date": "2024-11-23",
+                "times": ["1:00 PM", "4:30 PM", "8:15 PM"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  
+    ,
+        {
+          "id": 4,
+          "name": "Joker",
+          "poster": "https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMDhhNDk3NTFiZGU4XkEyXkFqcGc@._V1_.jpg",
+          "youtube": "https://www.youtube.com/embed/zAGVQLHvwOY",
+          "ageRating": "R",
+          "summary": "Arthur Fleck, a failed comedian, descends into madness and becomes Gotham's infamous clown prince of crime.",
+          "releaseDate": "2019-10-04",
+          "runningTime": "122 minutes",
+          "language": "English",
+          "cast": ["Joaquin Phoenix", "Robert De Niro", "Zazie Beetz"],
+          "showTimes": {
+            "cinemas": [
+              {
+                "cinemaId": "cinema_3",
+                "cinemaName": "AMC Stars Avenue, Jeddah",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["1:00 PM", "3:45 PM", "9:15 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["11:30 AM", "4:00 PM"]
+                  }
+                ]
+              },
+              {
+                "cinemaId": "cinema_2",
+                "cinemaName": "muvi Cinemas - U Walk, Riyadh",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["12:15 PM", "3:30 PM", "6:45 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["1:00 PM", "3:45 PM", "7:15 PM"]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "name": "Frozen II",
+          "poster": "https://lumiere-a.akamaihd.net/v1/images/p_frozen2_19644_4c4b423d.jpeg?region=0%2C0%2C540%2C810",
+          "youtube": "https://www.youtube.com/embed/Zi4LMpSDccc",
+          "ageRating": "PG",
+          "summary": "Elsa, Anna, Kristoff, and Olaf embark on a journey to discover the origins of Elsa's powers and save their kingdom.",
+          "releaseDate": "2019-11-22",
+          "runningTime": "103 minutes",
+          "language": "English",
+          "cast": ["Kristen Bell", "Idina Menzel", "Josh Gad"],
+          "showTimes": {
+            "cinemas": [
+              {
+                "cinemaId": "cinema_1",
+                "cinemaName": "AMC Panorama Mall, Riyadh",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["11:00 AM", "1:30 PM", "6:00 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["12:45 PM", "4:00 PM"]
+                  }
+                ]
+              },
+              {
+                "cinemaId": "cinema_4",
+                "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["10:00 AM", "1:00 PM", "5:45 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["2:00 PM", "6:30 PM"]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "name": "Black Panther",
+          "poster": "https://i.redd.it/dj4o5b6ywcx91.jpg",
+          "youtube": "https://www.youtube.com/embed/xjDjIWPwcPU",
+          "ageRating": "PG-13",
+          "summary": "T'Challa returns to Wakanda to take his place as king but faces challenges from a powerful adversary.",
+          "releaseDate": "2018-02-16",
+          "runningTime": "134 minutes",
+          "language": "English",
+          "cast": ["Chadwick Boseman", "Michael B. Jordan", "Lupita Nyong'o"],
+          "showTimes": {
+            "cinemas": [
+              {
+                "cinemaId": "cinema_3",
+                "cinemaName": "AMC Stars Avenue, Jeddah",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["12:00 PM", "3:45 PM", "8:00 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["11:30 AM", "2:15 PM", "5:45 PM"]
+                  }
+                ]
+              },
+              {
+                "cinemaId": "cinema_2",
+                "cinemaName": "muvi Cinemas - U Walk, Riyadh",
+                "dates": [
+                  {
+                    "date": "2024-11-22",
+                    "times": ["12:15 PM", "3:30 PM", "6:45 PM"]
+                  },
+                  {
+                    "date": "2024-11-23",
+                    "times": ["11:45 AM", "4:00 PM", "7:30 PM"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+        ,
+            {
+              "id": 7,
+              "name": "Interstellar",
+              "poster": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p10543523_p_v8_as.jpg",
+              "youtube": "https://www.youtube.com/embed/zSWdZVtXT7E",
+              "ageRating": "PG-13",
+              "summary": "A team of astronauts travel through a wormhole in search of a new home for humanity as Earth faces extinction.",
+              "releaseDate": "2014-11-07",
+              "runningTime": "169 minutes",
+              "language": "English",
+              "cast": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+              "showTimes": {
+                "cinemas": [
+                  {
+                    "cinemaId": "cinema_1",
+                    "cinemaName": "AMC Panorama Mall, Riyadh",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["11:30 AM", "2:30 PM", "6:30 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["12:00 PM", "3:00 PM", "7:00 PM"]
+                      }
+                    ]
+                  },
+                  {
+                    "cinemaId": "cinema_4",
+                    "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["10:15 AM", "1:30 PM", "6:00 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["11:45 AM", "4:00 PM", "8:30 PM"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": 8,
+              "name": "Spider-Man: No Way Home",
+              "poster": "https://i5.walmartimages.com/seo/Spider-Man-No-Way-Home-Movie-Poster-Glossy-Print-Photo-Wall-Art-Zendaya-Cumberbatch-Tom-Holland-Size-11x17-Inches_f524242c-a33a-4f0b-baf7-8f965da8f350.ed75f0c19c9523ed6369389b764c805d.jpeg",
+              "youtube": "https://www.youtube.com/embed/JfVOs4VSpmA",
+              "ageRating": "PG-13",
+              "summary": "Peter Parker teams up with other Spider-Men from across the multiverse to battle villains from their pasts.",
+              "releaseDate": "2021-12-17",
+              "runningTime": "148 minutes",
+              "language": "English",
+              "cast": ["Tom Holland", "Zendaya", "Benedict Cumberbatch"],
+              "showTimes": {
+                "cinemas": [
+                  {
+                    "cinemaId": "cinema_3",
+                    "cinemaName": "AMC Stars Avenue, Jeddah",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["12:15 PM", "3:45 PM", "8:15 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["10:30 AM", "4:00 PM"]
+                      }
+                    ]
+                  },
+                  {
+                    "cinemaId": "cinema_2",
+                    "cinemaName": "muvi Cinemas - U Walk, Riyadh",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["12:30 PM", "3:15 PM", "6:45 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["11:00 AM", "4:30 PM", "7:45 PM"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": 9,
+              "name": "The Matrix",
+              "poster": "https://rukminim2.flixcart.com/image/850/1000/kmns7m80/poster/l/p/f/medium-the-matrix-an-american-maxi-origins-jumbo-medium-size-original-imagfgb6gx9yhwzs.jpeg?q=90&crop=false",
+              "youtube": "https://www.youtube.com/embed/m8e-FF8MsqU",
+              "ageRating": "R",
+              "summary": "A hacker learns about the true nature of reality and joins a rebellion against the machines controlling humanity.",
+              "releaseDate": "1999-03-31",
+              "runningTime": "136 minutes",
+              "language": "English",
+              "cast": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+              "showTimes": {
+                "cinemas": [
+                  {
+                    "cinemaId": "cinema_1",
+                    "cinemaName": "AMC Panorama Mall, Riyadh",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["12:15 PM", "3:00 PM", "7:00 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["10:45 AM", "1:30 PM", "5:45 PM"]
+                      }
+                    ]
+                  },
+                  {
+                    "cinemaId": "cinema_4",
+                    "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+                    "dates": [
+                      {
+                        "date": "2024-11-22",
+                        "times": ["11:00 AM", "2:15 PM", "6:45 PM"]
+                      },
+                      {
+                        "date": "2024-11-23",
+                        "times": ["12:00 PM", "4:30 PM", "8:15 PM"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+            ,
+                {
+                  "id": 10,
+                  "name": "The Lion King",
+                  "poster": "https://m.media-amazon.com/images/I/7148fvlOyOL.jpg",
+                  "youtube": "https://www.youtube.com/embed/7TavVZMewpY",
+                  "ageRating": "PG",
+                  "summary": "A young lion prince flees his kingdom after the death of his father but returns to reclaim his rightful place.",
+                  "releaseDate": "1994-06-24",
+                  "runningTime": "88 minutes",
+                  "language": "English",
+                  "cast": ["Matthew Broderick", "James Earl Jones", "Jeremy Irons"],
+                  "showTimes": {
+                    "cinemas": [
+                      {
+                        "cinemaId": "cinema_3",
+                        "cinemaName": "AMC Stars Avenue, Jeddah",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["10:30 AM", "1:15 PM", "5:00 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["11:45 AM", "4:15 PM", "7:30 PM"]
+                          }
+                        ]
+                      },
+                      {
+                        "cinemaId": "cinema_2",
+                        "cinemaName": "muvi Cinemas - U Walk, Riyadh",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["11:00 AM", "2:30 PM", "6:00 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["12:00 PM", "3:15 PM", "7:45 PM"]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": 11,
+                  "name": "Frozen",
+                  "poster": "https://lumiere-a.akamaihd.net/v1/images/p_frozen_18312_1f4eb922.jpeg?region=0%2C0%2C540%2C810",
+                  "youtube": "https://www.youtube.com/embed/TbQm5doF_Uc",
+                  "ageRating": "PG",
+                  "summary": "When their kingdom is trapped in eternal winter, Anna and Kristoff team up to find Elsa and save Arendelle.",
+                  "releaseDate": "2013-11-27",
+                  "runningTime": "102 minutes",
+                  "language": "English",
+                  "cast": ["Kristen Bell", "Idina Menzel", "Jonathan Groff"],
+                  "showTimes": {
+                    "cinemas": [
+                      {
+                        "cinemaId": "cinema_1",
+                        "cinemaName": "AMC Panorama Mall, Riyadh",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["10:00 AM", "12:45 PM", "6:15 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["11:30 AM", "3:15 PM"]
+                          }
+                        ]
+                      },
+                      {
+                        "cinemaId": "cinema_4",
+                        "cinemaName": "Vox Cinemas - Red Sea Mall, Jeddah",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["10:30 AM", "2:15 PM", "7:00 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["12:30 PM", "5:15 PM"]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": 12,
+                  "name": "Avatar",
+                  "poster": "https://m.media-amazon.com/images/I/81MKqD6H9FL.jpg",
+                  "youtube": "https://www.youtube.com/embed/5PSNL1qE6VY",
+                  "ageRating": "PG-13",
+                  "summary": "A paraplegic Marine on an alien planet becomes torn between following his orders and protecting the world he feels is his home.",
+                  "releaseDate": "2009-12-18",
+                  "runningTime": "162 minutes",
+                  "language": "English",
+                  "cast": ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
+                  "showTimes": {
+                    "cinemas": [
+                      {
+                        "cinemaId": "cinema_1",
+                        "cinemaName": "AMC Panorama Mall, Riyadh",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["12:15 PM", "3:30 PM", "8:00 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["11:45 AM", "4:00 PM"]
+                          }
+                        ]
+                      },
+                      {
+                        "cinemaId": "cinema_3",
+                        "cinemaName": "AMC Stars Avenue, Jeddah",
+                        "dates": [
+                          {
+                            "date": "2024-11-22",
+                            "times": ["10:30 AM", "1:30 PM", "6:15 PM"]
+                          },
+                          {
+                            "date": "2024-11-23",
+                            "times": ["1:00 PM", "5:45 PM"]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+              
+          
+      

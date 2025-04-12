@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* General styling for navbar links */
+
+/* Styling for the Sign In button */
+.nav-button {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    to right,
+    #7928ca,
+    #ff0080
+  ); /* Default gradient for button */
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-button:hover {
+  background-color: #d61c4e; /* Solid hover color for button */
+  color: white;
+}
+
+/* Dropdown menu links */
