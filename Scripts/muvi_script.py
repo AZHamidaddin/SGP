@@ -135,14 +135,14 @@ pattern = re.compile(r"^movie-day-\d+$")  # Matches "movie-day-" followed by one
 city_mapping = {
     2: "Riyadh",
     3: "Dammam",
-    4: "Jubail",
+    # 4: "Jubail",
     6: "Jeddah",
     7: "Dhahran",
-    19: "Al Hofuf",
-    20: "Buraydah",
-    21: "Unayzah",
+    # 19: "Al Hofuf",
+    # 20: "Buraydah",
+    # 21: "Unayzah",
     23: "Taif",
-    24: "Khamis Mushait",
+    # 24: "Khamis Mushait",
 
 }
 
@@ -226,7 +226,7 @@ for movie in movies:
 
                     # Find experience sections within this cinema.
                     experience_sections = cinema.find_all('div', class_='MuiBox-root css-acwcvw')
-                    experience_sections_ex = cinema.find_all('span', class_='css-pngn5x')
+                    experience_sections_ex = cinema.find_all('div', class_='css-82gedl')
                     experiences = []
 
                     for index, experience_section in enumerate(experience_sections):
