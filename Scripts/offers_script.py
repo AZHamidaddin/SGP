@@ -2,16 +2,17 @@ import requests
 import json
 import re
 from bs4 import BeautifulSoup
-from selenium import webdriver
 import time
+from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
 VOX_BASE_URL = "https://ksa.voxcinemas.com/ticket-offer/summary"
 MUVI_BASE_URL = "https://www.muvicinemas.com"
 AMC_BASE_URL = "https://www.amccinemas.com"
+EMPIRE_BASE_URL = "https://ksa.empirecinemas.com"
 all_offers = []
 
 
@@ -183,11 +184,59 @@ def getAMCOffers():
         })
 
 
+def getEmpireOffers():
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed
+    driver.get(EMPIRE_BASE_URL)  # Replace with the target URL
+
+    print("\n" * 5)
+    print("loading Empire offers...")
+
+    time.sleep(4)  # Adjust as needed
+
+    driver.get(f'{EMPIRE_BASE_URL}/cinema-offer')
+
+    time.sleep(5)  # Adjust as needed
+
+    page_source = driver.page_source
+    driver.quit()
+
+    # Parse the HTML
+    soup = BeautifulSoup(page_source, "html.parser")
+    # print(soup.prettify())
+
+    offer_divs = soup.find_all(
+        "div",
+        id=re.compile(r"^offer-content\d+$")
+    )
+
+    for offer in offer_divs:
+
+        offer_title = offer.find("div", class_="title").text.upper().strip()
+        offer_image = offer.find("img").get("src")
+
+        print("Fetching Offer:", offer_image)
+        print("Offer name:", offer_title)
+        print("-" * 80)
+
+        # Append the cleaned data to the list
+        all_offers.append({
+            "offer_image": offer_image,
+            "parent": "Empire",
+            "offer title": offer_title,
+            "offer URL": f'{EMPIRE_BASE_URL}/cinema-offer'
+        })
+
+
+
 getVoxOffers()
 getMuviOffers()
 getAMCOffers()
+getEmpireOffers()
 
 # Dump the final JSON, which now will only include ASCII characters in the offer title
 print(json.dumps(all_offers, indent=4))
-# with open("offers.json", "w", encoding="utf-8") as f:
-#     json.dump(movies, f, ensure_ascii=False, indent=4)
+with open("offers.json", "w", encoding="utf-8") as f:
+    json.dump(all_offers, f, ensure_ascii=False, indent=4)
