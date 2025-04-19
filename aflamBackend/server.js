@@ -655,6 +655,79 @@ app.get("/movies/parent/muvi", async (req, res) => {
   }
 });
 
+// Get all documents from the offers collection
+app.get("/offers", async (req, res) => {
+  try {
+    // Check if offers collection exists
+    const collections = await mongoose.connection.db.listCollections({ name: "offers" }).toArray();
+    if (collections.length === 0) {
+      return res.status(404).json({ error: "Offers collection not found in the database" });
+    }
+
+    // Fetch all documents from the offers collection
+    const offers = await mongoose.connection.db.collection("offers").find({}).toArray();
+
+    // Log the results
+    console.log(`Found ${offers.length} documents in the offers collection`);
+    console.log(JSON.stringify(offers, null, 2));
+
+    // Return the offers
+    res.json({
+      count: offers.length,
+      offers: offers
+    });
+  } catch (error) {
+    console.error("Error fetching offers:", error);
+    res.status(500).json({ error: "Server Error", details: error.message });
+  }
+
+});
+
+// Get a specific offer by ID
+app.get("/offers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if offers collection exists
+    const collections = await mongoose.connection.db.listCollections({ name: "offers" }).toArray();
+    if (collections.length === 0) {
+      return res.status(404).json({ error: "Offers collection not found in the database" });
+    }
+
+    // Try to convert the ID to an ObjectId if it's in that format
+    let objectId;
+    try {
+      if (id.match(/^[0-9a-fA-F]{24}$/)) {
+        objectId = new mongoose.Types.ObjectId(id);
+      }
+    } catch (err) {
+      // If conversion fails, we'll just use the string ID
+      console.log("ID not in ObjectId format, using as string");
+    }
+
+    // Create a query that checks both _id formats
+    const query = objectId ? { $or: [{ _id: objectId }, { _id: id }] } : { _id: id };
+
+    // Find the offer
+    const offer = await mongoose.connection.db.collection("offers").findOne(query);
+
+    if (!offer) {
+      return res.status(404).json({ error: `Offer with ID ${id} not found` });
+    }
+
+    // Log the result
+    console.log(`Found offer with ID ${id}:`);
+    console.log(JSON.stringify(offer, null, 2));
+
+    // Return the offer
+    res.json(offer);
+  } catch (error) {
+    console.error(`Error fetching offer with ID ${req.params.id}:`, error);
+    res.status(500).json({ error: "Server Error", details: error.message });
+  }
+});
+
+
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
