@@ -111,39 +111,39 @@ const MovieDetail = () => {
   const availableCinemas =
     selectedDate && mainMovie.Timings
       ? mainMovie.Timings
-          .filter((t) => t.Date === selectedDate)
-          .flatMap((t) => t.Showtimes || [])
-          .filter((s) => {
-            const cityMatch =
-              !selectedCity || s.City.toLowerCase() === selectedCity.toLowerCase();
-            const cinemaMatch =
-              selectedCinema === "All Cinemas" ||
-              movieGroup.some((m) => m.Parent === selectedCinema);
-            return cityMatch && cinemaMatch;
-          })
-          .reduce((acc, show) => {
-            const key = `${show.Place}-${show.City}`;
-            const existing = acc.find((s) => `${s.Place}-${s.City}` === key);
+        .filter((t) => t.Date === selectedDate)
+        .flatMap((t) => t.Showtimes || [])
+        .filter((s) => {
+          const cityMatch =
+            !selectedCity || s.City.toLowerCase() === selectedCity.toLowerCase();
+          const cinemaMatch =
+            selectedCinema === "All Cinemas" ||
+            movieGroup.some((m) => m.Parent === selectedCinema);
+          return cityMatch && cinemaMatch;
+        })
+        .reduce((acc, show) => {
+          const key = `${show.Place}-${show.City}`;
+          const existing = acc.find((s) => `${s.Place}-${s.City}` === key);
 
-            if (existing) {
-              show.Experiences.forEach((exp) => {
-                const existingExp = existing.Experiences.find(
-                  (e) => e.Experience === exp.Experience
+          if (existing) {
+            show.Experiences.forEach((exp) => {
+              const existingExp = existing.Experiences.find(
+                (e) => e.Experience === exp.Experience
+              );
+              if (existingExp) {
+                existingExp.Times = Array.from(
+                  new Set([...existingExp.Times, ...exp.Times])
                 );
-                if (existingExp) {
-                  existingExp.Times = Array.from(
-                    new Set([...existingExp.Times, ...exp.Times])
-                  );
-                } else {
-                  existing.Experiences.push(exp);
-                }
-              });
-            } else {
-              acc.push({ ...show, Experiences: [...show.Experiences] });
-            }
+              } else {
+                existing.Experiences.push(exp);
+              }
+            });
+          } else {
+            acc.push({ ...show, Experiences: [...show.Experiences] });
+          }
 
-            return acc;
-          }, [])
+          return acc;
+        }, [])
       : [];
 
   // Get parent cinema badge with color
@@ -154,12 +154,12 @@ const MovieDetail = () => {
       parent?.toLowerCase() === "muvi"
         ? "bg-pink-600"
         : parent?.toLowerCase() === "empire"
-        ? "bg-red-600"
-        : parent?.toLowerCase() === "amc"
-        ? "bg-red-600"
-        : parent?.toLowerCase() === "vox"
-        ? "bg-blue-600"
-        : "bg-gray-600";
+          ? "bg-red-600"
+          : parent?.toLowerCase() === "amc"
+            ? "bg-red-600"
+            : parent?.toLowerCase() === "vox"
+              ? "bg-blue-600"
+              : "bg-gray-600";
 
     return parent ? (
       <span
@@ -211,11 +211,10 @@ const MovieDetail = () => {
               {cinemas.map((cinema) => (
                 <button
                   key={cinema}
-                  className={`px-4 py-2 rounded-md text-sm font-semibold ${
-                    selectedCinema === cinema
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold ${selectedCinema === cinema
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-700 text-gray-300"
+                    }`}
                   onClick={() => setSelectedCinema(cinema)}
                 >
                   {cinema}
@@ -233,11 +232,10 @@ const MovieDetail = () => {
               {cities.map((city) => (
                 <button
                   key={city}
-                  className={`px-4 py-2 rounded-md text-sm font-semibold ${
-                    selectedCity === city
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold ${selectedCity === city
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-700 text-gray-300"
+                    }`}
                   onClick={() => setSelectedCity(city)}
                 >
                   {city}
@@ -255,18 +253,17 @@ const MovieDetail = () => {
               {availableDates.map((date, index) => (
                 <button
                   key={date}
-                  className={`px-4 py-2 rounded-md text-sm font-semibold ${
-                    selectedDate === date
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold ${selectedDate === date
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-700 text-gray-300"
+                    }`}
                   onClick={() => setSelectedDate(date)}
                 >
                   {index === 0
                     ? "Today"
                     : index === 1
-                    ? "Tomorrow"
-                    : new Date(date).toLocaleDateString("en-US", {
+                      ? "Tomorrow"
+                      : new Date(date).toLocaleDateString("en-US", {
                         weekday: "short",
                         day: "numeric",
                         month: "short",
@@ -293,14 +290,42 @@ const MovieDetail = () => {
                           {exp.Experience}
                         </h4>
                         <div className="flex flex-wrap gap-2">
-                          {exp.Times.map((time) => (
-                            <button
-                              key={time}
-                              className="px-3 py-1 bg-gray-700 text-white rounded-lg hover:bg-blue-500 transition"
-                            >
-                              {time}
-                            </button>
-                          ))}
+                          {exp.Times.map((time) => {
+                            const matchedMovie = movieGroup.find((m) =>
+                              m.Timings?.some(t =>
+                                t.Showtimes?.some(s =>
+                                  s.Place === cinema.Place && s.City === cinema.City
+                                )
+                              )
+                            );
+
+                            const showtimeUrl = matchedMovie?.["Showtimes URL"] || "#";
+                            const parent = matchedMovie?.Parent?.toLowerCase();
+
+                            let fullUrl = showtimeUrl;
+                            if (parent === "amc") {
+                              fullUrl = "https://www.amccinemas.com" + showtimeUrl;
+                            } else if (parent === "vox") {
+                              fullUrl = "https://ksa.voxcinemas.com" + showtimeUrl;
+                            } else if (parent === "muvi") {
+                              fullUrl = "https://www.muvicinemas.com" + showtimeUrl;
+                            }
+
+                            return (
+                              <a
+                                key={time}
+                                href={fullUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-3 py-1 bg-gray-700 text-white rounded-lg hover:bg-blue-500 transition inline-block"
+                              >
+                                {time}
+                              </a>
+                            );
+                          })}
+
+
+
                         </div>
                       </div>
                     ))}
