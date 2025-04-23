@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-// Normalize title: lowercase, remove non-alphanumerics
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
-// Merge movies where one normalized title includes the other
 const groupMoviesByInclusion = (movies) => {
   const groups = [];
   const visited = new Set();
@@ -26,11 +24,13 @@ const groupMoviesByInclusion = (movies) => {
       }
     }
 
-    // Merge Timings
     const mergedTimings = group.flatMap((m) => m.Timings || []);
     groups.push({
-      ...group[0],
+      Group: group,
+      Title: group[0].Title,
       Timings: mergedTimings,
+      Poster: group[0]["Image URL"],
+      Rating: group[0].Rating
     });
   }
 
@@ -94,34 +94,44 @@ const SearchMovies = () => {
 
   const handleSearch = () => {
     setIsSearchClicked(true);
+    const resultMovies = [];
 
-    const filteredMovies = allMovies
-      .filter((movie) => {
-        return !selectedMovie || movie.Title === selectedMovie;
-      })
-      .map((movie) => {
-        const filteredTimings = movie.Timings?.map((timing) => {
-          const cityMatchedShowtimes = timing.Showtimes?.filter((show) =>
-            selectedCity ? show.City === selectedCity : true
+    allMovies.forEach((groupedMovie) => {
+      if (selectedMovie && groupedMovie.Title !== selectedMovie) return;
+
+      const filteredTimings = groupedMovie.Timings?.map((timing) => {
+        const cityMatchedShowtimes = timing.Showtimes?.filter((show) =>
+          selectedCity ? show.City === selectedCity : true
+        ).map((show) => {
+          const matched = groupedMovie.Group.find((m) =>
+            m.Timings?.some((t) =>
+              t.Showtimes?.some((s) =>
+                s.Place === show.Place && s.City === show.City
+              )
+            )
           );
 
-          return cityMatchedShowtimes?.length
-            ? { ...timing, Showtimes: cityMatchedShowtimes }
-            : null;
-        }).filter(Boolean);
+          return {
+            ...show,
+            Parent: matched?.Parent,
+            "Showtimes URL": matched?.["Showtimes URL"]
+          };
+        });
 
-        return filteredTimings?.length
-          ? {
-              Title: movie.Title,
-              Poster: movie["Image URL"],
-              Rating: movie.Rating,
-              Timings: filteredTimings,
-            }
-          : null;
-      })
-      .filter(Boolean);
+        return cityMatchedShowtimes?.length ? { ...timing, Showtimes: cityMatchedShowtimes } : null;
+      }).filter(Boolean);
 
-    setResults(filteredMovies);
+      if (filteredTimings?.length) {
+        resultMovies.push({
+          Title: groupedMovie.Title,
+          Poster: groupedMovie.Poster,
+          Rating: groupedMovie.Rating,
+          Timings: filteredTimings
+        });
+      }
+    });
+
+    setResults(resultMovies);
   };
 
   const handleReset = () => {
@@ -134,23 +144,20 @@ const SearchMovies = () => {
 
   return (
     <div className="bg-gray-900 text-white p-6">
-      {/* Filters */}
       <div className="flex flex-wrap justify-center gap-4 mb-6">
-        {/* Movie Dropdown */}
         <select
           value={selectedMovie}
           onChange={handleMovieChange}
           className="p-3 rounded-lg bg-gray-800 text-white"
         >
           <option value="">Select Movie</option>
-          {movies.map((movie) => (
-            <option key={movie._id} value={movie.Title}>
+          {movies.map((movie, index) => (
+            <option key={index} value={movie.Title}>
               {movie.Title}
             </option>
           ))}
         </select>
 
-        {/* City Dropdown */}
         <select
           value={selectedCity}
           onChange={handleCityChange}
@@ -164,7 +171,6 @@ const SearchMovies = () => {
           ))}
         </select>
 
-        {/* Buttons */}
         <div className="flex gap-2">
           <button
             onClick={handleSearch}
@@ -181,7 +187,6 @@ const SearchMovies = () => {
         </div>
       </div>
 
-      {/* Results Section */}
       {isSearchClicked && (
         <div className="max-w-6xl mx-auto">
           {results.length > 0 ? (
@@ -214,14 +219,31 @@ const SearchMovies = () => {
                             <div key={k}>
                               <p className="text-sm text-gray-400">{exp.Experience}</p>
                               <div className="flex flex-wrap gap-2 mt-1">
-                                {exp.Times.map((time, tIdx) => (
-                                  <button
-                                    key={tIdx}
-                                    className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded"
-                                  >
-                                    {time}
-                                  </button>
-                                ))}
+                                {exp.Times.map((time, tIdx) => {
+                                  const parent = show?.Parent?.toLowerCase();
+                                  const showtimeUrl = show?.["Showtimes URL"] || "#";
+
+                                  let fullUrl = showtimeUrl;
+                                  if (parent === "amc") {
+                                    fullUrl = "https://www.amccinemas.com" + showtimeUrl;
+                                  } else if (parent === "vox") {
+                                    fullUrl = "https://ksa.voxcinemas.com" + showtimeUrl;
+                                  } else if (parent === "muvi") {
+                                    fullUrl = "https://www.muvicinemas.com" + showtimeUrl;
+                                  }
+
+                                  return (
+                                    <a
+                                      key={tIdx}
+                                      href={fullUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="bg-pink-600 hover:bg-pink-700 text-white px-3 py-1 rounded inline-block"
+                                    >
+                                      {time}
+                                    </a>
+                                  );
+                                })}
                               </div>
                             </div>
                           ))}
