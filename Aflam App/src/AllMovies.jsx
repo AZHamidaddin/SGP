@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SearchMovies from "./SearchMovies";
+import Navbar from "./Navbar";
 
+// Utility function to normalize movie titles
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
+// Merge movies based on similar titles
 const mergeMoviesByTitle = (movies) => {
   const groups = [];
   const visited = new Set();
 
   for (let i = 0; i < movies.length; i++) {
     if (visited.has(i)) continue;
+
     const group = [movies[i]];
     visited.add(i);
     const titleA = normalize(movies[i].Title);
+
     for (let j = i + 1; j < movies.length; j++) {
       if (visited.has(j)) continue;
+
       const titleB = normalize(movies[j].Title);
+
       if (titleA.includes(titleB) || titleB.includes(titleA)) {
         group.push(movies[j]);
         visited.add(j);
       }
     }
+
     groups.push(group);
   }
 
@@ -29,7 +38,7 @@ const mergeMoviesByTitle = (movies) => {
   );
 };
 
-const MovieGrid = () => {
+const AllMovies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,29 +57,22 @@ const MovieGrid = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-60 text-white">
-        <p className="text-xl font-semibold">Loading movies...</p>
-      </div>
-    );
+    return <div className="text-center text-white py-20">Loading all movies...</div>;
   }
-
-  if (!movies || movies.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-60 text-white">
-        <h2 className="text-2xl font-semibold">No movies available.</h2>
-      </div>
-    );
-  }
-
-  const previewMovies = movies.slice(0, 6); // Limit to 5
 
   return (
-    <div className="bg-gray-900 text-white py-10">
-      <div className="container mx-auto px-6">
-        <h1 className="text-3xl font-bold mb-8 text-center">Now Showing</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {previewMovies.map((group, index) => {
+    <div className="bg-gray-900 text-white min-h-screen">
+      {/* Full-width Navbar */}
+      <div className="w-full bg-gray-950 shadow-md">
+        <Navbar />
+      </div>
+
+      <div className="container mx-auto px-6 py-10">
+        <h1 className="text-3xl font-bold mb-8 text-center">All Movies</h1>
+        <SearchMovies />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+          {movies.map((group, index) => {
             const main = group[0];
             return (
               <div
@@ -88,33 +90,25 @@ const MovieGrid = () => {
                     {main.Language?.charAt(0).toUpperCase() +
                       main.Language?.slice(1).toLowerCase()}
                   </p>
-
                   <Link
                     to={`/movie/${main._id}`}
                     className="mt-3 inline-block w-full bg-blue-600 hover:bg-blue-500 text-white text-center font-semibold py-2 rounded-lg transition"
                   >
                     View Details
                   </Link>
-
-                  {group.length > 1 && (
-                    <p className="text-xs text-gray-400 mt-2">
-                      Merged with {group.length - 1} similar version
-                      {group.length > 2 ? "s" : ""}
-                    </p>
-                  )}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Show All Button */}
-        <div className="mt-10 text-center">
+        {/* Back to Home Button */}
+        <div className="mt-12 text-center">
           <Link
-            to="/movies"
+            to="/"
             className="inline-block bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-lg font-semibold transition"
           >
-            Show All Movies
+            Back to Home
           </Link>
         </div>
       </div>
@@ -122,4 +116,4 @@ const MovieGrid = () => {
   );
 };
 
-export default MovieGrid;
+export default AllMovies;

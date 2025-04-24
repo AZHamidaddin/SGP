@@ -13,20 +13,21 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <span className="text-gray-300 text-2xl font-bold tracking-wide">
-              {user ? `Welcome, ${user.name}` : "Aflam"}
+              {"Aflam"}
             </span>
           </div>
 
           {/* Menu for larger screens */}
           <div className="hidden md:flex space-x-4 items-center">
-            <Link to="/" className="nav-link">
-              Home
+          <Link to="/home" className="nav-link">
+            Home
             </Link>
-            <Link to="/now-showing" className="nav-link">
-              Now Showing
+            <Link to="/movies" className="nav-link">
+            Search Movies
             </Link>
-            <Link to="/coming-soon" className="nav-link">
-              Coming Soon
+            
+            <Link to="/offers" className="nav-link">
+              Offers
             </Link>
             {user ? (
               <button
@@ -36,8 +37,8 @@ export default function Navbar() {
                 Log Out
               </button>
             ) : (
-              <Link to="/recommend" className="nav-button">
-                recommend me
+              <Link to="/login" className="nav-button">
+                Sign in
               </Link>
 
               

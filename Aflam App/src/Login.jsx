@@ -4,28 +4,27 @@ import { UserContext } from "./UserContext";
 
 export default function Login() {
   const credentials = {
-    Wael: { email: "wael@gmail.com", password: "ps1" },
-    ahmed: { email: "ahmed@gmail.com", password: "ps2" },
-    ali: { email: "ali@gmail.com", password: "ps3" },
+    Wael: { name: "Wael", email: "wael@gmail.com", password: "ps1", total_movies: 25, total_duration: 1000 },
+    ahmed: { name: "Ahmed", email: "ahmed@gmail.com", password: "ps2", total_movies: 20, total_duration: 800 },
+    ali: { name: "Ali", email: "ali@gmail.com", password: "ps3", total_movies: 15, total_duration: 500 },
   };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { setUser } = useContext(UserContext); // Use context to set the user
-
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = Object.keys(credentials).find(
+    const userKey = Object.keys(credentials).find(
       (key) =>
         credentials[key].email === email && credentials[key].password === password
     );
 
-    if (user) {
-      setUser({ name: user, email: credentials[user].email }); // Update the context
-      navigate("/home"); // Navigate to home
+    if (userKey) {
+      setUser(credentials[userKey]); // set full user info
+      navigate("/home");
     } else {
       setError("Incorrect email or password. Please try again.");
     }
