@@ -40,11 +40,8 @@ export default function Navbar() {
               <Link to="/login" className="nav-button">
                 Sign in
               </Link>
-
-              
-            )
-            
-            }
+  
+            )      }
             {/* About Us Button */}
            
           </div>

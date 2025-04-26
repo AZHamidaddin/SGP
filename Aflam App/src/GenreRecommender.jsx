@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const API_URL = "http://127.0.0.1:8080";
 
@@ -97,9 +98,9 @@ const GenreRecommender = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white min-h-screen p-6">
+    <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white min-h-screen p-6 relative">
       <div className="container mx-auto">
-        <h1 className="text-4xl font-extrabold text-center mb-6 text-blue-400">
+        <h1 className="text-4xl font-extrabold text-center mb-6 text-red-400">
           🎬 Movie Recommender
         </h1>
         <p className="text-center text-gray-300 mb-6">
@@ -110,7 +111,7 @@ const GenreRecommender = () => {
           <input
             type="text"
             placeholder="Search for a movie..."
-            className="p-3 w-full max-w-lg rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-blue-400 focus:ring focus:ring-blue-300"
+            className="p-3 w-full max-w-lg rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-red-400 focus:ring focus:ring-red-300"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -122,7 +123,7 @@ const GenreRecommender = () => {
             return (
               <span
                 key={id}
-                className="px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-red-500"
+                className="px-3 py-1 bg-red-500 text-white rounded-lg cursor-pointer hover:bg-red-600 transition"
                 onClick={() => removeTag(id)}
               >
                 {movie?.title || id}
@@ -137,7 +138,7 @@ const GenreRecommender = () => {
               key={movie.movieId}
               className={`p-4 border rounded-lg shadow-md w-full text-sm font-semibold text-center transition transform hover:scale-105 ${
                 selectedMovies.includes(movie.movieId)
-                  ? "bg-blue-500 text-white"
+                  ? "bg-red-500 text-white"
                   : "bg-gray-800 hover:bg-gray-700"
               }`}
               onClick={() => toggleSelect(movie.movieId)}
@@ -150,9 +151,9 @@ const GenreRecommender = () => {
         </div>
 
         {showCount < filteredMovies.length && (
-          <div className="text-center mt-4">
+          <div className="text-center mt-6">
             <button
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg"
+              className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg"
               onClick={() => setShowCount((prev) => prev + 10)}
             >
               Show More Movies
@@ -184,7 +185,7 @@ const GenreRecommender = () => {
                   <p
                     className={`text-md font-semibold ${
                       rec.rating < 50
-                        ? "text-red-500"
+                        ? "text-red-400"
                         : rec.rating < 70
                         ? "text-yellow-400"
                         : "text-green-400"
@@ -198,6 +199,14 @@ const GenreRecommender = () => {
           </div>
         )}
       </div>
+
+      {/* Floating Button */}
+      <Link
+        to="/home"
+        className="fixed bottom-6 right-6 z-50 bg-white text-red-600 font-bold py-3 px-6 rounded-full shadow-2xl hover:bg-red-100 dark:bg-pink-900 dark:text-white dark:hover:bg-red-700 transition-all duration-300 animate-bounce-slow"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };

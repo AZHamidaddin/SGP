@@ -8,6 +8,7 @@ import Team from "./Team";
 import GenreRecommender from "./GenreRecommender";
 import AllMovies from "./AllMovies";
 import AllOffers from "./AllOffers";
+import Signup from "./Signup";
 export default function App() {
   return (
     // Wrap the entire Router with UserProvider
@@ -25,6 +26,7 @@ export default function App() {
 
           <Route path="/aboutus" element={<Team/>} />
           <Route path="/recommend" element={<GenreRecommender/>} />
+          <Route path="/signup" element={<Signup/>} />
         </Routes>
       </Router>
     </UserProvider>

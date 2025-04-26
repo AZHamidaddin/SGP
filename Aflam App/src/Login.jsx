@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./UserContext";
-
+import { Link } from "react-router-dom";
 export default function Login() {
   const credentials = {
     Wael: { name: "Wael", email: "wael@gmail.com", password: "ps1", total_movies: 25, total_duration: 1000 },
@@ -70,6 +70,13 @@ export default function Login() {
           >
             Login
           </button>
+          <Link
+  to="/signup"
+  className="block w-full py-2 mb-4 text-center text-white bg-purple-500 hover:bg-purple-800 rounded-lg shadow-md transition duration-300"
+>
+  Sign up
+</Link>
+
         </form>
       </div>
     </div>
