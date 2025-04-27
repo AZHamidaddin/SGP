@@ -39,6 +39,7 @@ const MovieDetail = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedCinema, setSelectedCinema] = useState("All Cinemas");
   const [cities, setCities] = useState([]);
+  const [imdbRating, setImdbRating] = useState(null);
   const navigate = useNavigate();
   const [cinemas, setCinemas] = useState([]);
 
@@ -80,6 +81,19 @@ const MovieDetail = () => {
 
         setCities(sortedCities);
         setCinemas(["All Cinemas", ...parentCinemas]);
+
+        // Fetch IMDB rating
+        if (primary.Title) {
+          fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(primary.Title)}&apikey=d850d051`)
+            .then(res => res.json())
+            .then(data => {
+              if (data.imdbRating && data.imdbRating !== "N/A") {
+                setImdbRating(data.imdbRating);
+              }
+            })
+            .catch(err => console.error("Error fetching IMDB rating:", err));
+        }
+
         setLoading(false);
       })
       .catch((err) => {
@@ -87,6 +101,7 @@ const MovieDetail = () => {
         setLoading(false);
       });
   }, [movie_id]);
+
   const getParentByPlace = (place) => {
     const matched = movieGroup?.find((m) =>
       m.Timings?.some((t) =>
@@ -95,48 +110,48 @@ const MovieDetail = () => {
     );
     return matched?.Parent || "";
   };
-  
- const getParentBadge = (place) => {
-  const matched = movieGroup?.find((m) =>
-    m.Timings?.some((t) =>
-      t.Showtimes?.some((s) => s.Place === place && s.City)
-    )
-  );
 
-  let parent = matched?.Parent;
+  const getParentBadge = (place) => {
+    const matched = movieGroup?.find((m) =>
+      m.Timings?.some((t) =>
+        t.Showtimes?.some((s) => s.Place === place && s.City)
+      )
+    );
 
-  // Fallback logic based on Place name
-  if (!parent) {
-    const lower = place.toLowerCase();
-    if (lower.includes("amc")) parent = "AMC";
-    else if (lower.includes("muvi")) parent = "Muvi";
-    else if (lower.includes("vox")) parent = "Vox";
-    else if (lower.includes("empire")) parent = "Empire";
-  }
+    let parent = matched?.Parent;
 
-  const badgeColor =
-    parent?.toLowerCase() === "muvi"
-      ? "bg-pink-600"
-      : parent?.toLowerCase() === "empire"
-      ? "bg-amber-900"
-      : parent?.toLowerCase() === "amc"
-      ? "bg-red-600"
-      : parent?.toLowerCase() === "vox"
-      ? "bg-blue-600"
-      : "bg-gray-600";
+    // Fallback logic based on Place name
+    if (!parent) {
+      const lower = place.toLowerCase();
+      if (lower.includes("amc")) parent = "AMC";
+      else if (lower.includes("muvi")) parent = "Muvi";
+      else if (lower.includes("vox")) parent = "Vox";
+      else if (lower.includes("empire")) parent = "Empire";
+    }
 
-  return parent ? (
-    <span
-      className={`inline-block ml-2 px-3 py-1 rounded-full text-xs font-medium text-white ${badgeColor}`}
-    >
-      {parent}
-    </span>
-  ) : (
-    <span className="inline-block ml-2 px-3 py-1 rounded-full text-xs font-medium text-white bg-gray-600">
-      Unknown
-    </span>
-  );
-};
+    const badgeColor =
+      parent?.toLowerCase() === "muvi"
+        ? "bg-pink-600"
+        : parent?.toLowerCase() === "empire"
+        ? "bg-amber-900"
+        : parent?.toLowerCase() === "amc"
+        ? "bg-red-600"
+        : parent?.toLowerCase() === "vox"
+        ? "bg-blue-600"
+        : "bg-gray-600";
+
+    return parent ? (
+      <span
+        className={`inline-block ml-2 px-3 py-1 rounded-full text-xs font-medium text-white ${badgeColor}`}
+      >
+        {parent}
+      </span>
+    ) : (
+      <span className="inline-block ml-2 px-3 py-1 rounded-full text-xs font-medium text-white bg-gray-600">
+        Unknown
+      </span>
+    );
+  };
 
   if (loading) {
     return (
@@ -159,43 +174,42 @@ const MovieDetail = () => {
   );
 
   const availableCinemas =
-  selectedCity && selectedDate && mainMovie.Timings
-    ? mainMovie.Timings
-        .filter((t) => t.Date === selectedDate)
-        .flatMap((t) => t.Showtimes || [])
-        .filter((s) => {
-          const cityMatch =
-            !selectedCity || s.City.toLowerCase() === selectedCity.toLowerCase();
-          const cinemaMatch =
-            selectedCinema === "All Cinemas" ||
-            getParentByPlace(s.Place) === selectedCinema;
-          return cityMatch && cinemaMatch;
-        })
-        .reduce((acc, show) => {
-          const key = `${show.Place}-${show.City}`;
-          const existing = acc.find((s) => `${s.Place}-${s.City}` === key);
+    selectedCity && selectedDate && mainMovie.Timings
+      ? mainMovie.Timings
+          .filter((t) => t.Date === selectedDate)
+          .flatMap((t) => t.Showtimes || [])
+          .filter((s) => {
+            const cityMatch =
+              !selectedCity || s.City.toLowerCase() === selectedCity.toLowerCase();
+            const cinemaMatch =
+              selectedCinema === "All Cinemas" ||
+              getParentByPlace(s.Place) === selectedCinema;
+            return cityMatch && cinemaMatch;
+          })
+          .reduce((acc, show) => {
+            const key = `${show.Place}-${show.City}`;
+            const existing = acc.find((s) => `${s.Place}-${s.City}` === key);
 
-          if (existing) {
-            show.Experiences.forEach((exp) => {
-              const existingExp = existing.Experiences.find(
-                (e) => e.Experience === exp.Experience
-              );
-              if (existingExp) {
-                existingExp.Times = Array.from(
-                  new Set([...existingExp.Times, ...exp.Times])
+            if (existing) {
+              show.Experiences.forEach((exp) => {
+                const existingExp = existing.Experiences.find(
+                  (e) => e.Experience === exp.Experience
                 );
-              } else {
-                existing.Experiences.push(exp);
-              }
-            });
-          } else {
-            acc.push({ ...show, Experiences: [...show.Experiences] });
-          }
+                if (existingExp) {
+                  existingExp.Times = Array.from(
+                    new Set([...existingExp.Times, ...exp.Times])
+                  );
+                } else {
+                  existing.Experiences.push(exp);
+                }
+              });
+            } else {
+              acc.push({ ...show, Experiences: [...show.Experiences] });
+            }
 
-          return acc;
-        }, [])
-    : [];
-
+            return acc;
+          }, [])
+      : [];
 
   return (
     <div className="bg-gray-900 text-white min-h-screen py-10">
@@ -227,43 +241,40 @@ const MovieDetail = () => {
                 ))}
             </p>
             <p className="text-gray-400">
-            <div className="flex justify-center mt-6">
-  <button
-    onClick={() => navigate("/")}
-    className="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-semibold"
-  >
-    Back to Home
-  </button>
-</div>
-
-               
+              <strong>IMDB Rating:</strong> {imdbRating && `⭐ ${imdbRating}/10`}
             </p>
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={() => navigate("/")}
+                className="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-semibold"
+              >
+                Back to Home
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Cinema Selector */}
         {cinemas.length > 0 && (
-  <div className="mt-6">
-    
-    <h2 className="text-2xl font-semibold mb-3">Select Cinema</h2>
-    <div className="flex overflow-x-auto space-x-4 py-2">
-      {cinemas.map((cinema) => (
-        <button
-          key={cinema}
-          className={`px-4 py-2 rounded-md text-sm font-semibold ${
-            selectedCinema === cinema
-              ? "bg-blue-600 text-white"
-              : "bg-gray-700 text-gray-300"
-          }`}
-          onClick={() => setSelectedCinema(cinema)}
-        >
-          {cinema}
-        </button>
-      ))}
-    </div>
-  </div>
-)}
-
+          <div className="mt-6">
+            <h2 className="text-2xl font-semibold mb-3">Select Cinema</h2>
+            <div className="flex overflow-x-auto space-x-4 py-2">
+              {cinemas.map((cinema) => (
+                <button
+                  key={cinema}
+                  className={`px-4 py-2 rounded-md text-sm font-semibold ${
+                    selectedCinema === cinema
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-700 text-gray-300"
+                  }`}
+                  onClick={() => setSelectedCinema(cinema)}
+                >
+                  {cinema}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* City Selector */}
         {cities.length > 0 && (
@@ -292,37 +303,35 @@ const MovieDetail = () => {
           <div className="mt-6">
             <h2 className="text-2xl font-semibold mb-3">Select Date</h2>
             <div className="flex overflow-x-auto space-x-4 py-2">
-            {availableDates
-  .filter((date) => new Date(date) >= new Date(new Date().toDateString()))
-  .map((date) => {
-    const today = new Date();
-    const showDate = new Date(date);
+              {availableDates
+                .filter((date) => new Date(date) >= new Date(new Date().toDateString()))
+                .map((date) => {
+                  const today = new Date();
+                  const showDate = new Date(date);
 
-    const isToday =
-      today.toDateString() === showDate.toDateString();
+                  const isToday =
+                    today.toDateString() === showDate.toDateString();
 
-    const label = showDate.toLocaleDateString("en-US", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-    }) + (isToday ? " (Today)" : "");
+                  const label = showDate.toLocaleDateString("en-US", {
+                    weekday: "short",
+                    day: "numeric",
+                    month: "short",
+                  }) + (isToday ? " (Today)" : "");
 
-    return (
-      <button
-        key={date}
-        className={`px-4 py-2 rounded-md text-sm font-semibold ${
-          selectedDate === date
-            ? "bg-blue-600 text-white"
-            : "bg-gray-700 text-gray-300"
-        }`}
-        onClick={() => setSelectedDate(date)}
-      >
-        {label}
-      </button>
-      
-    );
-  })}
-
+                  return (
+                    <button
+                      key={date}
+                      className={`px-4 py-2 rounded-md text-sm font-semibold ${
+                        selectedDate === date
+                          ? "bg-blue-600 text-white"
+                          : "bg-gray-700 text-gray-300"
+                      }`}
+                      onClick={() => setSelectedDate(date)}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
             </div>
           </div>
         )}
