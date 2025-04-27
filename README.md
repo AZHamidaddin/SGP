@@ -1,28 +1,8 @@
-# How to run the Application
+# React + Vite
 
-1. Clone the project repository:
-   `git clone https://github.com/AZHamidaddin/SGP.git`
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-2. Navigate to the **Aflam App** directory:
-   `cd /Aflam App/`
+Currently, two official plugins are available:
 
-3. Install Vite:
-   `npm install vite`
-
-4. Start the server:
-    `npm run dev`
-
-5. Navigate to the **src** directory:
-   `cd /src/`
-
-6. Run the AI logic:
-   `python app.py`
-
-7. Navigate to the **backend** directory:
-   `cd ../backend/`
-
-8. Install dotenv:
-   `npm install dotenv`
-
-9. Run the server.js:
-   `node server.js`
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
