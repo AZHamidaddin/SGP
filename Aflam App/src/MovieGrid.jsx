@@ -96,12 +96,7 @@ const MovieGrid = () => {
                     View Details
                   </Link>
 
-                  {group.length > 1 && (
-                    <p className="text-xs text-gray-400 mt-2">
-                      Merged with {group.length - 1} similar version
-                      {group.length > 2 ? "s" : ""}
-                    </p>
-                  )}
+                 
                 </div>
               </div>
             );

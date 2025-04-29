@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext"; // Import the UserProvider
+import { ClipLoader } from 'react-spinners'; // Import ClipLoader for loading animation
 import Login from "./Login";
 import Home from "./Home";
 import MovieDetail from "./MovieDetail";
@@ -9,25 +10,38 @@ import GenreRecommender from "./GenreRecommender";
 import AllMovies from "./AllMovies";
 import AllOffers from "./AllOffers";
 import Signup from "./Signup";
+
 export default function App() {
+  const [loading, setLoading] = useState(true); // State for handling loading status
+
+  // Simulate a delay for loading data (can be removed in real usage)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simulate 2-second loading time
+  }, []);
+
   return (
-    // Wrap the entire Router with UserProvider
     <UserProvider>
       <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/movie/:movie_id" element={<MovieDetail />} />
-          <Route path="/movies" element={<AllMovies />} />
-          
-
-        <Route path="/offers" element={<AllOffers />} />
-
-          <Route path="/aboutus" element={<Team/>} />
-          <Route path="/recommend" element={<GenreRecommender/>} />
-          <Route path="/signup" element={<Signup/>} />
-        </Routes>
+        {loading ? (
+          <div className="loading-screen flex  items-center justify-center h-screen bg-black">
+            <ClipLoader size={300} color={"#ffffff"} />
+            
+          </div>
+        ) : (
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/movie/:movie_id" element={<MovieDetail />} />
+            <Route path="/movies" element={<AllMovies />} />
+            <Route path="/offers" element={<AllOffers />} />
+            <Route path="/aboutus" element={<Team />} />
+            <Route path="/recommend" element={<GenreRecommender />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        )}
       </Router>
     </UserProvider>
   );

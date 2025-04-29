@@ -35,7 +35,7 @@ export default function Login() {
 
       // Navigate based on admin status
       if (data.user.isAdmin) {
-        navigate("/admin");
+        navigate("/home");
       } else {
         navigate("/home");
       }

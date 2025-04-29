@@ -17,6 +17,7 @@ export default function Signup() {
     number: false,
     special: false
   });
+  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
   const validatePassword = (password) => {
     setPasswordStrength({
@@ -111,6 +112,10 @@ export default function Signup() {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(prevState => !prevState); // Toggle the state
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
       <div className="w-full max-w-md p-8 bg-gray-800 shadow-lg rounded-lg">
@@ -148,14 +153,31 @@ export default function Signup() {
             <label htmlFor="password" className="block text-sm font-medium text-gray-300">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-              className="w-full px-4 py-2 mt-1 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-purple-500 focus:border-purple-500"
-              placeholder="Enter your password"
-            />
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                className="w-full px-4 py-2 mt-1 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-purple-500 focus:border-purple-500"
+                placeholder="Enter your password"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-600"
+              >
+                {passwordVisible ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    <path d="M12 5C7.03 5 4 7.93 4 12s3.03 7 8 7 8-3.93 8-7-3.03-7-8-7zM12 17c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    <path d="M12 5c-4.97 0-8 3.93-8 7s3.03 7 8 7 8-3.93 8-7-3.03-7-8-7zm0 12c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"></path>
+                  </svg>
+                )}
+              </button>
+            </div>
             <div className="mt-2 space-y-1">
               <p className={`text-xs ${passwordStrength.length ? 'text-green-400' : 'text-gray-400'}`}>
                 ✓ At least 8 characters

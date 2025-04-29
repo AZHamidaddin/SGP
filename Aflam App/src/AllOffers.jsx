@@ -32,7 +32,7 @@ const AllOffers = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="bg-gray-900 text-gray min-h-screen">
       <div className="w-full bg-gray-950 shadow-md">
         <Navbar />
       </div>
@@ -49,13 +49,13 @@ const AllOffers = () => {
                 href={offer["offer URL"]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block bg-white shadow rounded-lg overflow-hidden hover:shadow-xl transition duration-300"
+                className="block bg-gray-800 shadow rounded-lg overflow-hidden hover:shadow-xl transition duration-300"
               >
                 <div className="h-40 bg-gray-100 overflow-hidden">
                   <img src={offer.offer_image} alt={offer["offer title"]} className="object-cover h-full w-full" />
                 </div>
                 <div className="p-3 text-center space-y-1">
-                  <p className="text-sm font-medium text-gray-800 line-clamp-2">
+                  <p className="text-sm font-medium text-white line-clamp-2">
                     {formatTitle(offer["offer title"])}</p>
                   <span className={`inline-block px-2 py-1 text-xs text-white rounded-full ${getTagColor(offer.parent)}`}>
                     {offer.parent}

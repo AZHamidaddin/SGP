@@ -54,11 +54,15 @@ async function printAllDatabaseObjects() {
   }
 }
 
+
+
+
+
 // ✅ Define Movie Schema (Matches Your MongoDB Structure)
 const MovieSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   identifier: { type: String, required: true, unique: true },
-  title: { type: String, required: true },
+  Title: { type: String, required: true },
   description: { type: String, default: "" },
   image_url: { type: String, required: true },
   classification: { type: String, required: true },
@@ -249,55 +253,11 @@ app.post("/movies", async (req, res) => {
   }
 });
 
-// Update a movie by slug
-app.put("/movies/:slug", async (req, res) => {
-  try {
-    const { slug } = req.params;
-    const updateData = req.body;
 
-    // Don't allow changing the slug through this endpoint
-    if (updateData.slug && updateData.slug !== slug) {
-      return res.status(400).json({
-        error: "Cannot change slug through this endpoint"
-      });
-    }
 
-    // Find and update the movie
-    const updatedMovie = await Movie.findOneAndUpdate(
-      { slug },
-      updateData,
-      { new: true, runValidators: true }
-    );
 
-    if (!updatedMovie) {
-      return res.status(404).json({ error: "Movie not found" });
-    }
 
-    res.json(updatedMovie);
-  } catch (error) {
-    console.error("Error updating movie:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
-// Delete a movie by slug
-app.delete("/movies/:slug", async (req, res) => {
-  try {
-    const { slug } = req.params;
-
-    // Find and delete the movie
-    const deletedMovie = await Movie.findOneAndDelete({ slug });
-
-    if (!deletedMovie) {
-      return res.status(404).json({ error: "Movie not found" });
-    }
-
-    res.json({ message: "Movie deleted successfully", movie: deletedMovie });
-  } catch (error) {
-    console.error("Error deleting movie:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
 // Print all database objects to console
 app.get("/print-all-data", async (req, res) => {
@@ -910,6 +870,51 @@ app.post("/api/users", async (req, res) => {
     res.status(500).json({ message: "Server error during registration" });
   }
 });
+
+
+app.put('/movies/:id', async (req, res) => {
+  const { id } = req.params; // Get the movie's _id from the URL
+  const { Title, slug, identifier, parent, imageUrl, rating, language, description, genre, showtimesUrl, timings } = req.body;
+
+  try {
+    // Find and update the movie by _id
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      id, // Use _id for the update
+      {
+        Title,            // Update the 'Title' field
+        slug,
+        identifier,
+        parent,
+        imageUrl,
+        rating,
+        language,
+        description,
+        genre,
+        showtimesUrl,
+        timings
+      },
+      { new: true, runValidators: true } // Return the updated movie and validate data
+    );
+
+    // If no movie was found with this _id
+    if (!updatedMovie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+
+    // Return the updated movie
+    res.status(200).json(updatedMovie); // Send the updated movie as a response
+  } catch (error) {
+    // Handle errors (e.g., validation errors)
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+
+
+
+
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
