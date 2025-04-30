@@ -16,7 +16,7 @@ const normalize = (str) =>
 const jaccardSimilarity = (str1, str2) => {
   const set1 = new Set(str1.split(" "));
   const set2 = new Set(str2.split(" "));
-  
+
   const intersection = new Set([...set1].filter(x => set2.has(x)));
   const union = new Set([...set1, ...set2]);
 
@@ -121,7 +121,7 @@ const AllMovies = () => {
   // Handle movie update submission (for admins)
   const handleEditSubmit = async (movieId, newTitle) => {
     console.log("Submitting movie update with:", { movieId, Title: newTitle });
-  
+
     try {
       const response = await fetch(`http://localhost:5000/movies/${movieId}`, {
         method: "PUT",
@@ -132,9 +132,9 @@ const AllMovies = () => {
           Title: newTitle,
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         setErrors({ general: data.message || "Error updating movie title" });
       } else {
@@ -168,7 +168,11 @@ const AllMovies = () => {
   };
 
   if (loading) {
-    return <div className="text-center text-white py-20">Loading all movies...</div>;
+    return (
+      <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500">
+        <p className="text-white text-2xl font-semibold">Loading...</p>
+      </div>
+    );
   }
 
   return (

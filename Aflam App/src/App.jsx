@@ -25,22 +25,23 @@ export default function App() {
     <UserProvider>
       <Router>
         {loading ? (
-          <div className="loading-screen flex  items-center justify-center h-screen bg-black">
-            <ClipLoader size={300} color={"#ffffff"} />
-            
+          <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500">
+            <p className="text-white text-2xl font-semibold">Loading...</p>
           </div>
         ) : (
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/movie/:movie_id" element={<MovieDetail />} />
-            <Route path="/movies" element={<AllMovies />} />
-            <Route path="/offers" element={<AllOffers />} />
-            <Route path="/aboutus" element={<Team />} />
-            <Route path="/recommend" element={<GenreRecommender />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
+          <div className="min-h-screen bg-gray-900">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/movie/:movie_id" element={<MovieDetail />} />
+              <Route path="/movies" element={<AllMovies />} />
+              <Route path="/offers" element={<AllOffers />} />
+              <Route path="/aboutus" element={<Team />} />
+              <Route path="/recommend" element={<GenreRecommender />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
+          </div>
         )}
       </Router>
     </UserProvider>
