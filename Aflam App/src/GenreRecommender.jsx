@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://127.0.0.1:8080";
+const API_URL = "http://127.0.0.1:5050";
 
 const similarity = (a, b) => {
   const maxLen = Math.max(a.length, b.length);
