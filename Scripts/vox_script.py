@@ -110,10 +110,13 @@ def extract_movie_details(detail_html: str) -> (str, List[str]):
     if (aside := sec.find('aside')):
         p_tags = aside.find_all('p')
         if p_tags:
-            raw = p_tags[0].get_text(strip=True) \
-                  .replace("Genres:", "") \
-                    .replace("Genre:", "") \
-                      .strip()
+            raw = (
+                p_tags[0]
+                .get_text(strip=True)
+                .replace("Genres:", "")
+                .replace("Genre:", "")
+                .strip()
+            )
             genres = [g.strip() for g in raw.split(',') if g.strip()]
 
     return desc, genres
@@ -130,7 +133,6 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
 
     timings_by_place: Dict[str, Dict[str, List[str]]] = {}
 
-    # For each cinema name (inside an <h3 class_="highlight"> tag)
     for place_header in dates_div.find_all("h3", class_="highlight"):
         place = place_header.get_text(" ", strip=True)
         showtimes_ol = place_header.find_next_sibling("ol", class_="showtimes")
@@ -138,7 +140,6 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
             continue
 
         experience_dict: Dict[str, List[str]] = {}
-        # Each top-level <li> in the <ol> corresponds to an experience
         for li in showtimes_ol.find_all("li", recursive=False):
             strong_tag = li.find("strong")
             if not strong_tag:
@@ -213,7 +214,6 @@ def enrich_movie_with_timings_for_dates(
         day_of_week = current_date.strftime("%A")
         detail_url = f"{BASE_URL}/movies/{movie.slug}?d={date_str}#showtimes"
         print(f"  => Fetching showtimes for '{movie.title}' on {pretty_date} ({day_of_week})")
-
         try:
             detail_html = fetch_page(detail_url)
             raw_timings = extract_showtimes(detail_html)
@@ -226,18 +226,17 @@ def enrich_movie_with_timings_for_dates(
                     "City": extract_city(place),
                     "Experiences": exp_list
                 })
-            movie.timings.append({
-                "Date": pretty_date,
-                "day_of_week": day_of_week,
-                "Showtimes": showtimes_list
-            })
+
+            # only add days with actual showtimes
+            if showtimes_list:
+                movie.timings.append({
+                    "Date": pretty_date,
+                    "day_of_week": day_of_week,
+                    "Showtimes": showtimes_list
+                })
         except Exception as e:
             print(f"     [Error] {e}")
-            movie.timings.append({
-                "Date": pretty_date,
-                "day_of_week": day_of_week,
-                "Showtimes": []
-            })
+            # skip days with errors or no showtimes
 
 def save_movies_to_json_file(movies: List[Movie], filename: str = "vox_movies.json") -> None:
     """Saves the movie data to a JSON file with the expected keys and structure."""
