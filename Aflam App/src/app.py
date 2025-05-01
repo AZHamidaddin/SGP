@@ -3,19 +3,29 @@ from flask_cors import CORS
 import pandas as pd
 import json
 import random
+import requests
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+# Environment variable for the movie API
+MOVIE_API = os.environ.get("AFLAM_MOVIE_API", "http://localhost:5000/movies")
 
 # Load movie.csv (input source)
 movie_df = pd.read_csv("data/movie.csv")
 movie_df["genres"] = movie_df["genres"].fillna("").apply(lambda g: g.split("|"))
 
-# Load newdata.json (recommendation source)
-with open("data/newdata.json", encoding="utf-8") as f:
-    newdata = json.load(f)
-    # Handle both list or {"movies": [...]}
-    all_movies = newdata if isinstance(newdata, list) else newdata.get("movies", [])
+# Helper function to fetch candidate movies from the API
+def fetch_all_candidate_movies():
+    try:
+        response = requests.get(MOVIE_API, timeout=10)  # Increased timeout slightly
+        response.raise_for_status()  # Raises HTTPError for bad responses (4xx or 5xx)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching movies from API: {e}")
+        # Reraise a specific exception to be caught in the route
+        raise ConnectionError("Movie service unavailable") from e
 
 @app.route("/movies", methods=["GET"])
 def get_movies():
@@ -24,6 +34,11 @@ def get_movies():
 
 @app.route("/recommend", methods=["POST"])
 def recommend():
+    try:
+        all_movies = fetch_all_candidate_movies()
+    except ConnectionError as e:
+        return jsonify({"error": str(e)}), 503
+
     data = request.get_json()
     selected_ids = data.get("movie_ids", [])
 
@@ -45,7 +60,11 @@ def recommend():
 
     # Fallback to 3 random if no genre match
     if not candidates:
-        candidates = random.sample([m for m in all_movies if m.get("Genre")], min(3, len(all_movies)))
+        # Ensure there are movies to sample from
+        genre_movies = [m for m in all_movies if m.get("Genre")]
+        if not genre_movies:
+             return jsonify({"recommendations": []}) # Return empty if no movies with genres available
+        candidates = random.sample(genre_movies, min(3, len(genre_movies)))
     else:
         random.shuffle(candidates)
         candidates = candidates[:10]
@@ -65,4 +84,4 @@ def recommend():
     return jsonify({"recommendations": recommendations})
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=5050)

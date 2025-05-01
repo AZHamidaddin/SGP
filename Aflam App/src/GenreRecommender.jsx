@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const API_URL = "http://127.0.0.1:8080";
+const API_URL = "http://127.0.0.1:5050";
 
 const similarity = (a, b) => {
   const maxLen = Math.max(a.length, b.length);
@@ -97,62 +98,62 @@ const GenreRecommender = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white min-h-screen p-6">
-      <div className="container mx-auto">
-        <h1 className="text-4xl font-extrabold text-center mb-6 text-blue-400">
+    <div className="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-gray-200 min-h-screen p-8 relative font-sans">
+      <div className="container mx-auto max-w-7xl">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-rose-500 tracking-tight" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)' }}>
           🎬 Movie Recommender
         </h1>
-        <p className="text-center text-gray-300 mb-6">
-          Select your favorite movies and get personalized recommendations!
+        <p className="text-center text-gray-400 mb-8 text-lg leading-relaxed">
+          Select your favorite movies below and discover new ones!
         </p>
 
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-8">
           <input
             type="text"
-            placeholder="Search for a movie..."
-            className="p-3 w-full max-w-lg rounded-lg bg-gray-800 text-white border border-gray-600 focus:border-blue-400 focus:ring focus:ring-blue-300"
+            placeholder="Search movies..."
+            className="p-3 w-full max-w-xl rounded-lg bg-gray-800 text-white border border-gray-700 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/50 outline-none transition duration-200 shadow-inner"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center mb-4">
-          {selectedMovies.map((id) => {
-            const movie = allMovies.find((m) => m.movieId === id);
-            return (
-              <span
-                key={id}
-                className="px-3 py-1 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-red-500"
-                onClick={() => removeTag(id)}
-              >
-                {movie?.title || id}
-              </span>
-            );
-          })}
-        </div>
+        {selectedMovies.length > 0 && (
+          <div className="flex flex-wrap gap-3 justify-center mb-8 items-center">
+            <span className="text-sm font-medium text-gray-400 mr-2">Selected:</span>
+            {selectedMovies.map((id) => {
+              const movie = allMovies.find((m) => m.movieId === id);
+              return (
+                <span
+                  key={id}
+                  className="inline-flex items-center px-3 py-1.5 bg-rose-600 text-white text-sm rounded-full shadow-md border border-rose-700 hover:bg-rose-700 transition-colors cursor-pointer duration-150 ease-in-out"
+                  onClick={() => removeTag(id)}
+                >
+                  {movie?.title || id}
+                </span>
+              );
+            })}
+          </div>
+        )}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
           {filteredMovies.slice(0, showCount).map((movie) => (
             <button
               key={movie.movieId}
-              className={`p-4 border rounded-lg shadow-md w-full text-sm font-semibold text-center transition transform hover:scale-105 ${
-                selectedMovies.includes(movie.movieId)
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-800 hover:bg-gray-700"
-              }`}
+              className={`p-3 border rounded-lg shadow-md w-full text-sm font-medium text-center transition duration-200 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 min-h-[60px] flex items-center justify-center ${selectedMovies.includes(movie.movieId)
+                ? "bg-rose-600 text-white border-rose-700 ring-2 ring-rose-400 scale-105 shadow-lg"
+                : "bg-gray-700 border-gray-600 hover:bg-gray-600 hover:border-gray-500 text-gray-300 hover:text-white hover:scale-105"
+                }`}
               onClick={() => toggleSelect(movie.movieId)}
             >
-              <div className="flex flex-col items-center justify-between h-full">
-                <span className="font-bold">{movie.title}</span>
-              </div>
+              {movie.title}
             </button>
           ))}
         </div>
 
         {showCount < filteredMovies.length && (
-          <div className="text-center mt-4">
+          <div className="text-center mb-8">
             <button
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg"
+              className="px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-rose-500"
               onClick={() => setShowCount((prev) => prev + 10)}
             >
               Show More Movies
@@ -160,37 +161,40 @@ const GenreRecommender = () => {
           </div>
         )}
 
-        <div className="text-center mt-6">
+        <div className="text-center my-8">
           <button
-            className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg"
+            className={`px-8 py-4 text-lg rounded-lg font-bold shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-70 disabled:cursor-not-allowed ${selectedMovies.length > 0
+              ? 'bg-emerald-500 hover:bg-emerald-600 text-white focus:ring-emerald-400 cursor-pointer'
+              : 'bg-gray-600 text-gray-400 cursor-not-allowed focus:ring-gray-500'
+              }`}
             onClick={getRecommendations}
+            disabled={selectedMovies.length === 0}
           >
-            Get Recommendations
+            {selectedMovies.length > 0 ? "✨ Get Recommendations ✨" : "Select movies first"}
           </button>
         </div>
 
         {recommendations.length > 0 && (
-          <div className="mt-10">
-            <h2 className="text-3xl font-semibold text-center text-yellow-400 mb-6">
-              🎥 Recommended Movies
+          <div className="mt-12 pt-8 border-t border-gray-700">
+            <h2 className="text-3xl md:text-4xl font-semibold text-center text-amber-400 mb-8 tracking-tight" style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)' }}>
+              🎥 Recommended For You
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {recommendations.map((rec, idx) => (
                 <div
                   key={idx}
-                  className="bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-xl transition-transform"
+                  className="bg-gray-800/70 p-5 rounded-lg shadow-lg hover:shadow-xl border border-gray-700 hover:border-gray-600 transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col justify-between"
                 >
                   <h3 className="text-xl font-bold text-white mb-2">{rec.title}</h3>
                   <p
-                    className={`text-md font-semibold ${
-                      rec.rating < 50
-                        ? "text-red-500"
-                        : rec.rating < 70
+                    className={`text-lg font-semibold ${rec.rating < 50
+                      ? "text-red-400"
+                      : rec.rating < 75
                         ? "text-yellow-400"
                         : "text-green-400"
-                    }`}
+                      }`}
                   >
-                    {rec.rating}% Liked
+                    {rec.rating}% Match
                   </p>
                 </div>
               ))}
@@ -198,6 +202,14 @@ const GenreRecommender = () => {
           </div>
         )}
       </div>
+
+      <Link
+        to="/home"
+        className="fixed bottom-6 right-6 z-50 bg-rose-500 text-white font-bold py-3 px-6 rounded-full shadow-2xl hover:bg-rose-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-rose-400 transition-all duration-200 ease-in-out"
+        title="Back to Home"
+      >
+        Back to Home
+      </Link>
     </div>
   );
 };

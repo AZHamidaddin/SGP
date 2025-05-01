@@ -54,11 +54,15 @@ async function printAllDatabaseObjects() {
   }
 }
 
+
+
+
+
 // ✅ Define Movie Schema (Matches Your MongoDB Structure)
 const MovieSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   identifier: { type: String, required: true, unique: true },
-  title: { type: String, required: true },
+  Title: { type: String, required: true },
   description: { type: String, default: "" },
   image_url: { type: String, required: true },
   classification: { type: String, required: true },
@@ -86,6 +90,19 @@ const MovieSchema = new mongoose.Schema({
 });
 
 const Movie = mongoose.model("Movie", MovieSchema);
+
+// User Schema
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  total_movies: { type: Number, default: 0 },
+  total_duration: { type: Number, default: 0 },
+  isAdmin: { type: Boolean, default: false },
+  created_at: { type: Date, default: Date.now }
+});
+
+const User = mongoose.model("User", UserSchema);
 
 // ✅ API Endpoints
 
@@ -236,55 +253,11 @@ app.post("/movies", async (req, res) => {
   }
 });
 
-// Update a movie by slug
-app.put("/movies/:slug", async (req, res) => {
-  try {
-    const { slug } = req.params;
-    const updateData = req.body;
 
-    // Don't allow changing the slug through this endpoint
-    if (updateData.slug && updateData.slug !== slug) {
-      return res.status(400).json({
-        error: "Cannot change slug through this endpoint"
-      });
-    }
 
-    // Find and update the movie
-    const updatedMovie = await Movie.findOneAndUpdate(
-      { slug },
-      updateData,
-      { new: true, runValidators: true }
-    );
 
-    if (!updatedMovie) {
-      return res.status(404).json({ error: "Movie not found" });
-    }
 
-    res.json(updatedMovie);
-  } catch (error) {
-    console.error("Error updating movie:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
-// Delete a movie by slug
-app.delete("/movies/:slug", async (req, res) => {
-  try {
-    const { slug } = req.params;
-
-    // Find and delete the movie
-    const deletedMovie = await Movie.findOneAndDelete({ slug });
-
-    if (!deletedMovie) {
-      return res.status(404).json({ error: "Movie not found" });
-    }
-
-    res.json({ message: "Movie deleted successfully", movie: deletedMovie });
-  } catch (error) {
-    console.error("Error deleting movie:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
 // Print all database objects to console
 app.get("/print-all-data", async (req, res) => {
@@ -654,6 +627,294 @@ app.get("/movies/parent/muvi", async (req, res) => {
     res.status(500).json({ error: "Server Error", details: error.message });
   }
 });
+
+// Get all documents from the offers collection
+app.get("/offers", async (req, res) => {
+  try {
+    // Check if offers collection exists
+    const collections = await mongoose.connection.db.listCollections({ name: "offers" }).toArray();
+    if (collections.length === 0) {
+      return res.status(404).json({ error: "Offers collection not found in the database" });
+    }
+
+    // Fetch all documents from the offers collection
+    const offers = await mongoose.connection.db.collection("offers").find({}).toArray();
+
+    // Log the results
+    console.log(`Found ${offers.length} documents in the offers collection`);
+    console.log(JSON.stringify(offers, null, 2));
+
+    // Return the offers
+    res.json({
+      count: offers.length,
+      offers: offers
+    });
+  } catch (error) {
+    console.error("Error fetching offers:", error);
+    res.status(500).json({ error: "Server Error", details: error.message });
+  }
+
+});
+
+// Get a specific offer by ID
+app.get("/offers/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if offers collection exists
+    const collections = await mongoose.connection.db.listCollections({ name: "offers" }).toArray();
+    if (collections.length === 0) {
+      return res.status(404).json({ error: "Offers collection not found in the database" });
+    }
+
+    // Try to convert the ID to an ObjectId if it's in that format
+    let objectId;
+    try {
+      if (id.match(/^[0-9a-fA-F]{24}$/)) {
+        objectId = new mongoose.Types.ObjectId(id);
+      }
+    } catch (err) {
+      // If conversion fails, we'll just use the string ID
+      console.log("ID not in ObjectId format, using as string");
+    }
+
+    // Create a query that checks both _id formats
+    const query = objectId ? { $or: [{ _id: objectId }, { _id: id }] } : { _id: id };
+
+    // Find the offer
+    const offer = await mongoose.connection.db.collection("offers").findOne(query);
+
+    if (!offer) {
+      return res.status(404).json({ error: `Offer with ID ${id} not found` });
+    }
+
+    // Log the result
+    console.log(`Found offer with ID ${id}:`);
+    console.log(JSON.stringify(offer, null, 2));
+
+    // Return the offer
+    res.json(offer);
+  } catch (error) {
+    console.error(`Error fetching offer with ID ${req.params.id}:`, error);
+    res.status(500).json({ error: "Server Error", details: error.message });
+  }
+});
+
+// Test endpoint to get user by email
+app.get("/api/users/test/:email", async (req, res) => {
+  try {
+    console.log("Searching for user with email:", req.params.email);
+    const user = await User.findOne({ email: req.params.email });
+    console.log("Found user:", user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      total_movies: user.total_movies,
+      total_duration: user.total_duration,
+      isAdmin: user.isAdmin,
+      created_at: user.created_at
+    });
+  } catch (error) {
+    console.error("Error in test endpoint:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// User Login Endpoint
+app.post("/api/users/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Check password (in a real app, you'd compare hashed passwords)
+    if (user.password !== password) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Return user data (excluding password)
+    const userData = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      total_movies: user.total_movies,
+      total_duration: user.total_duration,
+      isAdmin: user.isAdmin
+    };
+
+    res.json({ user: userData });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error during login" });
+  }
+});
+
+// Common password patterns to check against
+const commonPasswords = [
+  'password123', 'qwerty123', '12345678', 'password1', 'admin123',
+  'letmein123', 'welcome123', 'monkey123', 'football123', 'abc123'
+];
+
+const isSequential = (str) => {
+  const sequences = ['abcdefghijklmnopqrstuvwxyz', '0123456789'];
+  const len = 4; // minimum sequence length to check
+  
+  for (let seq of sequences) {
+    for (let i = 0; i <= seq.length - len; i++) {
+      const pattern = seq.slice(i, i + len);
+      if (str.toLowerCase().includes(pattern)) return true;
+    }
+  }
+  return false;
+};
+
+// User Registration Endpoint
+app.post("/api/users", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Validate input
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Enhanced email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format. Please use a valid email address (e.g., example@domain.com)" });
+    }
+
+    // Enhanced password validation with strict checking
+    const passwordErrors = [];
+    
+    if (password.length < 8) {
+      passwordErrors.push("Password must be at least 8 characters long");
+    }
+    if (!/[A-Z]/.test(password)) {
+      passwordErrors.push("Password must contain at least one uppercase letter");
+    }
+    if (!/[a-z]/.test(password)) {
+      passwordErrors.push("Password must contain at least one lowercase letter");
+    }
+    if (!/[0-9]/.test(password)) {
+      passwordErrors.push("Password must contain at least one number");
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      passwordErrors.push("Password must contain at least one special character (!@#$%^&*(),.?\":{}|<>)");
+    }
+    
+    // Check for common passwords
+    if (commonPasswords.includes(password.toLowerCase())) {
+      passwordErrors.push("This password is too common. Please choose a more unique password");
+    }
+    
+    // Check for sequential patterns
+    if (isSequential(password)) {
+      passwordErrors.push("Password contains sequential patterns (e.g., abcd1234). Please choose a more random combination");
+    }
+    
+    // Check if password contains personal information
+    if (password.toLowerCase().includes(name.toLowerCase()) || 
+        password.toLowerCase().includes(email.split('@')[0].toLowerCase())) {
+      passwordErrors.push("Password should not contain your name or email");
+    }
+
+    // If any password validation failed, return all errors
+    if (passwordErrors.length > 0) {
+      return res.status(400).json({ message: "Password validation failed", errors: passwordErrors });
+    }
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    // Create new user
+    const user = new User({
+      name,
+      email,
+      password, // In a real application, you should hash the password
+      total_movies: 0,
+      total_duration: 0
+    });
+
+    await user.save();
+
+    // Return user data (excluding password)
+    const userData = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      total_movies: user.total_movies,
+      total_duration: user.total_duration,
+      isAdmin: user.isAdmin
+    };
+
+    res.status(201).json({ user: userData });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Server error during registration" });
+  }
+});
+
+
+app.put('/movies/:id', async (req, res) => {
+  const { id } = req.params; // Get the movie's _id from the URL
+  const { Title, slug, identifier, parent, imageUrl, rating, language, description, genre, showtimesUrl, timings } = req.body;
+
+  try {
+    // Find and update the movie by _id
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      id, // Use _id for the update
+      {
+        Title,            // Update the 'Title' field
+        slug,
+        identifier,
+        parent,
+        imageUrl,
+        rating,
+        language,
+        description,
+        genre,
+        showtimesUrl,
+        timings
+      },
+      { new: true, runValidators: true } // Return the updated movie and validate data
+    );
+
+    // If no movie was found with this _id
+    if (!updatedMovie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
+
+    // Return the updated movie
+    res.status(200).json(updatedMovie); // Send the updated movie as a response
+  } catch (error) {
+    // Handle errors (e.g., validation errors)
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+
+
+
+
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
