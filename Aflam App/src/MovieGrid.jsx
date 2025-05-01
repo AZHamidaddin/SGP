@@ -4,6 +4,20 @@ import { Link } from "react-router-dom";
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
+// Helper function to find the best image URL based on source priority
+const getPrioritizedImageUrl = (group, priority) => {
+  // Find the image based on priority
+  for (const sourceName of priority) {
+    // Check the 'Parent' field for the source name
+    const movie = group.find(m => m.Parent?.toUpperCase() === sourceName.toUpperCase());
+    if (movie && movie["Image URL"]) {
+      return movie["Image URL"];
+    }
+  }
+  // Fallback to the first movie's image URL if no prioritized source is found or if the group is empty
+  return group[0]?.["Image URL"] || ""; // Use optional chaining and provide a default empty string
+};
+
 const mergeMoviesByTitle = (movies) => {
   const groups = [];
   const visited = new Set();
@@ -32,6 +46,7 @@ const mergeMoviesByTitle = (movies) => {
 const MovieGrid = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [imageAspectRatios, setImageAspectRatios] = useState({}); // State for image aspect ratios
 
   useEffect(() => {
     fetch("http://localhost:5000/movies")
@@ -46,6 +61,18 @@ const MovieGrid = () => {
         setLoading(false);
       });
   }, []);
+
+  // Handler for image loading
+  const handleImageLoad = (event, url) => {
+    const { naturalWidth, naturalHeight } = event.target;
+    if (naturalHeight > 0) { // Avoid division by zero
+      const aspectRatio = naturalWidth / naturalHeight;
+      setImageAspectRatios(prev => ({ ...prev, [url]: aspectRatio }));
+    } else {
+      // Handle cases where height is 0 or image fails to load dimension data
+      setImageAspectRatios(prev => ({ ...prev, [url]: 1 })); // Default to aspect ratio 1 (square-ish)
+    }
+  };
 
   if (loading) {
     return (
@@ -72,31 +99,55 @@ const MovieGrid = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {previewMovies.map((group, index) => {
             const main = group[0];
+            // Define the priority order for cinema sources
+            const priority = ['VOX', 'Muvi', 'Empire', 'AMC'];
+            // Get the image URL based on the defined priority
+            const imageUrl = getPrioritizedImageUrl(group, priority);
+
+            // Determine classes based on aspect ratio
+            const aspectRatio = imageAspectRatios[imageUrl];
+            let wrapperClass = 'aspect-[2/3] flex items-center justify-center bg-gray-800 rounded-t-lg overflow-hidden'; // Base wrapper class
+            let imageClass = '';
+
+            if (aspectRatio === undefined) {
+              wrapperClass += ' animate-pulse'; // Apply pulse to wrapper during load
+              imageClass = 'opacity-0'; // Hide img during load, wrapper shows pulse
+            } else if (aspectRatio > 1.5) { // Wide image threshold
+              imageClass = 'object-contain max-h-full w-auto'; // Style for wide images inside centered wrapper
+            } else { // Portrait/Square
+              imageClass = 'object-cover w-full h-full'; // Style for portrait/square images filling wrapper
+            }
+
             return (
               <div
                 key={index}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-full"
               >
-                <img
-                  src={main["Image URL"]}
-                  alt={main.Title}
-                  className="w-full h-56 object-contain bg-gray-800 rounded-t-lg"
-                />
-                <div className="p-5">
+                {/* Image Wrapper for consistent aspect ratio and centering */}
+                <div className={wrapperClass}>
+                  <img
+                    src={imageUrl} // Use the prioritized image URL
+                    alt={main.Title}
+                    onLoad={(e) => handleImageLoad(e, imageUrl)} // Add onLoad handler
+                    className={`transition-opacity duration-300 ${imageClass}`} // Apply dynamic class for img content
+                  />
+                </div>
+                {/* Text Content */}
+                <div className="p-5 flex flex-col flex-grow">
                   <h3 className="text-lg font-bold">{main.Title}</h3>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-400 mb-3">
                     {main.Language?.charAt(0).toUpperCase() +
                       main.Language?.slice(1).toLowerCase()}
                   </p>
 
                   <Link
                     to={`/movie/${main._id}`}
-                    className="mt-3 inline-block w-full bg-blue-600 hover:bg-blue-500 text-white text-center font-semibold py-2 rounded-lg transition"
+                    className="mt-auto inline-block w-full bg-blue-600 hover:bg-blue-500 text-white text-center font-semibold py-2 rounded-lg transition"
                   >
                     View Details
                   </Link>
 
-                 
+
                 </div>
               </div>
             );
