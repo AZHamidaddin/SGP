@@ -180,12 +180,7 @@ const AllMovies = () => {
         <SearchMovies />
 
         <div className="text-center mb-8">
-          <button
-            onClick={sortMovieGroups} // Sort movie groups
-            className="inline-block bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold transition"
-          >
-            Sort Alphabetically
-          </button>
+         
         </div>
 
         {errors.general && (
@@ -194,7 +189,7 @@ const AllMovies = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           {movieGroups.map((group, index) => {
             const main = group[0]; // Use the first movie in the group as the primary reference
             const priority = ['VOX', 'Muvi', 'Empire', 'AMC'];
@@ -217,7 +212,7 @@ const AllMovies = () => {
             return (
               <div
                 key={main._id || index} // Use main movie's ID as key
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-full"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-[500px]"
               >
                 {/* Image Wrapper for consistent aspect ratio and centering */}
                 <div className={wrapperClass}>

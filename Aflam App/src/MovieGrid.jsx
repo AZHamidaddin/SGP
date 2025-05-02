@@ -90,13 +90,13 @@ const MovieGrid = () => {
     );
   }
 
-  const previewMovies = movies.slice(0, 6); // Limit to 5
+  const previewMovies = movies.slice(0, 8); // Limit to 5
 
   return (
     <div className="bg-gray-900 text-white py-10">
       <div className="container mx-auto px-6">
         <h1 className="text-3xl font-bold mb-8 text-center">Now Showing</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {previewMovies.map((group, index) => {
             const main = group[0];
             // Define the priority order for cinema sources
@@ -121,7 +121,7 @@ const MovieGrid = () => {
             return (
               <div
                 key={index}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-full"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-[500px]"
               >
                 {/* Image Wrapper for consistent aspect ratio and centering */}
                 <div className={wrapperClass}>
