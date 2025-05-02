@@ -14,7 +14,7 @@ import Signup from "./Signup";
 export default function App() {
   const [loading, setLoading] = useState(true); // State for handling loading status
 
-  // Simulate a delay for loading data (can be removed in real usage)
+  // Simulate a delay for loading data (can be removed in real usage)s
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);

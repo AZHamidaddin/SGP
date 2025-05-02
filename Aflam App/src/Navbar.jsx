@@ -4,7 +4,7 @@ import { UserContext } from "./UserContext"; // Import UserContext
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, setUser } = useContext(UserContext); // Access user and setUser from context
+  const { user, logout } = useContext(UserContext); // Use logout instead of setUser
 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg">
@@ -31,7 +31,7 @@ export default function Navbar() {
             </Link>
             {user ? (
               <button
-                onClick={() => setUser(null)} // Logs out the user
+                onClick={logout} // Use the logout function from context
                 className="nav-button text-lg hover:bg-red-700"
               >
                 Log Out
@@ -93,7 +93,7 @@ export default function Navbar() {
             </Link>
             {user ? (
               <button
-                onClick={() => setUser(null)} // Logs out the user
+                onClick={logout} // Use the logout function from context
                 className="dropdown-link text-lg hover:text-red-500"
               >
                 Log Out

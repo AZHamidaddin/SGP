@@ -52,7 +52,7 @@ const mergeMoviesByTitle = (movies) => {
 
 // AllMovies Component
 const AllMovies = () => {
-  const { user } = useContext(UserContext); // Get the current user
+  const { user, setUser } = useContext(UserContext); // Get the current user
   const [movieGroups, setMovieGroups] = useState([]); // State now holds groups of movies
   const [loading, setLoading] = useState(true);
   const [editedTitles, setEditedTitles] = useState({});
@@ -156,9 +156,51 @@ const AllMovies = () => {
   };
 
   // Handle adding a movie to watched list (adds the main movie of the group)
-  const handleAddToWatched = (mainMovie) => {
-    setWatchedMovies((prev) => [...prev, mainMovie]);
-    alert(`Added "${mainMovie.Title}" to your watched list.`);
+  const handleAddToWatched = async (mainMovie) => {
+    // Check if user is logged in
+    if (!user || !user.id) {
+      alert("Please log in to add movies to your watch history.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/watch-history", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          movieTitle: mainMovie.Title
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        // If movie is already in watch history, show appropriate message
+        if (response.status === 400 && data.message === "Movie already in watch history") {
+          alert(`"${mainMovie.Title}" is already in your watch history.`);
+        } else {
+          alert(data.message || "Error adding movie to watch history");
+        }
+      } else {
+        alert(`Added "${mainMovie.Title}" to your watch history.`);
+        // Update local state
+        setWatchedMovies((prev) => [...prev, mainMovie]);
+        
+        // Update user context with the new watch history
+        if (data.watchHistory && setUser) {
+          setUser({
+            ...user,
+            userViewHistory: data.watchHistory
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error adding movie to watch history:", error);
+      alert("Failed to add movie to watch history. Please try again.");
+    }
   };
 
   if (loading) {

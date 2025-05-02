@@ -99,6 +99,7 @@ const UserSchema = new mongoose.Schema({
   total_movies: { type: Number, default: 0 },
   total_duration: { type: Number, default: 0 },
   isAdmin: { type: Boolean, default: false },
+  userViewHistory: { type: [String], default: [] }, // Array of movie titles the user has watched
   created_at: { type: Date, default: Date.now }
 });
 
@@ -525,6 +526,7 @@ app.get("/api/users/test/:email", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    
     res.json({
       id: user._id,
       name: user.name,
@@ -561,6 +563,7 @@ app.post("/api/users/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    
     // Return user data (excluding password)
     const userData = {
       id: user._id,
@@ -568,7 +571,8 @@ app.post("/api/users/login", async (req, res) => {
       email: user.email,
       total_movies: user.total_movies,
       total_duration: user.total_duration,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
+      userViewHistory: user.userViewHistory || [] // Include the watch history
     };
 
     res.json({ user: userData });
@@ -725,12 +729,60 @@ app.put('/movies/:id', async (req, res) => {
   }
 });
 
+// Add movie to user's watch history
+app.post("/api/users/watch-history", async (req, res) => {
+  try {
+    const { userId, movieTitle } = req.body;
 
+    // Validate input
+    if (!userId || !movieTitle) {
+      return res.status(400).json({ message: "User ID and movie title are required" });
+    }
 
+    // Find user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    // Check if movie is already in user's watch history
+    if (user.userViewHistory.includes(movieTitle)) {
+      return res.status(400).json({ message: "Movie already in watch history" });
+    }
 
+    // Add movie to user's watch history
+    user.userViewHistory.push(movieTitle);
+    await user.save();
 
+    res.status(200).json({ 
+      message: "Movie added to watch history",
+      watchHistory: user.userViewHistory
+    });
+  } catch (error) {
+    console.error("Error adding movie to watch history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
+// Get user's watch history
+app.get("/api/users/:userId/watch-history", async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    // Find user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ 
+      watchHistory: user.userViewHistory 
+    });
+  } catch (error) {
+    console.error("Error retrieving watch history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;

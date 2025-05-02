@@ -29,9 +29,8 @@ export default function Login() {
         throw new Error(data.message || "Login failed");
       }
 
-      // Save user data to context and local storage
+      // Save user data to context (localStorage is handled by UserContext)
       setUser(data.user);
-      localStorage.setItem("user", JSON.stringify(data.user));
 
       // Navigate based on admin status
       if (data.user.isAdmin) {
