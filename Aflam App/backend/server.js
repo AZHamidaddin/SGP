@@ -752,11 +752,16 @@ app.post("/api/users/watch-history", async (req, res) => {
 
     // Add movie to user's watch history
     user.userViewHistory.push(movieTitle);
+    
+    // Update total_movies to match the length of userViewHistory
+    user.total_movies = user.userViewHistory.length;
+    
     await user.save();
 
     res.status(200).json({ 
       message: "Movie added to watch history",
-      watchHistory: user.userViewHistory
+      watchHistory: user.userViewHistory,
+      total_movies: user.total_movies
     });
   } catch (error) {
     console.error("Error adding movie to watch history:", error);

@@ -189,11 +189,12 @@ const AllMovies = () => {
         // Update local state
         setWatchedMovies((prev) => [...prev, mainMovie]);
         
-        // Update user context with the new watch history
+        // Update user context with the new watch history and total_movies
         if (data.watchHistory && setUser) {
           setUser({
             ...user,
-            userViewHistory: data.watchHistory
+            userViewHistory: data.watchHistory,
+            total_movies: data.total_movies
           });
         }
       }
