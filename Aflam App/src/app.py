@@ -52,7 +52,6 @@ def recommend():
         if not row.empty:
             selected_genres.update(row.iloc[0]["genres"])
 
-    # Filter newdata.json movies by genre match
     candidates = [
         m for m in all_movies
         if m.get("Genre") and any(g in selected_genres for g in m["Genre"])
@@ -69,6 +68,18 @@ def recommend():
         random.shuffle(candidates)
         candidates = candidates[:10]
 
+    # Deduplicate candidates based on title before assigning ratings
+    unique_candidates = []
+    seen_titles = set()
+    for m in candidates:
+        title = m.get("Title", "Unknown Title")
+        # Convert title to lowercase for case-insensitive comparison
+        title_lower = title.lower() 
+        if title_lower not in seen_titles:
+            unique_candidates.append(m)
+            # Add the lowercase version to the set
+            seen_titles.add(title_lower) 
+
     recommendations = [
         {
             "title": m.get("Title", "Unknown Title"),
@@ -78,7 +89,7 @@ def recommend():
             "language": m.get("Language"),
             "description": m.get("Description")
         }
-        for m in candidates
+        for m in unique_candidates  # Use the deduplicated list
     ]
 
     return jsonify({"recommendations": recommendations})

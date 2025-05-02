@@ -904,7 +904,6 @@ movieId,title,genres
 1200,Aliens (1986),Action|Adventure|Horror|Sci-Fi
 1201,"Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) (1966)",Action|Adventure|Western
 1202,Withnail & I (1987),Comedy
-1203,12 Angry Men (1957),Drama
 1204,Lawrence of Arabia (1962),Adventure|Drama|War
 1206,"Clockwork Orange, A (1971)",Crime|Drama|Sci-Fi|Thriller
 1207,To Kill a Mockingbird (1962),Drama
@@ -8304,7 +8303,7 @@ movieId,title,genres
 106648,Guilty of Romance (Koi no tsumi) (2011) ,Crime|Drama|Horror
 106696,Frozen (2013),Adventure|Animation|Comedy|Fantasy|Musical|Romance
 106766,Inside Llewyn Davis (2013),Drama
-106782,"Wolf of Wall Street, The (2013)",Comedy|Crime|Drama
+106782,"The Wolf of Wall Street (2013)",Comedy|Crime|Drama
 106785,Homefront (2013),Action|Crime|Thriller
 106839,Mandela: Long Walk to Freedom (2013),Drama
 106873,Evangelion: 3.0 You Can (Not) Redo (2012),Action|Animation|Drama
@@ -9741,3 +9740,126 @@ movieId,title,genres
 193585,Flint (2017),Drama
 193587,Bungo Stray Dogs: Dead Apple (2018),Action|Animation
 193609,Andrew Dice Clay: Dice Rules (1991),Comedy
+193610,The Shawshank Redemption (1994),Drama
+193611,The Godfather (1972),Crime|Drama
+193612,The Dark Knight (2008),Action|Crime|Drama
+193613,The Godfather Part II (1974),Crime|Drama
+193615,The Lord of the Rings: The Return of the King (2003),Adventure|Drama|Fantasy
+193616,Schindler's List (1993),Biography|Drama|History
+193617,Pulp Fiction (1994),Crime|Drama
+193619,"The Good, the Bad and the Ugly (1966)",Adventure|Western
+193620,Forrest Gump (1994),Drama|Romance
+193621,The Lord of the Rings: The Two Towers (2002),Adventure|Drama|Fantasy
+193624,Star Wars: Episode V - The Empire Strikes Back (1980),Action|Adventure|Fantasy
+193625,The Matrix (1999),Action|Sci-Fi
+193627,Interstellar (2014),Adventure|Drama|Sci-Fi
+193628,One Flew Over the Cuckoo's Nest (1975),Drama
+193629,Se7en (1995),Crime|Drama|Mystery
+193630,It's a Wonderful Life (1946),Drama|Family|Fantasy
+193631,The Silence of the Lambs (1991),Crime|Drama|Horror
+193632,Seven Samurai (1954),Action|Drama
+193633,Saving Private Ryan (1998),Drama|War
+193634,City of God (2002),Crime|Drama
+193635,The Green Mile (1999),Crime|Drama|Fantasy
+193636,Life Is Beautiful (1997),Comedy|Drama|Romance
+193637,Terminator 2: Judgment Day (1991),Action|Adventure|Sci-Fi
+193638,Star Wars: Episode IV - A New Hope (1977),Action|Adventure|Fantasy
+193639,Back to the Future,Adventure|Comedy|Sci-Fi
+193640,Spirited Away (2001),Adventure|Animation|Family
+193641,The Pianist (2002),Biography|Drama|Music
+193642,Gladiator (2000),Action|Adventure|Drama
+193643,Parasite (2019),Drama|Thriller
+193644,Psycho (1960),Drama|Horror|Mystery
+193645,The Lion King (1994),Adventure|Animation|Drama
+193646,Grave of the Fireflies (1988),Animation|Drama|War
+193647,The Departed (2006),Crime|Drama|Thriller
+193648,Whiplash (2014),Drama|Music
+193649,Harakiri (1962),Drama|Mystery
+193650,American History X (1998),Crime|Drama
+193651,The Prestige (2006),Drama|Mystery|Sci-Fi
+193652,Léon: The Professional (1994),Action|Crime|Drama
+193653,12th Fail (2023),Biography|Drama
+193654,1917 (2019),Drama|War
+193655,A Beautiful Mind (2001),Biography|Drama
+193656,A Clockwork Orange (1971),Crime|Drama|Sci-Fi
+193657,A Separation (2011),Drama
+193658,A Silent Voice: The Movie (2016),Animation|Drama|Romance
+193659,Amores Perros (2000),Drama|Thriller
+193660,Amélie (2001),Comedy|Romance
+193661,Avengers: Endgame (2019),Action|Adventure|Drama
+193662,Avengers: Infinity War (2018),Action|Adventure|Sci-Fi
+193663,Bicycle Thieves (1948),Drama
+193664,Capernaum (2018),Drama
+193665,Children of Heaven (1997),Drama|Family
+193666,Cinema Paradiso (1988),Drama
+193667,Come and See (1985),Drama|War
+193668,Dangal (2016),Action|Biography|Drama
+193669,Das Boot (1981),Drama|War
+193670,Downfall (2004),Biography|Drama|History
+193671,Dune: Part Two (2024),Action|Adventure|Drama
+193672,For a Few Dollars More (1965),Western
+193673,Ford v Ferrari (2019),Action|Biography|Drama
+193674,Green Book (2018),Biography|Comedy|Drama
+193675,Hachi: A Dog's Tale (2009),Biography|Drama|Family
+193676,Hamilton (2020),Biography|Drama|History
+193677,High and Low (1963),Crime|Drama|Mystery
+193678,Howl's Moving Castle (2004),Animation|Adventure|Family
+193679,Jai Bhim (2021),Crime|Drama
+193680,Joker (2019),Crime|Drama|Thriller
+193681,Klaus (2019),Animation|Adventure|Comedy
+193682,La haine (1995),Crime|Drama
+193683,Like Stars on Earth (2007),Drama|Family     
+193685,Maharaja (2024),Action|Drama
+193686,Memories of Murder (2003),Crime|Drama|Mystery
+193687,My Father and My Son (2005),Drama
+193688,My Neighbor Totoro (1988),Animation|Family|Fantasy
+193689,Once Upon a Time in the West (1968),Western
+193690,Oppenheimer (2023),Biography|Drama|History
+193691,Pan's Labyrinth (2006),Drama|Fantasy|War
+193692,Princess Mononoke (1997),Animation|Adventure|Fantasy
+193693,Raiders of the Lost Ark (1981),Action|Adventure
+193694,Rashomon (1950),Crime|Drama|Mystery
+193695,Sinners (2024),Drama
+193696,Spider-Man: Into the Spider-Verse (2018),Animation|Action|Adventure
+193697,Spider-Man: No Way Home (2021),Action|Adventure|Fantasy
+193698,Sunset Boulevard (1950),Drama|Film-Noir
+193699,The Apartment (1960),Comedy|Drama|Romance
+193700,The Battle of Algiers (1966),Drama|War
+193701,The Best Years of Our Lives (1946),Drama|Romance|War
+193702,The Big Lebowski (1998),Comedy|Crime
+193703,The Bridge on the River Kwai (1957),Adventure|Drama|War
+193704,The Chaos Class Failed the Class (1975),Comedy
+193705,The Dark Knight Rises (2012),Action|Drama
+193706,The Deer Hunter (1978),Drama|War
+193707,The Elephant Man (1980),Biography|Drama
+193708,The Exorcist (1973),Horror
+193709,The Father (2020),Drama
+193710,The General (1926),Action|Adventure|Comedy
+193711,The Gold Rush (1925),Adventure|Comedy|Drama
+193712,The Grand Budapest Hotel (2014),Adventure|Comedy|Crime
+193713,The Grapes of Wrath (1940),Drama
+193714,The Great Dictator (1940),Comedy|Drama|War
+193715,The Great Escape (1963),Adventure|Drama|History
+193716,The Hunt (2012),Drama
+193717,The Incredibles (2004),Animation|Action|Adventure
+193718,The Iron Giant (1999),Animation|Action|Adventure
+193719,The Kid (1921),Comedy|Drama|Family
+193720,The Lives of Others (2006),Drama|Thriller
+193721,The Passion of Joan of Arc (1928),Biography|Drama|History
+193722,The Seventh Seal (1957),Drama|Fantasy
+193723,The Sixth Sense (1999),Drama|Mystery|Thriller
+193724,The Sound of Music (1965),Biography|Drama|Family
+193725,The Sting (1973),Comedy|Crime|Drama
+193726,The Terminator (1984),Action|Sci-Fi
+193727,The Thing (1982),Horror|Mystery|Sci-Fi
+193728,The Third Man (1949),Film-Noir|Mystery|Thriller
+193729,The Treasure of the Sierra Madre (1948),Adventure|Drama|Western
+193730,The Truman Show (1998),Comedy|Drama|Sci-Fi
+193731,The Usual Suspects (1995),Crime|Drama|Mystery
+193732,The Wages of Fear (1953),Adventure|Drama|Thriller
+193733,The Wild Robot (2025),Animation|Adventure|Family
+193734,The Wizard of Oz (1939),Adventure|Family|Fantasy
+193736,Tokyo Story (1953),Drama
+193737,Top Gun: Maverick (2022),Action|Drama
+193738,Wild Strawberries (1957),Drama|Romance
+193739,Spider-Man: Across the Spider-Verse (2023),Animation|Action|Adventure

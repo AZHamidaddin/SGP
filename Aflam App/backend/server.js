@@ -255,10 +255,6 @@ app.post("/movies", async (req, res) => {
 
 
 
-
-
-
-
 // Print all database objects to console
 app.get("/print-all-data", async (req, res) => {
   try {
@@ -362,187 +358,7 @@ app.get("/print-collection/:collectionName", async (req, res) => {
   }
 });
 
-// Get all movies showing at Empire cinema
-app.get("/movies/cinema/empire", async (req, res) => {
-  try {
-    // Find all movies that have Empire as a place in any of their showtimes
-    const movies = await Movie.find({});
 
-    // Filter movies that have Empire as a cinema
-    const empireMovies = movies.filter(movie => {
-      // Check if the movie has timings
-      if (!movie.timings || movie.timings.size === 0) return false;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Check each date's showtimes
-      for (const date in timingsObj) {
-        const dateData = timingsObj[date];
-
-        // Check if any showtime has Empire as the place
-        for (const showtime of dateData.showtimes || []) {
-          if (showtime.place.toLowerCase().includes('empire')) {
-            return true;
-          }
-        }
-      }
-
-      return false;
-    });
-
-    // Log the results
-    console.log(`Found ${empireMovies.length} movies showing at Empire cinema`);
-
-    res.json({
-      count: empireMovies.length,
-      movies: empireMovies
-    });
-  } catch (error) {
-    console.error("Error fetching Empire cinema movies:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-// Get movies by cinema name with flexible matching options
-app.get("/movies/by-cinema", async (req, res) => {
-  try {
-    const { name, exact = false } = req.query;
-
-    if (!name) {
-      return res.status(400).json({ error: "Cinema name is required" });
-    }
-
-    // Find all movies
-    const movies = await Movie.find({});
-
-    // Filter movies by cinema name
-    const filteredMovies = movies.filter(movie => {
-      // Check if the movie has timings
-      if (!movie.timings || movie.timings.size === 0) return false;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Check each date's showtimes
-      for (const date in timingsObj) {
-        const dateData = timingsObj[date];
-
-        // Check if any showtime has the specified cinema as the place
-        for (const showtime of dateData.showtimes || []) {
-          if (exact) {
-            // Exact match (case insensitive)
-            if (showtime.place.toLowerCase() === name.toLowerCase()) {
-              return true;
-            }
-          } else {
-            // Partial match (case insensitive)
-            if (showtime.place.toLowerCase().includes(name.toLowerCase())) {
-              return true;
-            }
-          }
-        }
-      }
-
-      return false;
-    });
-
-    // Log the results
-    console.log(`Found ${filteredMovies.length} movies showing at cinema matching "${name}"`);
-
-    // Return the filtered movies
-    res.json({
-      cinema: name,
-      exact_match: exact === 'true' || exact === true,
-      count: filteredMovies.length,
-      movies: filteredMovies
-    });
-  } catch (error) {
-    console.error("Error fetching movies by cinema:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-// Get detailed showtimes for movies at Empire cinemas
-app.get("/empire/showtimes", async (req, res) => {
-  try {
-    // Get optional date filter from query params
-    const { date } = req.query;
-
-    // Find all movies
-    const movies = await Movie.find({});
-
-    // Process movies to extract Empire showtimes
-    const empireShowtimes = [];
-
-    for (const movie of movies) {
-      // Skip movies without timings
-      if (!movie.timings || movie.timings.size === 0) continue;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Filter dates if date parameter is provided
-      const datesToProcess = date ? (timingsObj[date] ? [date] : []) : Object.keys(timingsObj);
-
-      // Check each date's showtimes
-      const movieEmpireShowtimes = {};
-
-      for (const currentDate of datesToProcess) {
-        const dateData = timingsObj[currentDate];
-
-        // Find Empire showtimes for this date
-        const empirePlaces = [];
-
-        for (const showtime of dateData.showtimes || []) {
-          if (showtime.place.toLowerCase().includes('empire')) {
-            empirePlaces.push({
-              place: showtime.place,
-              experiences: showtime.experiences
-            });
-          }
-        }
-
-        // If we found Empire showtimes for this date, add them to the result
-        if (empirePlaces.length > 0) {
-          if (!movieEmpireShowtimes.dates) {
-            movieEmpireShowtimes.dates = {};
-          }
-
-          movieEmpireShowtimes.dates[currentDate] = {
-            day_of_week: dateData.day_of_week,
-            showtimes: empirePlaces
-          };
-        }
-      }
-
-      // If this movie has Empire showtimes, add it to the result
-      if (movieEmpireShowtimes.dates && Object.keys(movieEmpireShowtimes.dates).length > 0) {
-        empireShowtimes.push({
-          slug: movie.slug,
-          title: movie.title,
-          image_url: movie.image_url,
-          classification: movie.classification,
-          language: movie.language,
-          ...movieEmpireShowtimes
-        });
-      }
-    }
-
-    // Log the results
-    console.log(`Found ${empireShowtimes.length} movies with Empire showtimes${date ? ` on ${date}` : ''}`);
-
-    // Return the Empire showtimes
-    res.json({
-      count: empireShowtimes.length,
-      date_filter: date || null,
-      movies: empireShowtimes
-    });
-  } catch (error) {
-    console.error("Error fetching Empire showtimes:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
 // Get all movies with Parent = "Empire"
 app.get("/movies/parent/empire", async (req, res) => {
@@ -771,7 +587,7 @@ const commonPasswords = [
 const isSequential = (str) => {
   const sequences = ['abcdefghijklmnopqrstuvwxyz', '0123456789'];
   const len = 4; // minimum sequence length to check
-  
+
   for (let seq of sequences) {
     for (let i = 0; i <= seq.length - len; i++) {
       const pattern = seq.slice(i, i + len);
@@ -799,7 +615,7 @@ app.post("/api/users", async (req, res) => {
 
     // Enhanced password validation with strict checking
     const passwordErrors = [];
-    
+
     if (password.length < 8) {
       passwordErrors.push("Password must be at least 8 characters long");
     }
@@ -815,20 +631,20 @@ app.post("/api/users", async (req, res) => {
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       passwordErrors.push("Password must contain at least one special character (!@#$%^&*(),.?\":{}|<>)");
     }
-    
+
     // Check for common passwords
     if (commonPasswords.includes(password.toLowerCase())) {
       passwordErrors.push("This password is too common. Please choose a more unique password");
     }
-    
+
     // Check for sequential patterns
     if (isSequential(password)) {
       passwordErrors.push("Password contains sequential patterns (e.g., abcd1234). Please choose a more random combination");
     }
-    
+
     // Check if password contains personal information
-    if (password.toLowerCase().includes(name.toLowerCase()) || 
-        password.toLowerCase().includes(email.split('@')[0].toLowerCase())) {
+    if (password.toLowerCase().includes(name.toLowerCase()) ||
+      password.toLowerCase().includes(email.split('@')[0].toLowerCase())) {
       passwordErrors.push("Password should not contain your name or email");
     }
 
