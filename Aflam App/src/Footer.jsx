@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold text-white mb-2">Aflam</h3>
             <p className="text-sm text-gray-400">
-              Your ultimate movie booking experience.
+              Your ultimate movie guide experience.
             </p>
           </div>
 

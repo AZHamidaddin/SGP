@@ -4,48 +4,46 @@ import { UserContext } from "./UserContext"; // Import UserContext
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, setUser } = useContext(UserContext); // Access user and setUser from context
+  const { user, logout } = useContext(UserContext); // Use logout instead of setUser
 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="text-gray-300 text-2xl font-bold tracking-wide">
-              {user ? `Welcome, ${user.name}` : "Aflam"}
+            <span className="text-gray-300 text-3xl font-bold tracking-wide cursor-pointer">
+              {"Aflam"}
             </span>
           </div>
 
           {/* Menu for larger screens */}
           <div className="hidden md:flex space-x-4 items-center">
-            <Link to="/" className="nav-link">
+            <Link to="/home" className="nav-link text-white text-lg font-bold hover:text-gray-400">
               Home
             </Link>
-            <Link to="/now-showing" className="nav-link">
-              Now Showing
+            <Link to="/movies" className="nav-link text-white text-lg font-bold hover:text-gray-400">
+              Search Movies
             </Link>
-            <Link to="/coming-soon" className="nav-link">
-              Coming Soon
+
+            <Link to="/offers" className="nav-link text-white text-lg font-bold hover:text-gray-400">
+              Offers
             </Link>
             {user ? (
               <button
-                onClick={() => setUser(null)} // Logs out the user
-                className="nav-button"
+                onClick={logout} // Use the logout function from context
+                className="nav-button text-lg hover:bg-red-700"
               >
                 Log Out
               </button>
             ) : (
-              <Link to="/recommend" className="nav-button">
-                recommend me
+              <Link to="/login" className="nav-button text-lg hover:bg-blue-700">
+                Sign in
               </Link>
 
-              
-            )
-            
-            }
+            )}
             {/* About Us Button */}
-           
+
           </div>
 
           {/* Hamburger menu for mobile */}
@@ -84,29 +82,29 @@ export default function Navbar() {
         {/* Dropdown menu for mobile */}
         {isOpen && (
           <div className="flex flex-col md:hidden items-center space-y-4 mt-4 pb-11">
-            <Link to="/" className="dropdown-link">
+            <Link to="/" className="dropdown-link text-lg hover:text-gray-400">
               Home
             </Link>
-            <Link to="/now-showing" className="dropdown-link">
+            <Link to="/now-showing" className="dropdown-link text-lg hover:text-gray-400">
               Now Showing
             </Link>
-            <Link to="/coming-soon" className="dropdown-link">
+            <Link to="/coming-soon" className="dropdown-link text-lg hover:text-gray-400">
               Coming Soon
             </Link>
             {user ? (
               <button
-                onClick={() => setUser(null)} // Logs out the user
-                className="dropdown-link"
+                onClick={logout} // Use the logout function from context
+                className="dropdown-link text-lg hover:text-red-500"
               >
                 Log Out
               </button>
             ) : (
-              <Link to="/login" className="dropdown-link">
+              <Link to="/login" className="dropdown-link text-lg hover:text-blue-400">
                 Sign In
               </Link>
             )}
             {/* About Us Button in Mobile Dropdown */}
-        
+
           </div>
         )}
       </div>

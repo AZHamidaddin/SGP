@@ -1,42 +1,42 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // 👈 Import icons
 
 export default function Login() {
-  const credentials = {
-    Wael: { email: "wael@gmail.com", password: "ps1" },
-    ahmed: { email: "ahmed@gmail.com", password: "ps2" },
-    ali: { email: "ali@gmail.com", password: "ps3" },
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // 👈 State to toggle visibility
   const [error, setError] = useState("");
-  const { setUser } = useContext(UserContext); // Use context to set the user
-
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = Object.keys(credentials).find(
-      (key) =>
-        credentials[key].email === email && credentials[key].password === password
-    );
+    setError("");
 
-    if (user) {
-      setUser({ name: user, email: credentials[user].email }); // Update the context
-      navigate("/home"); // Navigate to home
-    } else {
-      setError("Incorrect email or password. Please try again.");
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Login failed");
+
+      setUser(data.user);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message || "Login failed. Please check your credentials.");
+      console.error("Login error:", err);
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
       <div className="w-full max-w-md p-8 bg-gray-800 shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-center text-white mb-6">
-          Login to Your Account
-        </h2>
+        <h2 className="text-2xl font-bold text-center text-white mb-6">Welcome Back</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-300">
@@ -47,30 +47,49 @@ export default function Login() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 mt-1 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-red-500 focus:border-red-500"
+              className="w-full px-4 py-2 mt-1 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-purple-500 focus:border-purple-500"
               placeholder="Enter your email"
+              required
             />
           </div>
-          <div className="mb-6">
+
+          {/* 👇 Modified Password Field with Toggle Icon */}
+          <div className="mb-6 relative">
             <label htmlFor="password" className="block text-sm font-medium text-gray-300">
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 mt-1 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-red-500 focus:border-red-500"
+              className="w-full px-4 py-2 mt-1 pr-10 text-gray-200 bg-gray-700 border border-gray-600 rounded-lg focus:ring-purple-500 focus:border-purple-500"
               placeholder="Enter your password"
+              required
             />
+            <div
+              className="absolute top-9 right-3 text-gray-400 hover:text-white cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiFillEyeInvisible size={20} /> : <AiFillEye size={20} />}
+            </div>
           </div>
+
           {error && <div className="mb-4 text-sm text-red-400 text-center">{error}</div>}
+
           <button
             type="submit"
-            className="w-full py-2 mb-4 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow-md transition duration-300"
+            className="w-full px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800"
           >
-            Login
+            Sign In
           </button>
+
+          <p className="mt-4 text-sm text-center text-gray-400">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-purple-400 hover:text-purple-300">
+              Sign up
+            </Link>
+          </p>
         </form>
       </div>
     </div>
