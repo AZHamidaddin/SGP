@@ -99,8 +99,22 @@ const UserSchema = new mongoose.Schema({
   total_movies: { type: Number, default: 0 },
   total_duration: { type: Number, default: 0 },
   isAdmin: { type: Boolean, default: false },
+  userViewHistory: {
+    type: [
+      {
+        _id: String,
+        Title: String,
+        Language: String,
+        Parent: String,
+        image_url: String,
+        date: String
+      }
+    ],
+    default: []
+  }, // Array of movie titles the user has watched
   created_at: { type: Date, default: Date.now }
 });
+
 
 const User = mongoose.model("User", UserSchema);
 
@@ -255,10 +269,6 @@ app.post("/movies", async (req, res) => {
 
 
 
-
-
-
-
 // Print all database objects to console
 app.get("/print-all-data", async (req, res) => {
   try {
@@ -362,187 +372,7 @@ app.get("/print-collection/:collectionName", async (req, res) => {
   }
 });
 
-// Get all movies showing at Empire cinema
-app.get("/movies/cinema/empire", async (req, res) => {
-  try {
-    // Find all movies that have Empire as a place in any of their showtimes
-    const movies = await Movie.find({});
 
-    // Filter movies that have Empire as a cinema
-    const empireMovies = movies.filter(movie => {
-      // Check if the movie has timings
-      if (!movie.timings || movie.timings.size === 0) return false;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Check each date's showtimes
-      for (const date in timingsObj) {
-        const dateData = timingsObj[date];
-
-        // Check if any showtime has Empire as the place
-        for (const showtime of dateData.showtimes || []) {
-          if (showtime.place.toLowerCase().includes('empire')) {
-            return true;
-          }
-        }
-      }
-
-      return false;
-    });
-
-    // Log the results
-    console.log(`Found ${empireMovies.length} movies showing at Empire cinema`);
-
-    res.json({
-      count: empireMovies.length,
-      movies: empireMovies
-    });
-  } catch (error) {
-    console.error("Error fetching Empire cinema movies:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-// Get movies by cinema name with flexible matching options
-app.get("/movies/by-cinema", async (req, res) => {
-  try {
-    const { name, exact = false } = req.query;
-
-    if (!name) {
-      return res.status(400).json({ error: "Cinema name is required" });
-    }
-
-    // Find all movies
-    const movies = await Movie.find({});
-
-    // Filter movies by cinema name
-    const filteredMovies = movies.filter(movie => {
-      // Check if the movie has timings
-      if (!movie.timings || movie.timings.size === 0) return false;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Check each date's showtimes
-      for (const date in timingsObj) {
-        const dateData = timingsObj[date];
-
-        // Check if any showtime has the specified cinema as the place
-        for (const showtime of dateData.showtimes || []) {
-          if (exact) {
-            // Exact match (case insensitive)
-            if (showtime.place.toLowerCase() === name.toLowerCase()) {
-              return true;
-            }
-          } else {
-            // Partial match (case insensitive)
-            if (showtime.place.toLowerCase().includes(name.toLowerCase())) {
-              return true;
-            }
-          }
-        }
-      }
-
-      return false;
-    });
-
-    // Log the results
-    console.log(`Found ${filteredMovies.length} movies showing at cinema matching "${name}"`);
-
-    // Return the filtered movies
-    res.json({
-      cinema: name,
-      exact_match: exact === 'true' || exact === true,
-      count: filteredMovies.length,
-      movies: filteredMovies
-    });
-  } catch (error) {
-    console.error("Error fetching movies by cinema:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-// Get detailed showtimes for movies at Empire cinemas
-app.get("/empire/showtimes", async (req, res) => {
-  try {
-    // Get optional date filter from query params
-    const { date } = req.query;
-
-    // Find all movies
-    const movies = await Movie.find({});
-
-    // Process movies to extract Empire showtimes
-    const empireShowtimes = [];
-
-    for (const movie of movies) {
-      // Skip movies without timings
-      if (!movie.timings || movie.timings.size === 0) continue;
-
-      // Convert Map to object for easier processing
-      const timingsObj = Object.fromEntries(movie.timings);
-
-      // Filter dates if date parameter is provided
-      const datesToProcess = date ? (timingsObj[date] ? [date] : []) : Object.keys(timingsObj);
-
-      // Check each date's showtimes
-      const movieEmpireShowtimes = {};
-
-      for (const currentDate of datesToProcess) {
-        const dateData = timingsObj[currentDate];
-
-        // Find Empire showtimes for this date
-        const empirePlaces = [];
-
-        for (const showtime of dateData.showtimes || []) {
-          if (showtime.place.toLowerCase().includes('empire')) {
-            empirePlaces.push({
-              place: showtime.place,
-              experiences: showtime.experiences
-            });
-          }
-        }
-
-        // If we found Empire showtimes for this date, add them to the result
-        if (empirePlaces.length > 0) {
-          if (!movieEmpireShowtimes.dates) {
-            movieEmpireShowtimes.dates = {};
-          }
-
-          movieEmpireShowtimes.dates[currentDate] = {
-            day_of_week: dateData.day_of_week,
-            showtimes: empirePlaces
-          };
-        }
-      }
-
-      // If this movie has Empire showtimes, add it to the result
-      if (movieEmpireShowtimes.dates && Object.keys(movieEmpireShowtimes.dates).length > 0) {
-        empireShowtimes.push({
-          slug: movie.slug,
-          title: movie.title,
-          image_url: movie.image_url,
-          classification: movie.classification,
-          language: movie.language,
-          ...movieEmpireShowtimes
-        });
-      }
-    }
-
-    // Log the results
-    console.log(`Found ${empireShowtimes.length} movies with Empire showtimes${date ? ` on ${date}` : ''}`);
-
-    // Return the Empire showtimes
-    res.json({
-      count: empireShowtimes.length,
-      date_filter: date || null,
-      movies: empireShowtimes
-    });
-  } catch (error) {
-    console.error("Error fetching Empire showtimes:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
 
 // Get all movies with Parent = "Empire"
 app.get("/movies/parent/empire", async (req, res) => {
@@ -709,6 +539,7 @@ app.get("/api/users/test/:email", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    
     res.json({
       id: user._id,
       name: user.name,
@@ -745,6 +576,7 @@ app.post("/api/users/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    
     // Return user data (excluding password)
     const userData = {
       id: user._id,
@@ -752,7 +584,8 @@ app.post("/api/users/login", async (req, res) => {
       email: user.email,
       total_movies: user.total_movies,
       total_duration: user.total_duration,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
+      userViewHistory: user.userViewHistory || [] // Include the watch history
     };
 
     res.json({ user: userData });
@@ -771,7 +604,7 @@ const commonPasswords = [
 const isSequential = (str) => {
   const sequences = ['abcdefghijklmnopqrstuvwxyz', '0123456789'];
   const len = 4; // minimum sequence length to check
-  
+
   for (let seq of sequences) {
     for (let i = 0; i <= seq.length - len; i++) {
       const pattern = seq.slice(i, i + len);
@@ -799,7 +632,7 @@ app.post("/api/users", async (req, res) => {
 
     // Enhanced password validation with strict checking
     const passwordErrors = [];
-    
+
     if (password.length < 8) {
       passwordErrors.push("Password must be at least 8 characters long");
     }
@@ -815,20 +648,20 @@ app.post("/api/users", async (req, res) => {
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       passwordErrors.push("Password must contain at least one special character (!@#$%^&*(),.?\":{}|<>)");
     }
-    
+
     // Check for common passwords
     if (commonPasswords.includes(password.toLowerCase())) {
       passwordErrors.push("This password is too common. Please choose a more unique password");
     }
-    
+
     // Check for sequential patterns
     if (isSequential(password)) {
       passwordErrors.push("Password contains sequential patterns (e.g., abcd1234). Please choose a more random combination");
     }
-    
+
     // Check if password contains personal information
-    if (password.toLowerCase().includes(name.toLowerCase()) || 
-        password.toLowerCase().includes(email.split('@')[0].toLowerCase())) {
+    if (password.toLowerCase().includes(name.toLowerCase()) ||
+      password.toLowerCase().includes(email.split('@')[0].toLowerCase())) {
       passwordErrors.push("Password should not contain your name or email");
     }
 
@@ -909,12 +742,91 @@ app.put('/movies/:id', async (req, res) => {
   }
 });
 
+// Add movie to user's watch history
+app.post("/api/users/watch-history", async (req, res) => {
+  try {
+    const { userId, movie } = req.body;
+
+    // Validate input
+    if (!userId || !movie || !movie._id || !(movie.Title || movie.title)) {
+      return res.status(400).json({ message: "User ID and movie object with at least _id and Title are required" });
+    }
+
+    // Find user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if movie is already in user's watch history by title (or _id if you want)
+    const alreadyExists = user.userViewHistory.some((m) => {
+      return typeof m === 'object' && m._id === movie._id;
+    });
+
+    if (alreadyExists) {
+      return res.status(400).json({ message: "Movie already in watch history" });
+    }
+
+    // Push the full movie object
+    user.userViewHistory.push(movie);
+    user.total_movies = user.userViewHistory.length;
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Movie added to watch history",
+      watchHistory: user.userViewHistory,
+      total_movies: user.total_movies
+    });
+  } catch (error) {
+    console.error("Error adding movie to watch history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 
+// Get user's watch history
+app.get("/api/users/:userId/watch-history", async (req, res) => {
+  try {
+    const { userId } = req.params;
 
+    // Find user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
+    res.status(200).json({ 
+      watchHistory: user.userViewHistory 
+    });
+  } catch (error) {
+    console.error("Error retrieving watch history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
+app.delete("/api/users/:userId/watch-history/:movieId", async (req, res) => {
+  try {
+    const { userId, movieId } = req.params;
 
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const updatedHistory = user.userViewHistory.filter((movie) => movie._id !== movieId);
+    user.userViewHistory = updatedHistory;
+    user.total_movies = updatedHistory.length;
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Movie removed from watch history",
+      watchHistory: updatedHistory,
+    });
+  } catch (error) {
+    console.error("Error deleting movie from history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
 
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;

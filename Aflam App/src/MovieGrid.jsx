@@ -90,13 +90,13 @@ const MovieGrid = () => {
     );
   }
 
-  const previewMovies = movies.slice(0, 6); // Limit to 5
+  const previewMovies = movies.slice(0, 8); // Limit to 5
 
   return (
     <div className="bg-gray-900 text-white py-10">
       <div className="container mx-auto px-6">
         <h1 className="text-3xl font-bold mb-8 text-center">Now Showing</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {previewMovies.map((group, index) => {
             const main = group[0];
             // Define the priority order for cinema sources
@@ -106,22 +106,21 @@ const MovieGrid = () => {
 
             // Determine classes based on aspect ratio
             const aspectRatio = imageAspectRatios[imageUrl];
-            let wrapperClass = 'aspect-[2/3] flex items-center justify-center bg-gray-800 rounded-t-lg overflow-hidden'; // Base wrapper class
+            let wrapperClass = 'h-[350px] w-full flex items-center justify-center bg-gray-800 rounded-t-lg overflow-hidden';
             let imageClass = '';
 
             if (aspectRatio === undefined) {
-              wrapperClass += ' animate-pulse'; // Apply pulse to wrapper during load
-              imageClass = 'opacity-0'; // Hide img during load, wrapper shows pulse
-            } else if (aspectRatio > 1.5) { // Wide image threshold
-              imageClass = 'object-contain max-h-full w-auto'; // Style for wide images inside centered wrapper
-            } else { // Portrait/Square
-              imageClass = 'object-cover w-full h-full'; // Style for portrait/square images filling wrapper
+              wrapperClass += ' animate-pulse';
+              imageClass = 'opacity-0';
+            } else {
+              imageClass = 'object-contain w-full h-full'; // Always contain image fully
             }
+
 
             return (
               <div
                 key={index}
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-full"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-[500px]"
               >
                 {/* Image Wrapper for consistent aspect ratio and centering */}
                 <div className={wrapperClass}>

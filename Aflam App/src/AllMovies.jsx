@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext"; // Import UserContext to check user info
-import { FaPen, FaPlus } from "react-icons/fa"; // Pen and Plus icons for editing and adding
 import Navbar from "./Navbar";
 import SearchMovies from "./SearchMovies";
+import { FaPen, FaPlus, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+
 
 // Utility function to normalize movie titles for grouping
 const normalize = (str) =>
@@ -52,13 +53,19 @@ const mergeMoviesByTitle = (movies) => {
 
 // AllMovies Component
 const AllMovies = () => {
-  const { user } = useContext(UserContext); // Get the current user
+  const { user, setUser } = useContext(UserContext); // Get the current user
   const [movieGroups, setMovieGroups] = useState([]); // State now holds groups of movies
   const [loading, setLoading] = useState(true);
   const [editedTitles, setEditedTitles] = useState({});
   const [errors, setErrors] = useState({});
   const [watchedMovies, setWatchedMovies] = useState([]); // Store watched movies
   const [imageAspectRatios, setImageAspectRatios] = useState({}); // State for image aspect ratios
+  const [showModal, setShowModal] = useState(false);
+const [selectedMovie, setSelectedMovie] = useState(null);
+const [selectedSource, setSelectedSource] = useState("");
+const [successMessage, setSuccessMessage] = useState("");
+const [showSuccess, setShowSuccess] = useState(false);
+
 
   const isAdmin = user?.isAdmin ?? false; // If isAdmin is null, set it to false by default
 
@@ -156,10 +163,67 @@ const AllMovies = () => {
   };
 
   // Handle adding a movie to watched list (adds the main movie of the group)
-  const handleAddToWatched = (mainMovie) => {
-    setWatchedMovies((prev) => [...prev, mainMovie]);
-    alert(`Added "${mainMovie.Title}" to your watched list.`);
+  const handleAddToWatched = async (mainMovie, selectedSource) => {
+    if (!user || (!user._id && !user.id)) {
+      alert("Please log in to add movies to your watch history.");
+      return;
+    }
+  
+    const userId = user._id || user.id;
+  
+    const movieDetails = {
+      _id: mainMovie._id,
+      Title: mainMovie.Title,
+      Language: mainMovie.Language,
+      Parent: selectedSource,
+      image_url: mainMovie["Image URL"],
+      date: new Date().toISOString().split("T")[0],
+    };
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/users/watch-history", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, movie: movieDetails }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        const msg =
+          response.status === 400 && data.message === "Movie already in watch history"
+            ? `"${mainMovie.Title}" is already in your watch history.`
+            : data.message || "Error adding movie to watch history";
+  
+        setSuccessMessage(msg);
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        setSuccessMessage(`Added "${mainMovie.Title}" to your watch history.`);
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+  
+        setWatchedMovies((prev) => [...prev, mainMovie]);
+        if (data.watchHistory && setUser) {
+          setUser({
+            ...user,
+            userViewHistory: data.watchHistory,
+            total_movies: data.total_movies,
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error adding movie to watch history:", error);
+      setSuccessMessage("Failed to add movie to watch history. Please try again.");
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 5000);
+    }
   };
+  
+  
+  
 
   if (loading) {
     return (
@@ -180,12 +244,7 @@ const AllMovies = () => {
         <SearchMovies />
 
         <div className="text-center mb-8">
-          <button
-            onClick={sortMovieGroups} // Sort movie groups
-            className="inline-block bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-lg font-semibold transition"
-          >
-            Sort Alphabetically
-          </button>
+         
         </div>
 
         {errors.general && (
@@ -194,7 +253,7 @@ const AllMovies = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           {movieGroups.map((group, index) => {
             const main = group[0]; // Use the first movie in the group as the primary reference
             const priority = ['VOX', 'Muvi', 'Empire', 'AMC'];
@@ -202,22 +261,20 @@ const AllMovies = () => {
 
             // Determine classes based on aspect ratio
             const aspectRatio = imageAspectRatios[imageUrl];
-            let wrapperClass = 'aspect-[2/3] flex items-center justify-center bg-gray-800 rounded-t-lg overflow-hidden'; // Base wrapper class
+            let wrapperClass = 'h-[350px] w-full flex items-center justify-center bg-gray-800 rounded-t-lg overflow-hidden';
             let imageClass = '';
 
             if (aspectRatio === undefined) {
-              wrapperClass += ' animate-pulse'; // Apply pulse to wrapper during load
-              imageClass = 'opacity-0'; // Hide img during load, wrapper shows pulse
-            } else if (aspectRatio > 1.5) { // Wide image threshold
-              imageClass = 'object-contain max-h-full w-auto'; // Style for wide images inside centered wrapper
-            } else { // Portrait/Square
-              imageClass = 'object-cover w-full h-full'; // Style for portrait/square images filling wrapper
+              wrapperClass += ' animate-pulse';
+              imageClass = 'opacity-0';
+            } else {
+              imageClass = 'object-contain w-full h-full'; // Always contain image fully
             }
 
             return (
               <div
                 key={main._id || index} // Use main movie's ID as key
-                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-full"
+                className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform relative flex flex-col h-[500px]"
               >
                 {/* Image Wrapper for consistent aspect ratio and centering */}
                 <div className={wrapperClass}>
@@ -242,7 +299,7 @@ const AllMovies = () => {
                         />
                         <button
                           onClick={() => handleEditSubmit(main._id, editedTitles[main._id] !== undefined ? editedTitles[main._id] : main.Title)}
-                          className="ml-2 text-purple-600 hover:text-purple-500 absolute right-2 top-[calc(50%-0.5rem)] transform -translate-y-1/2" // Adjusted positioning slightly
+                          className="ml-2 text-blue-600 cursor-pointer hover:text-blue-200 absolute right-4 bottom-[100px] transform -translate-y-1/2" // Adjusted positioning slightly
                           title="Save Title Change"
                           disabled={editedTitles[main._id] === undefined} // Disable if no change
                         >
@@ -265,13 +322,24 @@ const AllMovies = () => {
                     </Link>
 
                     {!isAdmin && (
-                      <button
-                        onClick={() => handleAddToWatched(main)} // Add main movie to watched
-                        className="mt-3 inline-block text-green-500 hover:text-green-400 w-full text-center"
-                      >
-                        <FaPlus className="inline mr-1" /> Add to Watched
-                      </button>
-                    )}
+  watchedMovies.some((m) => m._id === main._id) ? (
+    <div className="mt-3 inline-block w-full text-center font-semibold text-red-500 bg-red-100/10 py-2 rounded-lg border border-red-600">
+  <FaPlus className="inline mr-1" /> Already Watched
+</div>
+
+  ) : (
+    <button
+      onClick={() => {
+        setSelectedMovie(main);
+        setShowModal(true);
+      }}
+      className="mt-3 inline-block text-green-500 hover:text-green-400 w-full text-center"
+    >
+      <FaPlus className="inline mr-1" /> 
+    </button>
+  )
+)}
+
                   </div>
                 </div>
               </div>
@@ -288,6 +356,50 @@ const AllMovies = () => {
           </Link>
         </div>
       </div>
+      {showModal && (
+ <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+ <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-80 text-white">
+   <h2 className="text-xl font-semibold mb-4 text-center">Select a Cinema Source</h2>
+   <div className="space-y-2">
+     {["Vox", "AMC", "Muvi", "Empire", "Online"].map((source) => (
+       <button
+         key={source}
+         className="w-full py-2 px-4 rounded-lg bg-gray-700 hover:bg-blue-600 transition"
+         onClick={() => {
+           handleAddToWatched(selectedMovie, source);
+           setShowModal(false);
+           setSelectedMovie(null);
+         }}
+       >
+         {source}
+       </button>
+     ))}
+   </div>
+ </div>
+</div>
+
+)}
+
+{showSuccess && (
+  <div
+    className="fixed top-[100px] right-5 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-lg border-l-4 z-50 flex items-center gap-4"
+    style={{ borderColor: successMessage.includes("already") ? "#dc2626" : "#16a34a" }} // red-600 or green-600
+  >
+    {successMessage.includes("already") ? (
+      <FaTimesCircle className="text-red-500 w-6 h-6" />
+    ) : (
+      <FaCheckCircle className="text-green-400 w-6 h-6" />
+    )}
+    <div>
+      <p className="font-semibold">Success</p>
+      <p className="text-sm text-gray-300">{successMessage}</p>
+    </div>
+  </div>
+)}
+
+
+
+
     </div>
   );
 };

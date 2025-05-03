@@ -10,11 +10,12 @@ import GenreRecommender from "./GenreRecommender";
 import AllMovies from "./AllMovies";
 import AllOffers from "./AllOffers";
 import Signup from "./Signup";
-
+import WatchedHistory from "./WatchedHistory";
+import SuperAdmin from "./SuperAdmin";
 export default function App() {
   const [loading, setLoading] = useState(true); // State for handling loading status
 
-  // Simulate a delay for loading data (can be removed in real usage)
+  // Simulate a delay for loading data (can be removed in real usage)s
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -40,6 +41,9 @@ export default function App() {
               <Route path="/aboutus" element={<Team />} />
               <Route path="/recommend" element={<GenreRecommender />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/history" element={<WatchedHistory />} />
+              <Route path="/superadmin" element={<SuperAdmin />} />
+
             </Routes>
           </div>
         )}

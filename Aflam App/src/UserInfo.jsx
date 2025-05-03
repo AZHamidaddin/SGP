@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "./UserContext";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function UserInfo() {
   const { user } = useContext(UserContext);
   const [showDetails, setShowDetails] = useState(false);
+  const navigate = useNavigate();
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -33,19 +35,15 @@ export default function UserInfo() {
       </div>
 
       {showDetails && (
-        <div className="flex flex-wrap justify-center gap-4">
-          <div className="bg-gray-800 rounded-xl shadow-md p-6 w-64 text-center">
-            <p className="text-sm text-gray-400">Email</p>
-            <p className="text-lg font-medium">{user.email}</p>
-          </div>
-          <div className="bg-gray-800 rounded-xl shadow-md p-6 w-64 text-center">
-            <p className="text-sm text-gray-400">Total Movies Watched</p>
-            <p className="text-lg font-medium">{user.total_movies}</p>
-          </div>
-          <div className="bg-gray-800 rounded-xl shadow-md p-6 w-64 text-center">
-            <p className="text-sm text-gray-400">Total Duration Watched</p>
-            <p className="text-lg font-medium">{user.total_duration} mins</p>
-          </div>
+        <div className="flex flex-col items-center gap-6">
+          
+
+          <button
+            onClick={() => navigate("/history")}
+            className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2 rounded-lg transition"
+          >
+            View Watch History
+          </button>
         </div>
       )}
     </div>
