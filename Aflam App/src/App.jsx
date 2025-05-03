@@ -10,7 +10,7 @@ import GenreRecommender from "./GenreRecommender";
 import AllMovies from "./AllMovies";
 import AllOffers from "./AllOffers";
 import Signup from "./Signup";
-
+import WatchedHistory from "./WatchedHistory";
 export default function App() {
   const [loading, setLoading] = useState(true); // State for handling loading status
 
@@ -40,6 +40,7 @@ export default function App() {
               <Route path="/aboutus" element={<Team />} />
               <Route path="/recommend" element={<GenreRecommender />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/history" element={<WatchedHistory />} />
             </Routes>
           </div>
         )}

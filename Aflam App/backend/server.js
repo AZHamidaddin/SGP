@@ -99,7 +99,19 @@ const UserSchema = new mongoose.Schema({
   total_movies: { type: Number, default: 0 },
   total_duration: { type: Number, default: 0 },
   isAdmin: { type: Boolean, default: false },
-  userViewHistory: { type: [String], default: [] }, // Array of movie titles the user has watched
+  userViewHistory: {
+    type: [
+      {
+        _id: String,
+        Title: String,
+        Language: String,
+        Parent: String,
+        image_url: String,
+        date: String
+      }
+    ],
+    default: []
+  }, // Array of movie titles the user has watched
   created_at: { type: Date, default: Date.now }
 });
 
@@ -732,11 +744,11 @@ app.put('/movies/:id', async (req, res) => {
 // Add movie to user's watch history
 app.post("/api/users/watch-history", async (req, res) => {
   try {
-    const { userId, movieTitle } = req.body;
+    const { userId, movie } = req.body;
 
     // Validate input
-    if (!userId || !movieTitle) {
-      return res.status(400).json({ message: "User ID and movie title are required" });
+    if (!userId || !movie || !movie._id || !(movie.Title || movie.title)) {
+      return res.status(400).json({ message: "User ID and movie object with at least _id and Title are required" });
     }
 
     // Find user by ID
@@ -745,20 +757,22 @@ app.post("/api/users/watch-history", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Check if movie is already in user's watch history
-    if (user.userViewHistory.includes(movieTitle)) {
+    // Check if movie is already in user's watch history by title (or _id if you want)
+    const alreadyExists = user.userViewHistory.some((m) => {
+      return typeof m === 'object' && m._id === movie._id;
+    });
+
+    if (alreadyExists) {
       return res.status(400).json({ message: "Movie already in watch history" });
     }
 
-    // Add movie to user's watch history
-    user.userViewHistory.push(movieTitle);
-    
-    // Update total_movies to match the length of userViewHistory
+    // Push the full movie object
+    user.userViewHistory.push(movie);
     user.total_movies = user.userViewHistory.length;
-    
+
     await user.save();
 
-    res.status(200).json({ 
+    res.status(200).json({
       message: "Movie added to watch history",
       watchHistory: user.userViewHistory,
       total_movies: user.total_movies
@@ -768,6 +782,7 @@ app.post("/api/users/watch-history", async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
+
 
 // Get user's watch history
 app.get("/api/users/:userId/watch-history", async (req, res) => {
@@ -785,6 +800,29 @@ app.get("/api/users/:userId/watch-history", async (req, res) => {
     });
   } catch (error) {
     console.error("Error retrieving watch history:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+app.delete("/api/users/:userId/watch-history/:movieId", async (req, res) => {
+  try {
+    const { userId, movieId } = req.params;
+
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const updatedHistory = user.userViewHistory.filter((movie) => movie._id !== movieId);
+    user.userViewHistory = updatedHistory;
+    user.total_movies = updatedHistory.length;
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Movie removed from watch history",
+      watchHistory: updatedHistory,
+    });
+  } catch (error) {
+    console.error("Error deleting movie from history:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
