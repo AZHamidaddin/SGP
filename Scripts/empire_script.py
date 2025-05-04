@@ -18,9 +18,9 @@ EMPIRE_URL = "https://ksa.empirecinemas.com/"
 
 options = Options()
 options.add_argument('--headless')
-driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed and in PATH
+driver = webdriver.Chrome(options=options)
 
-# Maximize the window (optional)
+# Maximize the window (for some reason a bug occurs if we don't)
 driver.maximize_window()
 
 driver.get(EMPIRE_URL)
@@ -94,7 +94,7 @@ for i in range(movie_count):
             print("Could not find movie details for index", i)
             continue
 
-        # --- JSON Parsing ---
+        # JSON Parsing
         title_div = movie_card.find("div", class_="title")
         title = title_div.get_text(strip=True) if title_div else ""
 
@@ -116,7 +116,7 @@ for i in range(movie_count):
                 synopsis = synopsis_div.get_text(strip=True)
                 synopsis = synopsis.replace("read moreread less", "").strip()
 
-        # Generate slug
+        # Generate slug/identifier
         title_clean = title.replace("-", "")
         slug = title_clean.lower().replace(" ", "-")
 
@@ -161,10 +161,11 @@ for i in range(movie_count):
             timings = []
 
             for date_card in date_cards:
+
                 # Extract the month, date, and day from the card
                 month_elem = date_card.find_element(By.CLASS_NAME, "month")
                 date_elem = date_card.find_element(By.CLASS_NAME, "date")
-                # day_elem = date_card.find_element(By.CLASS_NAME, "day")  # if needed
+                # day_elem = date_card.find_element(By.CLASS_NAME, "day")
 
                 month_text = month_elem.text.strip()
                 date_text = date_elem.text.strip()
@@ -186,6 +187,7 @@ for i in range(movie_count):
                 page_source = driver.page_source
                 soup = BeautifulSoup(page_source, "html.parser")
 
+                # Extract showtimes
                 times_divs = soup.find_all("div", class_="row mx-0 d-flex align-items-center pt-4 pb-3")
                 showtimes_list = []
                 for time_div in times_divs:
@@ -200,6 +202,7 @@ for i in range(movie_count):
                     else:
                         city, place = "", ""
 
+                    # Extract experiences
                     experience_div = time_div.find("div", class_="col-md-2 ar-number")
                     if experience_div:
                         exp_text = experience_div.get_text(strip=True)
@@ -237,15 +240,16 @@ for i in range(movie_count):
 
             movie_json["Timings"] = timings
 
-            # Go back
+            # Go back to home page
             driver.back()
             time.sleep(2)
+
         except Exception as e:
             print("Error processing BOOK NOW operations:", e)
 
         movies_list.append(movie_json)
-        # --- End JSON Parsing ---
-        # Optionally, if you want to process all movies, remove break below
+
+        # uncomment break below to test
         # break
 
     except Exception as e:
