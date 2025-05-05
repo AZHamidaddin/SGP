@@ -10,7 +10,7 @@ import joblib
 app = Flask(__name__)
 CORS(app)
 
-# Load model (replace this with your real model)
+# Load model
 try:
     model = joblib.load("svd_model.pkl")  # path to your actual model
 except Exception as e:
