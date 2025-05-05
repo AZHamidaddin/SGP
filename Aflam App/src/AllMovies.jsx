@@ -61,10 +61,10 @@ const AllMovies = () => {
   const [watchedMovies, setWatchedMovies] = useState([]); // Store watched movies
   const [imageAspectRatios, setImageAspectRatios] = useState({}); // State for image aspect ratios
   const [showModal, setShowModal] = useState(false);
-const [selectedMovie, setSelectedMovie] = useState(null);
-const [selectedSource, setSelectedSource] = useState("");
-const [successMessage, setSuccessMessage] = useState("");
-const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedSource, setSelectedSource] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
 
   const isAdmin = user?.isAdmin ?? false; // If isAdmin is null, set it to false by default
@@ -168,9 +168,9 @@ const [showSuccess, setShowSuccess] = useState(false);
       alert("Please log in to add movies to your watch history.");
       return;
     }
-  
+
     const userId = user._id || user.id;
-  
+
     const movieDetails = {
       _id: mainMovie._id,
       Title: mainMovie.Title,
@@ -179,7 +179,7 @@ const [showSuccess, setShowSuccess] = useState(false);
       image_url: mainMovie["Image URL"],
       date: new Date().toISOString().split("T")[0],
     };
-  
+
     try {
       const response = await fetch("http://localhost:5000/api/users/watch-history", {
         method: "POST",
@@ -188,15 +188,15 @@ const [showSuccess, setShowSuccess] = useState(false);
         },
         body: JSON.stringify({ userId, movie: movieDetails }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         const msg =
           response.status === 400 && data.message === "Movie already in watch history"
             ? `"${mainMovie.Title}" is already in your watch history.`
             : data.message || "Error adding movie to watch history";
-  
+
         setSuccessMessage(msg);
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 5000);
@@ -204,7 +204,7 @@ const [showSuccess, setShowSuccess] = useState(false);
         setSuccessMessage(`Added "${mainMovie.Title}" to your watch history.`);
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 5000);
-  
+
         setWatchedMovies((prev) => [...prev, mainMovie]);
         if (data.watchHistory && setUser) {
           setUser({
@@ -221,9 +221,9 @@ const [showSuccess, setShowSuccess] = useState(false);
       setTimeout(() => setShowSuccess(false), 5000);
     }
   };
-  
-  
-  
+
+
+
 
   if (loading) {
     return (
@@ -244,7 +244,7 @@ const [showSuccess, setShowSuccess] = useState(false);
         <SearchMovies />
 
         <div className="text-center mb-8">
-         
+
         </div>
 
         {errors.general && (
@@ -322,23 +322,23 @@ const [showSuccess, setShowSuccess] = useState(false);
                     </Link>
 
                     {!isAdmin && (
-  watchedMovies.some((m) => m._id === main._id) ? (
-    <div className="mt-3 inline-block w-full text-center font-semibold text-red-500 bg-red-100/10 py-2 rounded-lg border border-red-600">
-  <FaPlus className="inline mr-1" /> Already Watched
-</div>
+                      watchedMovies.some((m) => m._id === main._id) ? (
+                        <div className="mt-3 inline-block w-full text-center font-semibold text-red-500 bg-red-100/10 py-2 rounded-lg border border-red-600">
+                          <FaPlus className="inline mr-1" /> Already Watched
+                        </div>
 
-  ) : (
-    <button
-      onClick={() => {
-        setSelectedMovie(main);
-        setShowModal(true);
-      }}
-      className="mt-3 inline-block text-green-500 hover:text-green-400 w-full text-center"
-    >
-      <FaPlus className="inline mr-1" /> 
-    </button>
-  )
-)}
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setSelectedMovie(main);
+                            setShowModal(true);
+                          }}
+                          className="mt-3 inline-block text-green-500 hover:text-green-400 w-full text-center"
+                        >
+                          <FaPlus className="inline mr-1" />
+                        </button>
+                      )
+                    )}
 
                   </div>
                 </div>
@@ -357,45 +357,45 @@ const [showSuccess, setShowSuccess] = useState(false);
         </div>
       </div>
       {showModal && (
- <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
- <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-80 text-white">
-   <h2 className="text-xl font-semibold mb-4 text-center">Select a Cinema Source</h2>
-   <div className="space-y-2">
-     {["Vox", "AMC", "Muvi", "Empire", "Online"].map((source) => (
-       <button
-         key={source}
-         className="w-full py-2 px-4 rounded-lg bg-gray-700 hover:bg-blue-600 transition"
-         onClick={() => {
-           handleAddToWatched(selectedMovie, source);
-           setShowModal(false);
-           setSelectedMovie(null);
-         }}
-       >
-         {source}
-       </button>
-     ))}
-   </div>
- </div>
-</div>
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-80 text-white">
+            <h2 className="text-xl font-semibold mb-4 text-center">Select a Cinema Source</h2>
+            <div className="space-y-2">
+              {["Vox", "AMC", "Muvi", "Empire", "Online"].map((source) => (
+                <button
+                  key={source}
+                  className="w-full py-2 px-4 rounded-lg bg-gray-700 hover:bg-blue-600 transition"
+                  onClick={() => {
+                    handleAddToWatched(selectedMovie, source);
+                    setShowModal(false);
+                    setSelectedMovie(null);
+                  }}
+                >
+                  {source}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
 
-)}
+      )}
 
-{showSuccess && (
-  <div
-    className="fixed top-[100px] right-5 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-lg border-l-4 z-50 flex items-center gap-4"
-    style={{ borderColor: successMessage.includes("already") ? "#dc2626" : "#16a34a" }} // red-600 or green-600
-  >
-    {successMessage.includes("already") ? (
-      <FaTimesCircle className="text-red-500 w-6 h-6" />
-    ) : (
-      <FaCheckCircle className="text-green-400 w-6 h-6" />
-    )}
-    <div>
-      <p className="font-semibold">Success</p>
-      <p className="text-sm text-gray-300">{successMessage}</p>
-    </div>
-  </div>
-)}
+      {showSuccess && (
+        <div
+          className="fixed top-[100px] right-5 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-lg border-l-4 z-50 flex items-center gap-4"
+          style={{ borderColor: successMessage.includes("already") ? "#dc2626" : "#16a34a" }} // red-600 or green-600
+        >
+          {successMessage.includes("already") ? (
+            <FaTimesCircle className="text-red-500 w-6 h-6" />
+          ) : (
+            <FaCheckCircle className="text-green-400 w-6 h-6" />
+          )}
+          <div>
+            <p className="font-semibold">Success</p>
+            <p className="text-sm text-gray-300">{successMessage}</p>
+          </div>
+        </div>
+      )}
 
 
 
