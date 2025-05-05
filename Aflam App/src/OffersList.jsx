@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// Formats text by capitalizing first letter of each word
+// e.g. "HELLO WORLD" -> "Hello World"
 const formatTitle = (text) =>
   text?.toLowerCase().split(" ").map((word) =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(" ");
 
+// Returns Tailwind background color classes based on cinema brand
+// VOX -> blue, MUVI -> pink, AMC -> red, Empire -> amber
 const getTagColor = (parent) => {
   switch (parent.toLowerCase()) {
     case "vox": return "bg-blue-500";

@@ -2,9 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+// This function normalizes a string by:
+// - Converting to lowercase
+// - Removing all special characters (keeping only letters and numbers)
+// - Trimming whitespace
+// - Returns empty string if input is null/undefined
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
+// This function groups movies together based on title inclusion/similarity
+// For example: "Spider-Man" and "Spider-Man 2" would be grouped together
+// It takes an array of movie objects and returns an array of movie groups
+// Each group contains movies whose normalized titles are substrings of each other
+// The normalization removes special characters and converts to lowercase
 const groupMoviesByInclusion = (movies) => {
   const groups = [];
   const visited = new Set();
@@ -204,8 +214,11 @@ const MovieDetail = () => {
   const availableCinemas =
     selectedCity && selectedDate && mainMovie.Timings
       ? mainMovie.Timings
+        // First, we only keep the movie times for the day you picked
         .filter((t) => t.Date === selectedDate)
+        // Then, we make a list of all the showtimes for that day
         .flatMap((t) => t.Showtimes || [])
+        // Finally, we look at each showtime and check if it matches what you want
         .filter((s) => {
           const cityMatch =
             !selectedCity || s.City.toLowerCase() === selectedCity.toLowerCase();

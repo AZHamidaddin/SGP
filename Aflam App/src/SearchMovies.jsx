@@ -3,6 +3,10 @@
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
+// This function creates a nice little badge showing which cinema chain a movie is from
+// First tries to get it from the show data, then looks through the movie group
+// If still not found, makes an educated guess based on the place name
+// Returns a colored badge component - pink for Muvi, amber for Empire, etc.
 const getParentBadge = (place, movieGroup, parentFromShow = null) => {
   let parent = parentFromShow;
 
@@ -49,6 +53,10 @@ const getParentBadge = (place, movieGroup, parentFromShow = null) => {
   );
 };
 
+// This function groups similar movies together (like "Spider-Man" and "Spider-Man 2")
+// It looks at each movie title and if one title contains another, they're probably related
+// For each group, it combines all their showtimes and picks the first movie's poster/rating
+// Really helps clean up the UI by showing related movies together!
 const groupMoviesByInclusion = (movies) => {
   const groups = [];
   const visited = new Set();

@@ -19,6 +19,8 @@ export default function Signup() {
   });
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
 
+  // Check if password meets all requirements (length, uppercase, lowercase, numbers, special chars)
+  // and update the password strength indicators accordingly
   const validatePassword = (password) => {
     setPasswordStrength({
       length: password.length >= 8,
@@ -29,12 +31,18 @@ export default function Signup() {
     });
   };
 
+  // When the user types in the password field, update the state and check if it meets requirements
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     validatePassword(newPassword);
   };
 
+  // This handles the form submission when a user tries to sign up
+  // Does a bunch of validation first - checks required fields, password rules, valid email
+  // Then sends the data to our backend API and handles the response
+  // If successful, saves the user info and redirects to home page
+  // If there are any errors, shows them to the user
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
@@ -111,7 +119,7 @@ export default function Signup() {
       console.error("Signup error:", err);
     }
   };
-
+  // Toggle between showing and hiding the password
   const togglePasswordVisibility = () => {
     setPasswordVisible(prevState => !prevState); // Toggle the state
   };

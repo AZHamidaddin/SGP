@@ -1,89 +1,153 @@
+// Import necessary React components, routing, context, UI components and icons
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "./UserContext"; // Import UserContext to check user info
+import { UserContext } from "./UserContext";
 import Navbar from "./Navbar";
 import SearchMovies from "./SearchMovies";
 import { FaPen, FaPlus, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 
-// Utility function to normalize movie titles for grouping
+
+// This function takes a string and makes it lowercase, removes any special characters or spaces,
+// and trims whitespace. Basically makes movie titles consistent so we can group similar ones together.
+// Returns empty string if input is null/undefined
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
-// Helper function to find the best image URL based on source priority
+// This function helps us pick the best movie poster from different streaming services
+// For example, if we have the same movie from muvi and vox, we might prefer muvi's
+// poster
+
 const getPrioritizedImageUrl = (group, priority) => {
-  // Find the image based on priority
+  // Loop through our preferred streaming services (like Netflix, Prime etc)
   for (const sourceName of priority) {
-    // Check the 'Parent' field for the source name
+    // Look for a movie in the group that's from this streaming service
     const movie = group.find(m => m.Parent?.toUpperCase() === sourceName.toUpperCase());
+    // If we found one and it has a poster, use that!
     if (movie && movie["Image URL"]) {
       return movie["Image URL"];
     }
   }
-  // Fallback to the first movie's image URL if no prioritized source is found or if the group is empty
-  return group[0]?.["Image URL"] || ""; // Use optional chaining and provide a default empty string
+  // If we couldn't find any of our preferred posters, just use whatever we have
+  // (or return empty string if we somehow have nothing)
+  return group[0]?.["Image URL"] || "";
 };
 
-// Function to group movies based on title similarity (from MovieGrid)
-const mergeMoviesByTitle = (movies) => {
-  const groups = [];
-  const visited = new Set();
+// This function helps us group similar movies together. For example, if we have
+// "Spider-Man" from Muvi and "Spiderman" from Vox, we want to show them as one movie.
+// That way users don't see duplicates in the list.
 
+// This function takes an array of movies and groups similar movies together based on their titles.
+// It returns an array of movie groups, where each group contains movies with similar titles.
+// For example:
+// Input: [
+//   {Title: "Spider-Man", Parent: "vox"},
+//   {Title: "Spiderman", Parent: "muvi"},
+//   {Title: "Batman", Parent: "amc"}
+// ]
+// Output: [
+//   [{Title: "Batman", Parent: "amc"}],
+//   [{Title: "Spider-Man", Parent: "vox"}, {Title: "Spiderman", Parent: "muvi"}]
+// ]
+
+// Takes array of movie objects, returns array of arrays (groups of similar movies)
+const mergeMoviesByTitle = (movies) => {
+  // Initialize empty array to store movie groups
+  const groups = [];
+  
+  // Set to track which movie indices we've already processed
+  const visited = new Set(); 
+
+  // Outer loop - iterate through each movie
   for (let i = 0; i < movies.length; i++) {
+    // Skip if we already processed this movie
     if (visited.has(i)) continue;
+
+    // Start new group with current movie
     const group = [movies[i]];
-    visited.add(i);
+    visited.add(i); // Mark as processed
+    
+    // Get normalized title for comparison
     const titleA = normalize(movies[i].Title);
+
+    // Inner loop - compare current movie with all remaining movies
     for (let j = i + 1; j < movies.length; j++) {
-      if (visited.has(j)) continue;
+      if (visited.has(j)) continue; // Skip processed movies
+      
       const titleB = normalize(movies[j].Title);
+
+      // Check if either title contains the other
+      // e.g. "Spider-Man" contains "Spiderman" or vice versa
       if (titleA.includes(titleB) || titleB.includes(titleA)) {
-        group.push(movies[j]);
-        visited.add(j);
+        group.push(movies[j]); // Add to current group
+        visited.add(j); // Mark as processed
       }
     }
+
+    // Add completed group to groups array
     groups.push(group);
   }
 
-  // Sort groups alphabetically by the title of the first movie in each group
-  return groups.sort((a, b) =>
-    a[0].Title.localeCompare(b[0].Title, undefined, { sensitivity: "base" })
+  // Sort all groups alphabetically by first movie's title
+  // localeCompare handles case and diacritics
+  return groups.sort((a, b) => 
+    a[0].Title.localeCompare(b[0].Title, undefined, {sensitivity: "base"})
   );
 };
 
-// AllMovies Component
+// Start 
 const AllMovies = () => {
-  const { user, setUser } = useContext(UserContext); // Get the current user
-  const [movieGroups, setMovieGroups] = useState([]); // State now holds groups of movies
+  // Initialize state variables for:
+  // - User context and authentication
+  // - Movie groups and their metadata (titles, watched status, etc.)
+  // - UI states (loading, modals, messages, errors)
+  // - Image display properties
+  const { user, setUser } = useContext(UserContext);
+  const [movieGroups, setMovieGroups] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editedTitles, setEditedTitles] = useState({});
   const [errors, setErrors] = useState({});
-  const [watchedMovies, setWatchedMovies] = useState([]); // Store watched movies
-  const [imageAspectRatios, setImageAspectRatios] = useState({}); // State for image aspect ratios
+  const [watchedMovies, setWatchedMovies] = useState([]);
+  const [imageAspectRatios, setImageAspectRatios] = useState({});
   const [showModal, setShowModal] = useState(false);
-const [selectedMovie, setSelectedMovie] = useState(null);
-const [selectedSource, setSelectedSource] = useState("");
-const [successMessage, setSuccessMessage] = useState("");
-const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedSource, setSelectedSource] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
 
   const isAdmin = user?.isAdmin ?? false; // If isAdmin is null, set it to false by default
 
+  // useEffect is like telling React "hey, run this code when the component first appears on screen"
+  // The empty [] at the end means "only run once" - if we put something in there, it would run again when that thing changes
   useEffect(() => {
+    // First, we fetch all movies from our backend server
+    // Think of this like sending a waiter to the kitchen to get our menu items
     fetch("http://localhost:5000/movies")
-      .then((res) => res.json())
+      .then((res) => res.json()) // Convert the response to a format JavaScript understands
       .then((data) => {
-        const grouped = mergeMoviesByTitle(data || []); // Use the grouping function
-        setMovieGroups(grouped); // Store the groups
+        // Now that we have our movies, let's organize them
+        // Sometimes movies appear multiple times with slightly different titles
+        // mergeMoviesByTitle helps us group these similar movies together
+        // If we don't get any data (data is null/undefined), we'll use an empty array instead
+        const grouped = mergeMoviesByTitle(data || []); 
+        
+        // Save these organized movies in our component's memory (state)
+        setMovieGroups(grouped);
+        
+        // Everything's ready! Let's turn off the loading spinner
         setLoading(false);
       })
       .catch((err) => {
+        // Uh oh, something went wrong (like if the server is down)
         console.error(err);
+        // Still need to turn off the loading spinner so users know something's wrong
         setLoading(false);
       });
-  }, []);
+  }, []); // Remember, the empty [] means "just once, please!"
 
-  // Handler for image loading
+  // This function helps us figure out the shape of each movie poster image when it loads
+  // We need this to display the images nicely in our grid layout
   const handleImageLoad = (event, url) => {
     const { naturalWidth, naturalHeight } = event.target;
     if (naturalHeight > 0) { // Avoid division by zero
@@ -95,7 +159,10 @@ const [showSuccess, setShowSuccess] = useState(false);
     }
   };
 
-  // Handle title change for editing (applies to the main movie in the group)
+  // When an admin edits a movie title, this keeps track of the changes
+  // before they hit save. It's like writing a draft before submitting.
+  // We store all edited titles in a big object where each movie ID points
+  // to its new title - this way we can edit multiple movies at once!
   const handleTitleChange = (e, mainMovieId) => {
     setEditedTitles((prev) => ({
       ...prev,
@@ -105,8 +172,6 @@ const [showSuccess, setShowSuccess] = useState(false);
 
   // Handle movie update submission (for admins)
   const handleEditSubmit = async (mainMovieId, newTitle) => {
-    console.log("Submitting movie update with:", { movieId: mainMovieId, Title: newTitle });
-
     // Find the group associated with this mainMovieId
     const groupToUpdate = movieGroups.find(group => group[0]._id === mainMovieId);
     if (!groupToUpdate) {
@@ -115,11 +180,10 @@ const [showSuccess, setShowSuccess] = useState(false);
       return;
     }
 
-    // --- Potential improvement: Update all movies in the group? ---
-    // For now, we only update the main movie record identified by mainMovieId.
-    // If the title change should apply to all records in the group,
-    // additional API calls or backend logic would be needed.
+    
 
+    // This code updates a movie's title in the database. If successful, it refreshes the movie list
+    // to show the updated title and clears the edit form. If anything goes wrong, it shows an error.
     try {
       const response = await fetch(`http://localhost:5000/movies/${mainMovieId}`, {
         method: "PUT",
@@ -136,7 +200,6 @@ const [showSuccess, setShowSuccess] = useState(false);
       if (!response.ok) {
         setErrors({ general: data.message || "Error updating movie title" });
       } else {
-        // Re-fetch and re-group data to reflect the change immediately
         fetch("http://localhost:5000/movies")
           .then((res) => res.json())
           .then((updatedData) => {
@@ -145,7 +208,7 @@ const [showSuccess, setShowSuccess] = useState(false);
           })
           .catch((err) => console.error("Error fetching updated data:", err));
 
-        setEditedTitles((prev) => ({ ...prev, [mainMovieId]: undefined })); // Clear edited title for this movie
+        setEditedTitles((prev) => ({ ...prev, [mainMovieId]: undefined }));
         alert("Movie title updated successfully!");
       }
     } catch (err) {
@@ -225,10 +288,10 @@ const [showSuccess, setShowSuccess] = useState(false);
   
   
 
-  if (loading) {
+    if (loading) {
     return (
       <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500">
-        <p className="text-white text-2xl font-semibold">Loading...</p>
+        <p className="text-white text-2xl font-semibold">Ali is hot for you...</p>
       </div>
     );
   }
@@ -335,7 +398,7 @@ const [showSuccess, setShowSuccess] = useState(false);
       }}
       className="mt-3 inline-block text-green-500 hover:text-green-400 w-full text-center"
     >
-      <FaPlus className="inline mr-1" /> 
+      <FaPlus className="inline mr-1" /> Add to Watched  
     </button>
   )
 )}
