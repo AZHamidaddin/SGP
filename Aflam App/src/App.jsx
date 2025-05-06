@@ -25,7 +25,7 @@ export default function App() {
       <Router>
         {loading ? (
           <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black ">
-          <p className="text-red-500 text-2xl font-semibold">Loading...</p>
+          <p className="text-white text-2xl font-semibold">Loading...</p>
         </div>
         
         ) : (

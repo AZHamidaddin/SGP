@@ -16,7 +16,7 @@ export default function Home() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500 text-white">
+    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white">
       <Navbar />
 
       {/* Show user info only if logged in */}

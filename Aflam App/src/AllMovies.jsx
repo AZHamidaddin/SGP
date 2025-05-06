@@ -290,8 +290,8 @@ const AllMovies = () => {
 
     if (loading) {
     return (
-      <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500">
-        <p className="text-white text-2xl font-semibold">Ali is hot for you...</p>
+      <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-black">
+        <p className="text-white text-2xl font-semibold">Loading Movies...</p>
       </div>
     );
   }
