@@ -3,12 +3,13 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from dataclasses import dataclass, field
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 from datetime import datetime, timedelta
 
 # Define the base URL for VOX Cinemas
 BASE_URL = "https://ksa.voxcinemas.com"
 
+# This is the "schema" for the movie object to be extracted
 @dataclass
 class Movie:
     title: str
@@ -43,7 +44,7 @@ def parse_movies(html: str) -> List[Movie]:
         identifier = article.get("data-identifier", "").strip()
         title = article.get("data-title", "").strip()
 
-        # description left blank; will fill in detail step
+        # description left blank; will fill in later step
         description = ""
 
         # Extract image URL
@@ -66,7 +67,7 @@ def parse_movies(html: str) -> List[Movie]:
         if language_p:
             language = language_p.get_text(strip=True).replace("Language:", "").strip()
 
-        # Extract showtimes URL (relative)
+        # Extract showtimes URL (searches for 'a' tag with 'Showtimes' in its text)
         showtimes_url = ""
         showtimes_a = article.find("a", string=lambda s: s and "Showtimes" in s)
         if showtimes_a:
@@ -85,7 +86,7 @@ def parse_movies(html: str) -> List[Movie]:
 
     return movies
 
-def extract_movie_details(detail_html: str) -> (str, List[str]):
+def extract_movie_details(detail_html: str) -> Tuple[str, List[str]]:
     """
     From a movie’s detail page HTML, extract:
       - description (from section[3]/article/p)
@@ -99,13 +100,13 @@ def extract_movie_details(detail_html: str) -> (str, List[str]):
     if len(sections) < 3:
         return "", []
 
-    sec = sections[2]  # the third <section>
-    # description
+    sec = sections[2]
+    # description extracted from 'p'
     desc = ""
     if (art := sec.find('article')) and (p := art.find('p')):
         desc = p.get_text(strip=True)
 
-    # genres
+    # genres are retrieved from a 'p' tag
     genres: List[str] = []
     if (aside := sec.find('aside')):
         p_tags = aside.find_all('p')
@@ -124,7 +125,7 @@ def extract_movie_details(detail_html: str) -> (str, List[str]):
 def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
     """
     Extracts the raw showtimes information from a movie’s detail page.
-    Returns a dictionary mapping place names to a dictionary of experience -> list of times.
+    Returns a dictionary mapping place names to a dictionary of experience to list of times.
     """
     soup = BeautifulSoup(detail_html, 'html.parser')
     dates_div = soup.find("div", class_="dates")
@@ -133,12 +134,14 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
 
     timings_by_place: Dict[str, Dict[str, List[str]]] = {}
 
+    # Extract place
     for place_header in dates_div.find_all("h3", class_="highlight"):
         place = place_header.get_text(" ", strip=True)
         showtimes_ol = place_header.find_next_sibling("ol", class_="showtimes")
         if not showtimes_ol:
             continue
-
+        
+        # extract experiences (standard, imax, etc.)
         experience_dict: Dict[str, List[str]] = {}
         for li in showtimes_ol.find_all("li", recursive=False):
             strong_tag = li.find("strong")
@@ -149,6 +152,7 @@ def extract_showtimes(detail_html: str) -> Dict[str, Dict[str, List[str]]]:
             if not nested_ol:
                 continue
 
+            # Extract the actual showtimes
             timings: List[str] = []
             for time_li in nested_ol.find_all("li"):
                 a_tag = time_li.find("a")
@@ -190,9 +194,9 @@ def enrich_movie_with_timings_for_dates(
     """
     For a single Movie object:
       1. Fetch the base detail page once to get description & genre.
-      2. Loop over the next 'days_to_check' days to build showtimes.
+      2. Loop over the next 'days_to_check' days to build showtimes over the next 7 days.
     """
-    # — fetch description & genre from detail page —
+    # fetch description and genre from detail page
     try:
         detail_html = fetch_page(f"{BASE_URL}/movies/{movie.slug}")
         desc, genres = extract_movie_details(detail_html)
@@ -201,12 +205,13 @@ def enrich_movie_with_timings_for_dates(
     except Exception as e:
         print(f"[Error fetching details for '{movie.title}']: {e}")
 
-    # — now fetch date-based showtimes —
+    # fetch date-based showtimes
     movie.timings = []
     date_format = "%Y%m%d"
     output_date_format = "%Y-%m-%d"
     start_date = datetime.now()
 
+    # Check each day.
     for i in range(days_to_check):
         current_date = start_date + timedelta(days=i)
         date_str = current_date.strftime(date_format)
@@ -239,7 +244,7 @@ def enrich_movie_with_timings_for_dates(
             # skip days with errors or no showtimes
 
 def save_movies_to_json_file(movies: List[Movie], filename: str = "vox_movies.json") -> None:
-    """Saves the movie data to a JSON file with the expected keys and structure."""
+    """Saves the movie data to a JSON file"""
     movies_list = []
     for movie in movies:
         movie_dict = {

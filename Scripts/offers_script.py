@@ -16,6 +16,7 @@ EMPIRE_BASE_URL = "https://ksa.empirecinemas.com"
 all_offers = []
 
 
+# Extract all offers from Vox
 def getVoxOffers():
 
     response = requests.get(VOX_BASE_URL)
@@ -60,12 +61,13 @@ def getVoxOffers():
         # break
 
 
+# Extract all offers from Muvi
 def getMuviOffers():
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed
-    driver.get(f'{MUVI_BASE_URL}/en/offers')  # Replace with the target URL
+    driver = webdriver.Chrome(options=options)
+    driver.get(f'{MUVI_BASE_URL}/en/offers')
 
     print("\n" * 5)
     print("loading Muvi offers...")
@@ -85,12 +87,13 @@ def getMuviOffers():
     submit_button = driver.find_element(By.ID, "city-submit")
     driver.execute_script("arguments[0].click();", submit_button)
 
-    # Optional: Wait to see the result before closing
+    # Wait to see the result before closing page
     time.sleep(5)
 
     scroll_pause_time = 3  # Adjust based on loading speed
     last_height = driver.execute_script("return document.body.scrollHeight")
 
+    # Scroll down to the bottom of the page
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(scroll_pause_time)
@@ -107,6 +110,7 @@ def getMuviOffers():
     soup = BeautifulSoup(page_source, "html.parser")
     # print(soup.prettify())
 
+    # Extract the details
     muvi_offers_divs = soup.find_all("div", class_="css-9xl0n4")
     for muvi_offer in muvi_offers_divs:
 
@@ -131,12 +135,13 @@ def getMuviOffers():
         })
 
 
+# Extract all offers from AMC
 def getAMCOffers():
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed
-    driver.get(f'{AMC_BASE_URL}')  # Replace with the target URL
+    driver = webdriver.Chrome(options=options)
+    driver.get(f'{AMC_BASE_URL}')
 
     wait = WebDriverWait(driver, 10)
     english_btn = wait.until(EC.element_to_be_clickable((
@@ -161,9 +166,11 @@ def getAMCOffers():
     soup = BeautifulSoup(page_source, "html.parser")
     # print(soup.prettify())
 
+    # Extract all details for the offers
     amc_offers_divs = soup.find_all("section", class_="nahar-offer")
     for amc_offer in amc_offers_divs:
 
+        # offer image extraction
         offer_image = amc_offer.find("img").get("src")
         offer_title = amc_offer.find("h3").text.upper().strip()
 
@@ -184,12 +191,13 @@ def getAMCOffers():
         })
 
 
+# Extract all offers from Empire
 def getEmpireOffers():
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed
-    driver.get(EMPIRE_BASE_URL)  # Replace with the target URL
+    driver = webdriver.Chrome(options=options)
+    driver.get(EMPIRE_BASE_URL)
 
     print("\n" * 5)
     print("loading Empire offers...")
@@ -212,6 +220,7 @@ def getEmpireOffers():
         id=re.compile(r"^offer-content\d+$")
     )
 
+    # Extract all relevant information
     for offer in offer_divs:
 
         offer_title = offer.find("div", class_="title").text.upper().strip()
@@ -230,13 +239,13 @@ def getEmpireOffers():
         })
 
 
-
+# Call all functions
 getVoxOffers()
 getMuviOffers()
 getAMCOffers()
 getEmpireOffers()
 
-# Dump the final JSON, which now will only include ASCII characters in the offer title
+# Write the final JSON to a file
 print(json.dumps(all_offers, indent=4))
 with open("offers.json", "w", encoding="utf-8") as f:
     json.dump(all_offers, f, ensure_ascii=False, indent=4)

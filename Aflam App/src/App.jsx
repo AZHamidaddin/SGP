@@ -11,24 +11,23 @@ import AllMovies from "./AllMovies";
 import AllOffers from "./AllOffers";
 import Signup from "./Signup";
 import WatchedHistory from "./WatchedHistory";
-import SuperAdmin from "./SuperAdmin";
 export default function App() {
   const [loading, setLoading] = useState(true); // State for handling loading status
 
-  // Simulate a delay for loading data (can be removed in real usage)s
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000); // Simulate 2-second loading time
+    }, 2000); 
   }, []);
 
   return (
     <UserProvider>
       <Router>
         {loading ? (
-          <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500">
-            <p className="text-white text-2xl font-semibold">Loading...</p>
-          </div>
+          <div className="loading-screen flex items-center justify-center h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black ">
+          <p className="text-white text-2xl font-semibold">Loading...</p>
+        </div>
+        
         ) : (
           <div className="min-h-screen bg-gray-900">
             <Routes>
@@ -42,7 +41,6 @@ export default function App() {
               <Route path="/recommend" element={<GenreRecommender />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/history" element={<WatchedHistory />} />
-              <Route path="/superadmin" element={<SuperAdmin />} />
 
             </Routes>
           </div>

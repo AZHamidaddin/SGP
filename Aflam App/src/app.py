@@ -1,3 +1,8 @@
+# Main Flask app for Aflam movie recommendations
+# Handles loading models, movie data, and providing recommendations
+# Falls back to genre-based random selection if model unavailable
+# Author: Wael Alkiyani
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
@@ -10,17 +15,14 @@ import joblib
 app = Flask(__name__)
 CORS(app)
 
-# Load model (replace this with your real model)
 try:
-    model = joblib.load("svd_model.pkl")  # path to your actual model
+    model = joblib.load("svd_model.pkl")
 except Exception as e:
     model = None
 
-# Load movie.csv
 movie_df = pd.read_csv("data/movie.csv")
 movie_df["genres"] = movie_df["genres"].fillna("").apply(lambda g: g.split("|"))
 
-# Get movie data from your DB or another API
 MOVIE_API = os.environ.get("AFLAM_MOVIE_API", "http://localhost:5000/movies")
 
 def fetch_all_candidate_movies():
@@ -56,7 +58,6 @@ def recommend():
         if not row.empty:
             selected_genres.update(row.iloc[0]["genres"])
 
-    # If model is not loaded, fallback to random selection
     if model is None:
         candidates = [
             m for m in all_movies if m.get("Genre") and any(g in selected_genres for g in m["Genre"])
@@ -68,7 +69,6 @@ def recommend():
             random.shuffle(candidates)
             candidates = candidates[:10]
 
-        # Deduplicate by title
         seen_titles = set()
         recommendations = []
         for m in candidates:
@@ -86,16 +86,12 @@ def recommend():
 
         return jsonify({"recommendations": recommendations})
 
-    # If model is available, use it
     try:
-        # This assumes your model has a `predict(selected_ids, all_movies)` method.
         scored_movies = model.predict(selected_ids, all_movies)
-        # Output format: list of movie dicts with "Title", "score", etc.
     except Exception as e:
         print(f"Model prediction error: {e}")
         return jsonify({"error": "Recommendation model failed"}), 500
 
-    # Sort and deduplicate
     seen_titles = set()
     unique_recommendations = []
     for m in sorted(scored_movies, key=lambda x: x.get("score", 0), reverse=True):

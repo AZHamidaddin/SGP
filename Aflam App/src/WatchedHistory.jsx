@@ -29,6 +29,9 @@ const [successMessage, setSuccessMessage] = useState("");
     }
   }, [user?.id]);
 
+  // Handles deleting a movie from watch history
+  // Shows success message for 5 seconds
+  // Updates pagination if needed after deletion
   const handleDelete = async (movieId) => {
     try {
       const res = await fetch(
@@ -59,12 +62,18 @@ const [successMessage, setSuccessMessage] = useState("");
   };
   
 
+  // Calculate which movies to show on the current page
+  // Filter out any invalid entries missing required fields
+  // Then slice to get just the movies for this page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const validMovies = watchHistory.filter(
     (m) => m?.Title || m?.Language || m?.Parent || m?.date
   );
   const currentMovies = validMovies.slice(startIndex, startIndex + itemsPerPage);
 
+  // Figures out which cinema chain the user visits most often
+  // Counts up how many times they've been to each cinema
+  // Returns the one with the highest count, or "None" if no history
   const favoriteCinema = () => {
     const counts = watchHistory.reduce((acc, movie) => {
       const parent = movie.Parent || "Unknown";
