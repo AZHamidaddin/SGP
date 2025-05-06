@@ -1,14 +1,27 @@
-require("dotenv").config();
+/**
+ * Aflam App Backend Server
+ * 
+ * This server provides the backend API for the Aflam movie application.
+ * It handles movie data retrieval, user authentication, and managing user watch history.
+ * 
+ * The API connects to a MongoDB database to store and retrieve movie information and user data.
+ */
+
+require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+// Initialize Express application
 const app = express();
 app.use(cors()); // Allows frontend to call the API
 app.use(express.json()); // Parses JSON request bodies
 
-// ✅ MongoDB Connection
-// ✅ MongoDB Connection (Updated)
+/**
+ * MongoDB Connection
+ * Connects to the MongoDB database using the connection string from environment variables.
+ * On successful connection, prints database contents for debugging purposes.
+ */
 mongoose.connect(process.env.MONGO_URI, {
   dbName: "AflamDB"  // Explicitly select the database
 })
@@ -20,7 +33,10 @@ mongoose.connect(process.env.MONGO_URI, {
   })
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
 
-// Function to print all database objects
+/**
+ * Function to print all database objects on server start
+ * Used for debugging and verification of database content
+ */
 async function printAllDatabaseObjects() {
   try {
     console.log("\n🔍 PRINTING ALL DATABASE OBJECTS ON SERVER START 🔍");
@@ -54,11 +70,19 @@ async function printAllDatabaseObjects() {
   }
 }
 
-
-
-
-
-// ✅ Define Movie Schema (Matches Your MongoDB Structure)
+/**
+ * Movie Schema
+ * Defines the structure for movie documents in the database
+ * - slug: URL-friendly identifier for the movie
+ * - identifier: Unique identifier for the movie
+ * - Title: Movie title
+ * - description: Movie description/synopsis
+ * - image_url: URL to the movie poster image
+ * - classification: Movie rating/classification (e.g., PG-13, R)
+ * - language: Movie language
+ * - showtimes_url: URL to page with more showtimes info
+ * - timings: Complex object storing showtimes organized by date, venue, and experience type
+ */
 const MovieSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   identifier: { type: String, required: true, unique: true },
@@ -91,7 +115,18 @@ const MovieSchema = new mongoose.Schema({
 
 const Movie = mongoose.model("Movie", MovieSchema);
 
-// User Schema
+/**
+ * User Schema
+ * Defines the structure for user documents in the database
+ * - name: User's full name
+ * - email: User's email (unique identifier)
+ * - password: User's password (should be hashed in production)
+ * - total_movies: Count of movies in user's watch history
+ * - total_duration: Total watch time (not actively used in current implementation)
+ * - isAdmin: Boolean flag for admin privileges
+ * - userViewHistory: Array of movies the user has watched
+ * - created_at: User account creation timestamp
+ */
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -118,10 +153,12 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-// ✅ API Endpoints
+// =============== API ENDPOINTS ===============
 
-// 1️⃣ Get All Movies
-
+/**
+ * Test Endpoint
+ * Simple endpoint to verify database connection by retrieving one movie
+ */
 app.get("/test", async (req, res) => {
   try {
     const testData = await Movie.findOne();
@@ -131,56 +168,10 @@ app.get("/test", async (req, res) => {
   }
 });
 
-// Search movies by title or description
-app.get("/movies/search", async (req, res) => {
-  try {
-    const { query } = req.query;
-
-    if (!query) {
-      return res.status(400).json({ error: "Search query is required" });
-    }
-
-    // Create a case-insensitive search regex
-    const searchRegex = new RegExp(query, 'i');
-
-    // Search in title and description fields
-    const movies = await Movie.find({
-      $or: [
-        { title: searchRegex },
-        { description: searchRegex }
-      ]
-    });
-
-    res.json(movies);
-  } catch (error) {
-    console.error("Error searching movies:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-// 2️⃣ Get Movies by Date
-app.get("/movies/date/:date", async (req, res) => {
-  try {
-    const { date } = req.params;
-    const movies = await Movie.find({ [`timings.${date}`]: { $exists: true } });
-    res.json(movies);
-  } catch (error) {
-    res.status(500).json({ error: "Server Error" });
-  }
-});
-
-// 3️⃣ Get Movies by Cinema Name
-app.get("/movies/cinema/:cinema", async (req, res) => {
-  try {
-    const { cinema } = req.params;
-    const movies = await Movie.find({ [`timings.*.showtimes.place`]: cinema });
-    res.json(movies);
-  } catch (error) {
-    res.status(500).json({ error: "Server Error" });
-  }
-});
-
-// Get all movies
+/**
+ * Get All Movies
+ * Returns all movies from the database
+ */
 app.get("/movies", async (req, res) => {
   try {
     const movies = await Movie.find();
@@ -190,7 +181,10 @@ app.get("/movies", async (req, res) => {
   }
 });
 
-// Get a specific movie by slug
+/**
+ * Get Movie by Slug
+ * Returns a specific movie using its URL-friendly slug identifier
+ */
 app.get("/movies/:slug", async (req, res) => {
   try {
     const { slug } = req.params;
@@ -207,6 +201,11 @@ app.get("/movies/:slug", async (req, res) => {
   }
 });
 
+/**
+ * Debug Endpoint
+ * Returns information about database collections and document counts
+ * Used for debugging and database verification
+ */
 app.get("/debug", async (req, res) => {
   try {
     const collections = await mongoose.connection.db.listCollections().toArray();
@@ -221,6 +220,11 @@ app.get("/debug", async (req, res) => {
   }
 });
 
+/**
+ * Debug Movies Endpoint
+ * Returns a sample movie document directly from the collection
+ * Used for testing raw document structure
+ */
 app.get("/debug-movies", async (req, res) => {
   try {
     const testData = await mongoose.connection.db.collection("movies").findOne();
@@ -231,45 +235,11 @@ app.get("/debug-movies", async (req, res) => {
   }
 });
 
-// Create a new movie
-app.post("/movies", async (req, res) => {
-  try {
-    const movieData = req.body;
-
-    // Validate required fields
-    if (!movieData.title || !movieData.slug || !movieData.identifier || !movieData.image_url ||
-      !movieData.classification || !movieData.language) {
-      return res.status(400).json({
-        error: "Missing required fields",
-        required: ["title", "slug", "identifier", "image_url", "classification", "language"]
-      });
-    }
-
-    // Check if movie with same slug or identifier already exists
-    const existingMovie = await Movie.findOne({
-      $or: [{ slug: movieData.slug }, { identifier: movieData.identifier }]
-    });
-
-    if (existingMovie) {
-      return res.status(409).json({
-        error: "Movie with this slug or identifier already exists"
-      });
-    }
-
-    // Create and save the new movie
-    const newMovie = new Movie(movieData);
-    await newMovie.save();
-
-    res.status(201).json(newMovie);
-  } catch (error) {
-    console.error("Error creating movie:", error);
-    res.status(500).json({ error: "Server Error", details: error.message });
-  }
-});
-
-
-
-// Print all database objects to console
+/**
+ * Print All Data Endpoint
+ * Prints all movie documents to the console and returns them in the response
+ * Useful for debugging and database inspection
+ */
 app.get("/print-all-data", async (req, res) => {
   try {
     // Get all movies from the database
@@ -296,7 +266,11 @@ app.get("/print-all-data", async (req, res) => {
   }
 });
 
-// Print all collections and their data
+/**
+ * Print All Collections Endpoint
+ * Prints all collections and their contents to the console
+ * Returns collection information in the response
+ */
 app.get("/print-all-collections", async (req, res) => {
   try {
     // Get all collection names
@@ -341,7 +315,11 @@ app.get("/print-all-collections", async (req, res) => {
   }
 });
 
-// Print all documents from a specific collection
+/**
+ * Print Collection Endpoint
+ * Prints all documents from a specific collection
+ * Returns collection data in the response
+ */
 app.get("/print-collection/:collectionName", async (req, res) => {
   try {
     const { collectionName } = req.params;
@@ -372,9 +350,10 @@ app.get("/print-collection/:collectionName", async (req, res) => {
   }
 });
 
-
-
-// Get all movies with Parent = "Empire"
+/**
+ * Get Empire Movies Endpoint
+ * Returns all movies associated with the "Empire" cinema chain
+ */
 app.get("/movies/parent/empire", async (req, res) => {
   try {
     // Find all movies where Parent field is "Empire"
@@ -395,7 +374,10 @@ app.get("/movies/parent/empire", async (req, res) => {
   }
 });
 
-// Get all movies with Parent = "AMC"
+/**
+ * Get AMC Movies Endpoint
+ * Returns all movies associated with the "AMC" cinema chain
+ */
 app.get("/movies/parent/amc", async (req, res) => {
   try {
     // Find all movies where Parent field is "AMC"
@@ -416,7 +398,10 @@ app.get("/movies/parent/amc", async (req, res) => {
   }
 });
 
-// Get all movies with Parent = "Vox"
+/**
+ * Get Vox Movies Endpoint
+ * Returns all movies associated with the "Vox" cinema chain
+ */
 app.get("/movies/parent/vox", async (req, res) => {
   try {
     // Find all movies where Parent field is "Vox"
@@ -437,7 +422,10 @@ app.get("/movies/parent/vox", async (req, res) => {
   }
 });
 
-// Get all movies with Parent = "Muvi"
+/**
+ * Get Muvi Movies Endpoint
+ * Returns all movies associated with the "Muvi" cinema chain
+ */
 app.get("/movies/parent/muvi", async (req, res) => {
   try {
     // Find all movies where Parent field is "Muvi"
@@ -458,7 +446,10 @@ app.get("/movies/parent/muvi", async (req, res) => {
   }
 });
 
-// Get all documents from the offers collection
+/**
+ * Get All Offers Endpoint
+ * Returns all promotional offers stored in the database
+ */
 app.get("/offers", async (req, res) => {
   try {
     // Check if offers collection exists
@@ -486,7 +477,10 @@ app.get("/offers", async (req, res) => {
 
 });
 
-// Get a specific offer by ID
+/**
+ * Get Offer by ID Endpoint
+ * Returns a specific offer by its ID
+ */
 app.get("/offers/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -530,7 +524,11 @@ app.get("/offers/:id", async (req, res) => {
   }
 });
 
-// Test endpoint to get user by email
+/**
+ * Test User by Email Endpoint
+ * Returns user information for a specified email address
+ * Used for testing and debugging
+ */
 app.get("/api/users/test/:email", async (req, res) => {
   try {
     console.log("Searching for user with email:", req.params.email);
@@ -539,7 +537,7 @@ app.get("/api/users/test/:email", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
+
     res.json({
       id: user._id,
       name: user.name,
@@ -555,7 +553,15 @@ app.get("/api/users/test/:email", async (req, res) => {
   }
 });
 
-// User Login Endpoint
+/**
+ * User Login Endpoint
+ * Authenticates a user using email and password
+ * Returns user information upon successful login
+ * 
+ * @param {string} email - User's email address
+ * @param {string} password - User's password (plain text in current implementation)
+ * @returns {object} User data excluding password
+ */
 app.post("/api/users/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -576,7 +582,7 @@ app.post("/api/users/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    
+
     // Return user data (excluding password)
     const userData = {
       id: user._id,
@@ -595,12 +601,23 @@ app.post("/api/users/login", async (req, res) => {
   }
 });
 
+/**
+ * Password validation utility
+ * Arrays and functions for checking password strength and common patterns
+ */
 // Common password patterns to check against
 const commonPasswords = [
   'password123', 'qwerty123', '12345678', 'password1', 'admin123',
   'letmein123', 'welcome123', 'monkey123', 'football123', 'abc123'
 ];
 
+/**
+ * Checks if a string contains sequential characters
+ * Used for password strength validation
+ * 
+ * @param {string} str - The string to check for sequential patterns
+ * @returns {boolean} True if sequential patterns are found
+ */
 const isSequential = (str) => {
   const sequences = ['abcdefghijklmnopqrstuvwxyz', '0123456789'];
   const len = 4; // minimum sequence length to check
@@ -614,7 +631,15 @@ const isSequential = (str) => {
   return false;
 };
 
-// User Registration Endpoint
+/**
+ * User Registration Endpoint
+ * Creates a new user account with robust password validation
+ * 
+ * @param {string} name - User's full name
+ * @param {string} email - User's email address
+ * @param {string} password - User's password (must meet strength requirements)
+ * @returns {object} User data excluding password
+ */
 app.post("/api/users", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -704,7 +729,14 @@ app.post("/api/users", async (req, res) => {
   }
 });
 
-
+/**
+ * Update Movie Endpoint
+ * Updates movie information by ID
+ * 
+ * @param {string} id - Movie ID
+ * @param {object} req.body - Updated movie fields
+ * @returns {object} Updated movie document
+ */
 app.put('/movies/:id', async (req, res) => {
   const { id } = req.params; // Get the movie's _id from the URL
   const { Title, slug, identifier, parent, imageUrl, rating, language, description, genre, showtimesUrl, timings } = req.body;
@@ -742,7 +774,14 @@ app.put('/movies/:id', async (req, res) => {
   }
 });
 
-// Add movie to user's watch history
+/**
+ * Add Movie to Watch History Endpoint
+ * Adds a movie to a user's watch history
+ * 
+ * @param {string} userId - User ID
+ * @param {object} movie - Movie object to add to history
+ * @returns {object} Updated watch history and total movie count
+ */
 app.post("/api/users/watch-history", async (req, res) => {
   try {
     const { userId, movie } = req.body;
@@ -784,8 +823,13 @@ app.post("/api/users/watch-history", async (req, res) => {
   }
 });
 
-
-// Get user's watch history
+/**
+ * Get User Watch History Endpoint
+ * Retrieves a user's movie watch history
+ * 
+ * @param {string} userId - User ID
+ * @returns {object} User's watch history array
+ */
 app.get("/api/users/:userId/watch-history", async (req, res) => {
   try {
     const { userId } = req.params;
@@ -796,8 +840,8 @@ app.get("/api/users/:userId/watch-history", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ 
-      watchHistory: user.userViewHistory 
+    res.status(200).json({
+      watchHistory: user.userViewHistory
     });
   } catch (error) {
     console.error("Error retrieving watch history:", error);
@@ -805,6 +849,14 @@ app.get("/api/users/:userId/watch-history", async (req, res) => {
   }
 });
 
+/**
+ * Delete Movie from Watch History Endpoint
+ * Removes a movie from a user's watch history
+ * 
+ * @param {string} userId - User ID
+ * @param {string} movieId - Movie ID to remove from history
+ * @returns {object} Updated watch history
+ */
 app.delete("/api/users/:userId/watch-history/:movieId", async (req, res) => {
   try {
     const { userId, movieId } = req.params;
@@ -828,6 +880,9 @@ app.delete("/api/users/:userId/watch-history/:movieId", async (req, res) => {
   }
 });
 
-// ✅ Start Server
+/**
+ * Start the Express server
+ * Listens on the specified port from environment variables or defaults to 5000
+ */
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
