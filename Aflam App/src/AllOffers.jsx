@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
+// This function takes a text string and formats it to title case
+// For example: "hello world" becomes "Hello World"
+// Returns undefined if input is null/undefined
 const formatTitle = (text) =>
   text?.toLowerCase().split(" ").map((word) =>
     word.charAt(0).toUpperCase() + word.slice(1)
   ).join(" ");
 
+// This function takes a cinema parent name and returns the corresponding Tailwind CSS
+// background color class. For example: "vox" returns "bg-blue-500"
+// Returns a default gray color if the parent is not recognized
 const getTagColor = (parent) => {
   switch (parent.toLowerCase()) {
     case "vox": return "bg-blue-500";

@@ -14,6 +14,7 @@ export default function Home() {
   const location = useLocation(); // get the current path
 
 
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-red-500 via-pink-500 to-red-500 text-white">
       <Navbar />

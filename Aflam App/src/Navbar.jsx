@@ -4,8 +4,8 @@ import { UserContext } from "./UserContext"; // Import UserContext
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useContext(UserContext); // Use logout instead of setUser
-
+  const { user, logout } = useContext(UserContext); // Use logout instead of setUserr
+ 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
