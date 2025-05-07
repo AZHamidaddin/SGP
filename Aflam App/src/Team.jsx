@@ -5,9 +5,9 @@ const Team = () => {
   const teamMembers = [
     {
       name: "Wael Habib Alkiyani",
-      role: "Project Manager",
+      role: "Project Manager and Frontend",
       image:
-        "https://media.licdn.com/dms/image/v2/D5603AQE9QcHNjTmmDA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1715356562792?e=1737590400&v=beta&t=FOaNPgR9Wr2SrEP18gM6IvGEz_mlnJmjJBoVFHYgPig",
+        "https://media.licdn.com/dms/image/v2/D5603AQEgH5X3C_TfFg/profile-displayphoto-shrink_400_400/B56ZStrri7GoAg-/0/1738080698194?e=1752105600&v=beta&t=GaLFSMQtvFNeFxA8eYys0JM7BOI6bAvGiXPmqYIc4hU",
       linkedin: "https://www.linkedin.com/in/waelalkiyani/",
       achievements: [
         "Talent Acquisition - Volunteer Team Leader",
@@ -17,17 +17,17 @@ const Team = () => {
     },
     {
       name: "Ali Hamidaddin",
-      role: "Data Engineer",
+      role: "Backend Engineer",
       image:
-        "https://media.licdn.com/dms/image/v2/D4D03AQHcjDBtZvz_tA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1684000509822?e=1737590400&v=beta&t=JNHeO0SaJdzFKaiBvMRAwtvVNTwtEP_zPXKDGJFR8pA",
+        "https://media.licdn.com/dms/image/v2/D4D03AQHcjDBtZvz_tA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1684000509822?e=1752105600&v=beta&t=LS2lAnYtlh9CXcZZFatb2aiM7J0uI5LGewkSEoS9qcE",
       linkedin: "https://www.linkedin.com/in/ali-h-8aa76a13b/",
       achievements: ["SOC Analyst", "SOC Intern", "Soft Services Intern"],
     },
     {
       name: "Ahmed Alagari",
-      role: "Testing Specialist",
+      role: "Database Specialist",
       image:
-       "https://media.licdn.com/dms/image/v2/D5603AQFq8DUQar-OXA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1731431605150?e=1737590400&v=beta&t=EOg6va0-OXhD_EGauArPJ3-Q88HqLSsr-D3UljkyN8I",
+       "https://media.licdn.com/dms/image/v2/D5603AQFq8DUQar-OXA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731431605150?e=1752105600&v=beta&t=_NvWxci5UfA-GWJJJaFF2YFetoxUONRBNYNIZrF_LrM",
       linkedin: "https://www.linkedin.com/in/ahmed-alagbari-200b13324/",
       achievements: [
         "3rd place @ National Court of Audit",
