@@ -653,7 +653,7 @@ app.post("/api/users", async (req, res) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Invalid email format. Please use a valid email address (e.g., example@domain.com)" });
-    }f
+    }
 
     // Enhanced password validation with strict checking
     const passwordErrors = [];
