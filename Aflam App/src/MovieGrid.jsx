@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
+// This function normalizes a string by:
+// - Converting to lowercase
+// - Removing all special characters (keeping only letters and numbers)
+// - Trimming whitespace
+// - Returns empty string if input is null/undefined
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
 
-// Helper function to find the best image URL based on source priority
+// Hmm, this function takes a group of movies and a priority list of sources
+// It tries to find the best quality movie poster by checking each source in order
+// If it can't find any of the preferred sources, it just uses the first movie's image
+// Pretty handy for making sure we show the nicest poster we have!
 const getPrioritizedImageUrl = (group, priority) => {
   // Find the image based on priority
   for (const sourceName of priority) {
@@ -18,6 +27,10 @@ const getPrioritizedImageUrl = (group, priority) => {
   return group[0]?.["Image URL"] || ""; // Use optional chaining and provide a default empty string
 };
 
+// This function groups similar movies together based on their titles
+// For example, "Spider-Man" and "Spider-Man 2" would be in the same group
+// It also sorts the groups alphabetically by title
+// Really useful for showing all versions of a movie together on the grid!
 const mergeMoviesByTitle = (movies) => {
   const groups = [];
   const visited = new Set();

@@ -8,6 +8,10 @@ export default function UserInfo() {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
 
+  // Returns a greeting based on the time of day
+  // Before noon -> Good Morning
+  // Before 6pm -> Good Afternoon 
+  // After 6pm -> Good Evening
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 12) return "Good Morning";

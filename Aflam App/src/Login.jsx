@@ -11,6 +11,10 @@ export default function Login() {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+  // This function handles the login form submission
+  // It makes a POST request to the login API endpoint with email and password
+  // On success, it updates the user context and navigates to home
+  // On failure, it displays the error message to the user
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");

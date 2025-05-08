@@ -17,8 +17,8 @@ MUVI_URL = "https://www.muvicinemas.com/"
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
-driver = webdriver.Chrome(options=options)  # Ensure you have chromedriver installed
-driver.get(f"{MUVI_URL}en")  # Replace with the target URL
+driver = webdriver.Chrome(options=options)
+driver.get(f"{MUVI_URL}en")
 
 time.sleep(3)  # Adjust as needed
 
@@ -35,14 +35,16 @@ time.sleep(2)
 submit_button = driver.find_element(By.ID, "city-submit")
 driver.execute_script("arguments[0].click();", submit_button)
 
-# Optional: Wait to see the result before closing
+# wait to see result (adjust as needed)
 time.sleep(5)
 
-scroll_pause_time = 3  # Adjust based on loading speed
+# Adjust based on loading speed
+scroll_pause_time = 3
 last_height = driver.execute_script("return document.body.scrollHeight")
 
 print("loading movie data...")
 
+# Scroll down to the end of the page
 while True:
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(scroll_pause_time)
@@ -57,16 +59,16 @@ driver.quit()
 
 
 # Parse the HTML
-
 soup = BeautifulSoup(page_source, "html.parser")
 
 
 # Find all movie divs
 movie_divs = soup.find_all('div', class_='css-3hfg99')
 
+# Array to store extracted movie objects
+movies = []
 
-movies = []  # Array to store extracted movie objects
-
+# Extracted from the home page
 for div in movie_divs:
     try:
 
@@ -119,7 +121,8 @@ for div in movie_divs:
 
         # print("Extracted movie info:", movie_info)  # Debugging: Print extracted movie object
 
-        movies.append(movie_info)  # Append to movies list
+        # Append to movies list
+        movies.append(movie_info)
 
     except Exception as e:
         print(f"Error extracting movie data: {e}")
@@ -146,7 +149,9 @@ city_mapping = {
 
 }
 
+# For every movie in the movie object, extract showtimes and remaining information
 for movie in movies:
+
     # Remove any preexisting cityId parameter from the URL, then add it manually.
     base_url = f"{MUVI_URL}{movie['Showtimes URL']}"
     base_url = re.sub(r"(\?cityId=)\d+", "", base_url)
@@ -278,6 +283,7 @@ for movie in movies:
 
 driver.quit()
 
+# Save JSON to a file
 print(json.dumps(movies, indent=4))
 with open("muvi_movies.json", "w", encoding="utf-8") as f:
     json.dump(movies, f, ensure_ascii=False, indent=4)

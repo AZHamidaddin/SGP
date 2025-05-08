@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 const API_URL = "http://127.0.0.1:5050";
 
-// IDs of the top 250 movies found in movie.csv (add the actual list here)
-// NOTE: Replace this placeholder with the actual list of IDs
+// This Set contains the IDs of the top 250 movies from movie.csv, based on user ratings
+// These IDs are used to filter and show only highly-rated movies in the recommender
+// The list includes classic films, popular blockbusters, and critically acclaimed movies
+// We use a Set for O(1) lookup performance when checking if a movie ID is in the top 250
 const TOP_MOVIE_IDS = new Set([
   318, 858, 49915, 1221, 1203, 50, 296, 1193, 1213, 2019, 1196, 1136, 593,
   260, 1207, 1225, 527, 1172, 1198, 1104, 1208, 1252, 1237, 47, 1247, 1250,
@@ -23,8 +25,15 @@ const TOP_MOVIE_IDS = new Set([
   1243, 1268, 1279, 1280, 1290, 1303, 1305, 1281, 1202, 1289, 1277, 1185,
   1187, 1189, 1190, 1191, 1192, 1227, 1236, 1238, 1241, 1244, 1251, 1253,
   1255, 1257, 1273, 1274, 1284, 1286, 1295, 1297, 1298, 1301
-]); // This list contains ~220 IDs found from the Top 250 list in movie.csv
+]); // Contains approximately 220 movie IDs from the Top 250 list in movie.csv
 
+// This function calculates how similar two strings are by comparing characters
+// It returns a value between 0 and 1, where:
+// - 1 means the strings are identical
+// - 0 means they are completely different
+// For example:
+// similarity("cat", "car") = 0.67 (2/3 characters match)
+// similarity("movie", "movies") = 0.83 (5/6 characters match)
 const similarity = (a, b) => {
   const maxLen = Math.max(a.length, b.length);
   let match = 0;
@@ -34,6 +43,21 @@ const similarity = (a, b) => {
   return match / maxLen;
 };
 
+// This function takes an array of movie recommendations and merges similar titles together
+// It groups movies with titles that are at least 90% similar (using the similarity function)
+// For each group, it:
+// - Uses the first movie's title as the group title
+// - Calculates the average rating across all movies in the group
+// For example:
+// Input: [
+//   {title: "Spider-Man", rating: 8},
+//   {title: "Spiderman", rating: 7},
+//   {title: "Batman", rating: 9}
+// ]
+// Output: [
+//   {title: "Spider-Man", rating: 7.5},
+//   {title: "Batman", rating: 9}
+// ]
 const mergeSimilarTitles = (recommendations) => {
   const groups = [];
   const visited = new Set();
@@ -69,9 +93,23 @@ const GenreRecommender = () => {
 
   // The list of specific movie IDs to display initially
   const initialMovieIds = new Set([
-    106782, 193610, 193611, 193612, 193617, 356, 1213, 2959, 4973, 4993,
-    5618, 77846, 79132, 177765, 193625, 193627, 193631, 193629,
-    193642, 113186
+    318, 858, 49915, 1221, 1203, 50, 296, 1193, 1213, 2019, 1196, 1136, 593,
+    260, 1207, 1225, 527, 1172, 1198, 1104, 1208, 1252, 1237, 47, 1247, 1250,
+    1197, 1784, 1212, 904, 1265, 2959, 750, 1204, 4226, 912, 608, 58549, 1259,
+    1228, 1219, 922, 1089, 2858, 2571, 1, 1206, 1199, 1210, 1270, 48516, 356,
+    5618, 1276, 1617, 1240, 923, 588, 1201, 68954, 110, 1217, 292, 1704, 1291,
+    1266, 122906, 908, 2762, 1222, 595, 1230, 111, 337, 4973, 913, 1302, 898,
+    1214, 1200, 1278, 541, 349, 475, 1288, 1148, 1261, 1246, 2028, 1097, 1287,
+    1178, 903, 1035, 1233, 11, 1242, 1258, 4011, 1248, 1234, 7361, 2329, 112542,
+    364, 2324, 6016, 1923, 5970, 1079, 1267, 119145, 44555, 1263, 3147, 1272,
+    1282, 4975, 905, 924, 919, 1260, 1304, 1300, 1209, 1285, 293, 122918, 112852,
+    110102, 122920, 920, 116797, 122886, 122904, 46578, 4246, 778, 1256, 2005,
+    122892, 16, 1275, 253, 44, 1748, 1262, 120735, 2115, 1283, 551, 1211, 1235,
+    1254, 2000, 1286, 1299, 515, 1036, 1296, 1293, 1220, 2302, 122882, 1249,
+    1188, 1271, 1218, 1269, 1264, 1307, 1292, 1223, 539, 1245, 508, 1179, 1306,
+    1243, 1268, 1279, 1280, 1290, 1303, 1305, 1281, 1202, 1289, 1277, 1185,
+    1187, 1189, 1190, 1191, 1192, 1227, 1236, 1238, 1241, 1244, 1251, 1253,
+    1255, 1257, 1273, 1274, 1284, 1286, 1295, 1297, 1298, 1301
   ]);
 
   useEffect(() => {

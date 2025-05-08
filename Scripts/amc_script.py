@@ -24,7 +24,7 @@ day_name_map = {
     "Today": "Today"
 }
 
-
+# Convert extracted date to desired string
 def get_date_key(date_text):
     current_year = datetime.now().year
     if date_text == "Today":
@@ -43,7 +43,7 @@ def get_date_key(date_text):
             return f"{current_year}-{month:02d}-{day:02d}"
     return f"{datetime.now().strftime('%Y-%m-%d')}-{date_text}"
 
-
+# format the place and city strings to remove undesired characters
 def format_place_and_city(raw_text):
     parts = raw_text.split("-")
     place = parts[0].strip() if parts else raw_text.strip()
@@ -58,7 +58,7 @@ def format_place_and_city(raw_text):
         city = city.replace("KM(S)", "").strip()
     return place, city
 
-
+# Extract each individual movie's information
 def extract_movie_info(movie_section):
     info_section = movie_section.find("section", class_="amc-title-info")
     if not info_section:
@@ -74,7 +74,7 @@ def extract_movie_info(movie_section):
             genres.extend(splitted)
     return classification, lang, genres
 
-
+# Extract the description or synopsis
 def extract_synopsis(movie_section):
     desc_tag = movie_section.find("p", class_="amc-synopsis")
     if not desc_tag:
@@ -133,10 +133,12 @@ try:
         day_part = date_text.split(',')[0] if ',' in date_text else date_text
         day_name = day_name_map.get(day_part, day_part)
 
+        # Fetch new page source
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, 'html.parser')
         movie_sections = soup.find_all("section", class_="movies-list")
 
+        # For each movie section extract title, slug, then call appropriate functions
         for movie_section in movie_sections:
             title_section = movie_section.find("h1")
             title = title_section.text.strip() if title_section else ""
@@ -146,6 +148,7 @@ try:
             image_tag = movie_section.find("img", class_="img-responsive")
             image_url = image_tag["src"] if image_tag else ""
 
+            # Extract showtimes, experiences, and place
             showtimes_list = []
             showtime_blocks = movie_section.find_all("section", class_="amc-showtime-list-block")
             for block in showtime_blocks:
@@ -172,6 +175,7 @@ try:
                         if not cinema_exists and experiences:
                             showtimes_list.append({"Place": cinema_name, "City": city, "Experiences": experiences})
 
+            # Logic to help give a date to all date buttons
             if day_name == "":
                 day_name = "Today"
 
@@ -211,6 +215,8 @@ except Exception as e:
 
     traceback.print_exc()
 finally:
+
+    # Print the final JSOn to a file
     with open("amc_movies.json", "w", encoding="utf-8") as f:
         json.dump(all_movies, f, ensure_ascii=False, indent=4)
     print("Saved all movie data to amc_movies.json")

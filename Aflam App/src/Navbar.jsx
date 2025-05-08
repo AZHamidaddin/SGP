@@ -4,18 +4,18 @@ import { UserContext } from "./UserContext"; // Import UserContext
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useContext(UserContext); // Use logout instead of setUser
-
+  const { user, logout } = useContext(UserContext); // Use logout instead of setUserr
+ 
   return (
     <nav className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 shadow-lg">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <span className="text-gray-300 text-3xl font-bold tracking-wide cursor-pointer">
-              {"Aflam"}
-            </span>
-          </div>
+          <Link to="/home" className="flex items-center cursor-pointer">
+      <span className="text-gray-300 text-3xl font-bold tracking-wide">
+        {"Aflam"}
+      </span>
+    </Link>
 
           {/* Menu for larger screens */}
           <div className="hidden md:flex space-x-4 items-center">

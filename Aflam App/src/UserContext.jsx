@@ -2,6 +2,10 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext();
 
+// This component manages the global user state for our app
+// It handles loading the user from localStorage on startup,
+// saving changes to localStorage, and logging out
+// Really helpful for persisting login state across page refreshes!
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     // Try to get user data from localStorage on initial load
