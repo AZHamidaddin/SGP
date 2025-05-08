@@ -10,7 +10,7 @@
 require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+const cors = require("cors"); 
 
 // Initialize Express application
 const app = express();
@@ -705,12 +705,12 @@ app.post("/api/users", async (req, res) => {
     const user = new User({
       name,
       email,
-      password, // In a real application, you should hash the password
+      password, 
       total_movies: 0,
       total_duration: 0
     });
 
-    await user.save();
+    await user.save(); // Save  the new user to the database (MongoDB)
 
     // Return user data (excluding password)
     const userData = {
@@ -780,7 +780,7 @@ app.put('/movies/:id', async (req, res) => {
  * 
  * @param {string} userId - User ID
  * @param {object} movie - Movie object to add to history
- * @returns {object} Updated watch history and total movie count
+ * @returns {object} 
  */
 app.post("/api/users/watch-history", async (req, res) => {
   try {
@@ -863,7 +863,7 @@ app.delete("/api/users/:userId/watch-history/:movieId", async (req, res) => {
 
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: "User not found" });
-
+   
     const updatedHistory = user.userViewHistory.filter((movie) => movie._id !== movieId);
     user.userViewHistory = updatedHistory;
     user.total_movies = updatedHistory.length;

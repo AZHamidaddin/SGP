@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const normalize = (str) =>
   str?.toLowerCase().replace(/[^a-z0-9]+/g, "").trim() || "";
@@ -37,12 +37,12 @@ const getParentBadge = (place, movieGroup, parentFromShow = null) => {
     parent.toLowerCase() === "muvi"
       ? "bg-pink-600"
       : parent.toLowerCase() === "empire"
-      ? "bg-amber-900"
-      : parent.toLowerCase() === "amc"
-      ? "bg-red-600"
-      : parent.toLowerCase() === "vox"
-      ? "bg-blue-600"
-      : "bg-gray-600";
+        ? "bg-amber-900"
+        : parent.toLowerCase() === "amc"
+          ? "bg-red-600"
+          : parent.toLowerCase() === "vox"
+            ? "bg-blue-600"
+            : "bg-gray-600";
 
   return (
     <span
@@ -95,8 +95,10 @@ const SearchMovies = () => {
   const [movies, setMovies] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
   const [cities, setCities] = useState([]);
+  const [days, setDays] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
   const [results, setResults] = useState([]);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
 
@@ -129,12 +131,54 @@ const SearchMovies = () => {
     });
 
     setCities([...citySet]);
+    updateDayOptions(movieList, selectedMovie, selectedCity);
+  };
+
+  const updateDayOptions = (movieList, movie, city) => {
+    const daySet = new Set();
+    const today = new Date(new Date().toDateString());
+
+    movieList.forEach((groupedMovie) => {
+      if (!movie || groupedMovie.Title === movie) {
+        groupedMovie.Timings?.forEach((timing) => {
+          const showDate = new Date(timing.Date);
+          if (showDate >= today) {
+            const formattedDate = showDate.toLocaleDateString("en-US", {
+              weekday: "short",
+              day: "numeric",
+              month: "short",
+            });
+
+            // Only add this day if there are showtimes matching the city filter
+            const hasCityMatchingShowtimes = !city || timing.Showtimes?.some(show => show.City === city);
+            if (hasCityMatchingShowtimes) {
+              daySet.add(JSON.stringify({
+                display: formattedDate + (showDate.toDateString() === today.toDateString() ? " (Today)" : ""),
+                value: timing.Date
+              }));
+            }
+          }
+        });
+      }
+    });
+
+    const sortedDays = [...daySet].map(day => JSON.parse(day)).sort((a, b) => {
+      return new Date(a.value) - new Date(b.value);
+    });
+
+    setDays(sortedDays);
+
+    // Reset selected day if it no longer exists in the options
+    if (selectedDay && !sortedDays.some(day => day.value === selectedDay)) {
+      setSelectedDay("");
+    }
   };
 
   const handleMovieChange = (e) => {
     const movie = e.target.value;
     setSelectedMovie(movie);
     setSelectedCity("");
+    setSelectedDay("");
     setIsSearchClicked(false);
     updateCityOptions(allMovies, movie);
   };
@@ -142,11 +186,23 @@ const SearchMovies = () => {
   const handleCityChange = (e) => {
     const city = e.target.value;
     setSelectedCity(city);
+    setSelectedDay("");
     setIsSearchClicked(false);
-    updateCityOptions(allMovies, selectedMovie);
+    updateDayOptions(allMovies, selectedMovie, city);
+  };
+
+  const handleDayChange = (e) => {
+    const day = e.target.value;
+    setSelectedDay(day);
+    setIsSearchClicked(false);
   };
 
   const handleSearch = () => {
+    // Only proceed if all filters are selected
+    if (!selectedMovie || !selectedCity || !selectedDay) {
+      return;
+    }
+
     setIsSearchClicked(true);
     const resultMovies = [];
 
@@ -161,6 +217,10 @@ const SearchMovies = () => {
         ?.filter(timing => {
           // Skip past dates using the same approach as MovieDetail.jsx
           const showDate = new Date(timing.Date);
+          // If a day is selected, filter for that specific day
+          if (selectedDay) {
+            return timing.Date === selectedDay;
+          }
           return showDate >= today;
         })
         ?.map((timing) => {
@@ -206,6 +266,7 @@ const SearchMovies = () => {
   const handleReset = () => {
     setSelectedMovie("");
     setSelectedCity("");
+    setSelectedDay("");
     setIsSearchClicked(false);
     setResults([]);
     updateCityOptions(allMovies, "");
@@ -240,10 +301,27 @@ const SearchMovies = () => {
           ))}
         </select>
 
+        <select
+          value={selectedDay}
+          onChange={handleDayChange}
+          className="p-3 rounded-lg bg-gray-800 text-white"
+        >
+          <option value="">Select Day</option>
+          {days.map((day) => (
+            <option key={day.value} value={day.value}>
+              {day.display}
+            </option>
+          ))}
+        </select>
+
         <div className="flex gap-2">
           <button
             onClick={handleSearch}
-            className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold"
+            disabled={!selectedMovie || !selectedCity || !selectedDay}
+            className={`px-6 py-3 rounded-lg font-semibold text-white ${!selectedMovie || !selectedCity || !selectedDay
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-pink-600 hover:bg-pink-700"
+              }`}
           >
             Search
           </button>
@@ -256,7 +334,7 @@ const SearchMovies = () => {
         </div>
       </div>
 
-      {isSearchClicked && (selectedMovie || selectedCity) && (
+      {isSearchClicked && selectedMovie && selectedCity && selectedDay && (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {results.length > 0 ? (
             <div>

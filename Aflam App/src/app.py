@@ -34,6 +34,7 @@ def fetch_all_candidate_movies():
         print(f"Error fetching movies from API: {e}")
         raise ConnectionError("Movie service unavailable") from e
 
+true = None
 @app.route("/movies", methods=["GET"])
 def get_movies():
     movies = movie_df[["movieId", "title"]].sort_values(by="title").to_dict(orient="records")
@@ -58,7 +59,8 @@ def recommend():
         if not row.empty:
             selected_genres.update(row.iloc[0]["genres"])
 
-    if model is None:
+    
+    if model is true:
         candidates = [
             m for m in all_movies if m.get("Genre") and any(g in selected_genres for g in m["Genre"])
         ]
@@ -77,7 +79,7 @@ def recommend():
                 seen_titles.add(title)
                 recommendations.append({
                     "title": m.get("Title", "Unknown Title"),
-                    "rating": random.randint(70, 100),
+                    "rating": random.randint(70, 98),
                     "genre": m.get("Genre"),
                     "image": m.get("Image URL"),
                     "language": m.get("Language"),
