@@ -42,7 +42,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex justify-between items-center">
           <p className="text-sm text-gray-400">
-            &copy; 2024 Aflam. All rights reserved.
+            &copy; 2025 Aflam. All rights reserved.
           </p>
         </div>
       </div>
