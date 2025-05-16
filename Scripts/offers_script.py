@@ -41,12 +41,23 @@ def getVoxOffers():
         print("Offer page title (ASCII only):", clean_title)
 
         # Extract and clean the H1 offer name only once
-        raw_offer_name = offer_soup.find("h1").text.upper().strip()
+        h1_tag = offer_soup.find("h1")
+        if h1_tag and h1_tag.text:
+            raw_offer_name = h1_tag.text.upper().strip()
+        else:
+            # fallback to using the slug from URL if <h1> is missing
+            slug = href.strip("/").split("/")[-1]
+            raw_offer_name = slug.replace("-", " ").upper()
+            print(f"Fallback offer name from URL slug: {raw_offer_name}")
         clean_offer_name = re.sub(r'[^\x00-\x7F]+', '', raw_offer_name)
         print("Offer name (ASCII only):", clean_offer_name)
 
         # Extract offer image from the third image tag
-        offer_image = offer_soup.find_all("img")[2].get("src")
+        try:
+            offer_image = offer_soup.find_all("img")[2].get("src")
+        except IndexError:
+            print("Warning: Less than 3 images found, skipping this offer.")
+            continue
 
         # Append the cleaned data to your list
         all_offers.append({
@@ -95,7 +106,10 @@ def getMuviOffers():
 
     # Scroll down to the bottom of the page
     while True:
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        for scroll_pos in range(0, driver.execute_script("return document.body.scrollHeight"), 500):
+            driver.execute_script(f"window.scrollTo(0, {scroll_pos});")
+            time.sleep(0.5)  # Adjust if needed
+
         time.sleep(scroll_pause_time)
         new_height = driver.execute_script("return document.body.scrollHeight")
         if new_height == last_height:
@@ -242,8 +256,8 @@ def getEmpireOffers():
 # Call all functions
 getVoxOffers()
 getMuviOffers()
-getAMCOffers()
 getEmpireOffers()
+getAMCOffers()
 
 # Write the final JSON to a file
 print(json.dumps(all_offers, indent=4))
