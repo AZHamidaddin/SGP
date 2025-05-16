@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import SearchMovies from "./SearchMovies";
 import { FaPen, FaPlus, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
@@ -463,7 +464,7 @@ const AllMovies = () => {
 
 
 
-
+      <Footer />
     </div>
   );
 };

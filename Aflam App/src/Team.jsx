@@ -24,7 +24,7 @@ const Team = () => {
       achievements: ["SOC Analyst", "SOC Intern", "Soft Services Intern"],
     },
     {
-      name: "Ahmed Alagari",
+      name: "Ahmed Alagbari",
       role: "Database Specialist",
       image:
        "https://media.licdn.com/dms/image/v2/D5603AQFq8DUQar-OXA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731431605150?e=1752105600&v=beta&t=_NvWxci5UfA-GWJJJaFF2YFetoxUONRBNYNIZrF_LrM",

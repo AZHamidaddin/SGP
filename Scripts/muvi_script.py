@@ -46,7 +46,10 @@ print("loading movie data...")
 
 # Scroll down to the end of the page
 while True:
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    for scroll_pos in range(0, driver.execute_script("return document.body.scrollHeight"), 500):
+        driver.execute_script(f"window.scrollTo(0, {scroll_pos});")
+        time.sleep(0.5)  # Adjust if needed
+
     time.sleep(scroll_pause_time)
     new_height = driver.execute_script("return document.body.scrollHeight")
     if new_height == last_height:
